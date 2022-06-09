@@ -63,7 +63,7 @@ const Splash = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground style={styles.image}>
+      <ImageBackground source={globalPath.splashBackgroung} resizeMode={'cover'} style={styles.image}>
         <Image style={styles.logo} source={globalPath.logo} />
       </ImageBackground>
     </View>
@@ -72,7 +72,6 @@ const Splash = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:colors.blue1,
     flex: 1,
   },
   footerContainer: {
