@@ -20,15 +20,18 @@ export default function BottomTabs() {
     <View style={{flex:1}}>
 
 
-      <Tab.Navigator tabBarOptions={{
+      <Tab.Navigator 
+      style={{marginHorizontal:20}}
+      // sceneContainerStyle={{marginHorizontal:20,backgroundColor:'red'}}
+      screenOptions={{
         showLabel: true,
         
         // Floating Tab Bar...
         
-        tabStyle: {
+        tabBarStyle: {
           backgroundColor: 'purple',
-          height: 60,
-          // borderRadius: 10,
+          height: 50,
+          borderRadius: 10,
           // Shadow...
           shadowColor: '#000',
           shadowOpacity: 0.06,
@@ -36,12 +39,13 @@ export default function BottomTabs() {
             width: 10,
             height: 10
           },
-          // paddingHorizontal: 20,
+          paddingHorizontal: 20,
+          marginHorizontal:20
         },
-        barStyle:{
-          marginHorizontal:20,
-          borderRadius:20
-        }
+        // tabBarStyle
+      //  style:{
+      //    marginHorizontal:20
+      //  }
       }}>
 
         {
