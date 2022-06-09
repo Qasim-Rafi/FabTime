@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient'
+// import LinearGradient from 'react-native-linear-gradient'
 
 import { colors } from '../constants/colorsPallet';
 import { handleMargin, handlePadding } from '../constants/theme';
@@ -32,23 +32,25 @@ const RnButton = ({
         position && { alignSelf: position },
         backgroundColor && { backgroundColor },
         {
-          height: hp(5),
+          height: hp(6),
           flexDirection: 'row',
           // width: width ? width : undefined,
           // height: height ? height : undefined,
-          borderRadius: borderRadius ? borderRadius : 7,
+          borderRadius: borderRadius ? borderRadius : 30,
         },
       ]}
       {...props}>
-      <LinearGradient colors={gradColor} start={{ x: 0.2, y: 0 }} end={{ x: 1, y: 0 }}
+      {title && (
+        
+        <Text style={styles.buttonText}>
+          {title}
+        </Text>
+      )}
+      {/* <LinearGradient colors={gradColor} start={{ x: 0.2, y: 0 }} end={{ x: 1, y: 0 }}
         style={styles.linearGradient}
       >
-        {title && (
-          <Text style={styles.buttonText}>
-            {title}
-          </Text>
-        )}
-      </LinearGradient>
+       
+      </LinearGradient> */}
 
       {props.children}
     </TouchableOpacity>
@@ -81,7 +83,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Gill Sans',
     textAlign: 'center',
-    margin: 10,
+    margin: 0,
+    flex:1,
+    // height:hp(5),
     color: '#ffffff',
     backgroundColor: 'transparent',
   },
