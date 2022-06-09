@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -28,26 +20,20 @@ import {
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor} >
+        {/* <StatusBar hidden /> */}
+    <StatusBar barStyle="light-content" backgroundColor="transparent" translucent={true}/>
+
+        {/*<PersistGate loading={null} persistor={persistor}>*/}
+        <Router />
+        {/*</PersistGate>*/}
+        </PersistGate>
+        <FlashMessage position="top" icon="auto"/>
+      </Provider>
+
+    </SafeAreaProvider>
   );
 };
 
@@ -109,3 +95,12 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
+console.disableYellowBox = true;
+
+LogBox.ignoreLogs([
+  'Warning: VirtualizedList should',
+  'Warning: Each child',
+  'Warning: Each child in a',
+  'Warning: Failed prop type',
+]);
