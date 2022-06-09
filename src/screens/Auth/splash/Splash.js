@@ -52,21 +52,8 @@ const Splash = ({ navigation }) => {
         }, 2000);
       }, 0);
     } else {
-      if(role=="Admin"){
-      navigation.dispatch(StackActions.replace(routeName.LANDING_SCREEN));
-      }
-      else if(role=="Student"){
-      navigation.dispatch(StackActions.replace(routeName.STUDENT_DASHBOARD));
-
-      }
-      else if(role=="Teacher"){
-        navigation.dispatch(StackActions.replace(routeName.TEACHER_DASHBOARD));
-  
-        }
-        else if(role=="Parent"){
-          navigation.dispatch(StackActions.replace(routeName.PARENTS));
-    
-          }
+      // navigation.dispatch(StackActions.replace(routeName.LANDING_SCREEN));
+      
     }
   };
 
