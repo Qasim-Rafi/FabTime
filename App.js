@@ -11,7 +11,7 @@ const App = () => {
     <SafeAreaProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor} >
-        {/* <StatusBar hidden /> */}
+         {/* <StatusBar hidden />  */}
     <StatusBar barStyle="light-content" backgroundColor="transparent" translucent={true}/>
 
         {/*<PersistGate loading={null} persistor={persistor}>*/}
