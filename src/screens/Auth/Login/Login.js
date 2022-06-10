@@ -3,9 +3,7 @@ import {
   StyleSheet,
   View,
   ImageBackground,
-  Text,
   Image,
-  Linking,
 } from "react-native";
 import { hp, wp } from "../../../helpers/Responsiveness";
 import { colors } from "../../../constants/colorsPallet";
@@ -35,7 +33,7 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = React.useState("");
   const [school, setSchool] = React.useState("");
   const [data, setData] = React.useState([]);
-  const emp = ["hello", "ggggg"];
+  const emp = ["Fabintel", "Fabcot Inter."];
   //Redux Action Called
   const dispatch = useDispatch();
   const userLogin = () => {
@@ -93,7 +91,7 @@ const Login = ({ navigation }) => {
               <ResponsiveText
                 margin={[20, 0, 0, 30]}
                 fontFamily={Fonts.Bold}
-                size={wp(2)}
+                size={8}
                 color={colors.blue1}
               >
                 Sign In
@@ -101,7 +99,7 @@ const Login = ({ navigation }) => {
               <ResponsiveText
                 margin={[0, 0, 0, 30]}
                 fontFamily={Fonts.Bold}
-                size={wp(1)}
+                size={3.5}
                 color={colors.grey1}
               >
                 Enter your phone number or Email address for sign in.
@@ -140,30 +138,12 @@ const Login = ({ navigation }) => {
                 />
                 {/* <ResponsiveText color={colors.red} margin={[20, 0, 0, 10]}>{errorString}</ResponsiveText> */}
                 <RnButton
-                  // gradColor={[colors.green1, colors.yellow]}
                   backgroundColor={colors.blue2}
-                  // padding={[5, 0, 0, 0]}
                   margin={[50, 0, 0, 0]}
                   title={"Sign in"}
                   onPress={() => Validation()}
                 />
               </View>
-              {/* <ResponsiveText
-                margin={[20, 0, 0, 10]}
-                textAlign={"center"}
-                color={colors.grey1}
-              >
-                I don't have an account?Sign Up?{" "}
-                <ResponsiveText
-                  fontFamily="Bold"
-                  color={colors.blue2}
-                  onPress={() =>
-                    Linking.openURL("https://www.egreatlearning.com/")
-                  }
-                >
-                  Sign up
-                </ResponsiveText>
-              </ResponsiveText> */}
             </View>
           </View>
         </View>
