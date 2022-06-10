@@ -4,7 +4,7 @@ import AuthStack from './AuthStack';
 import {NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Splash from '../screens/Auth/splash/Splash';
+
 const Router = () => {
   const [Token , setToken]= React.useState('');
   // React.useEffect(() => {
