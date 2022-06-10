@@ -10,6 +10,7 @@ import { useRef } from 'react';
 import { globalPath } from '../constants/globalPath';
 import { colors } from '../constants/colorsPallet';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Home from '../screens/Home/Home';
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -50,11 +51,11 @@ export default function BottomTabs() {
           },
           //  }
         }}>
-        <Tab.Screen name={"Search"} component={SearchScreen} options={{
+        <Tab.Screen name={"Home"} component={Home} options={{
           tabBarIcon: ({ focused }) => (
            <View style={focused? styles.TouchableTab:{}}>
               <View style={focused?styles.ActiveTab: styles.inActiveTab}>
-                <Image source={globalPath.plus} style={{
+                <Image source={globalPath.home} resizeMode={'contain'} style={{
                   width: 22,
                   height: 22,
                   tintColor: 'white',
@@ -85,7 +86,7 @@ export default function BottomTabs() {
 
             <View style={focused? styles.TouchableTab:{}}>
               <View style={focused?styles.ActiveTab: styles.inActiveTab}>
-                <Image source={globalPath.plus} style={{
+                <Image source={globalPath.history} resizeMode={'contain'} style={{
                   width: 22,
                   height: 22,
                   tintColor: 'white',
@@ -113,7 +114,7 @@ export default function BottomTabs() {
 
          
             <View  style={focused?styles.ActiveTab: styles.inActiveTab}>
-              <Image source={globalPath.plus} style={{
+              <Image source={globalPath.report} resizeMode={'contain'} style={{
                 width: 22,
                 height: 22,
                 tintColor: 'white',
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
   ActiveTab:{
     width: 55,
     height: 55,
-    backgroundColor: 'red',
+    backgroundColor:colors.darkblue,
     borderRadius: 30,
     borderWidth:3,
     borderColor:colors.white,
