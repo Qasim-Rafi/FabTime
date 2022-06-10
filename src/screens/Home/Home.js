@@ -3,14 +3,26 @@ import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
 import { colors } from "../../constants/colorsPallet";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { Grid } from 'react-native-animated-spinkit'
 const Home = () => {
-  
+  const [loader, setLoader] = React.useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false)
+
+    }, 5000);
+  });
+
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
-     <View>
-       <Text>hhhhhhhh</Text>
-     </View>
+      <View>
+        {loader ?
+          <View style={{ justifyContent: 'center',alignItems:'center', backgroundColor: 'rgba(65, 65, 65, 1)', flex: 1 }}>
+            <Grid size={48} color={colors.darkblue} />
+
+          </View>
+          : null}
+      </View>
     </SafeAreaView>
   );
 };
@@ -20,15 +32,15 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.green,
+    // backgroundColor: colors.green,
   },
   header: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.green,
   },
-  row:{
-    flexDirection: "row", justifyContent: 'space-between' 
+  row: {
+    flexDirection: "row", justifyContent: 'space-between'
   },
   boxText: {
     fontSize: hp(1.7),
@@ -45,7 +57,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1.6,
     backgroundColor: colors.white,
-    paddingTop:10,
+    paddingTop: 10,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
 
