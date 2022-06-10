@@ -47,7 +47,8 @@ export default function BottomTabs() {
             },
             marginBottom:20,
             paddingHorizontal: 20,
-            marginHorizontal: 50
+            marginHorizontal: 50,
+            position:'absolute'
           },
           //  }
         }}>

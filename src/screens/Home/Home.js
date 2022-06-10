@@ -8,21 +8,22 @@ const Home = () => {
   const [loader, setLoader] = React.useState(true)
   useEffect(() => {
     setTimeout(() => {
-      setLoader(false)
+      setLoader(true)
 
     }, 5000);
   });
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
-      <View>
         {loader ?
-          <View style={{ justifyContent: 'center',alignItems:'center', backgroundColor: 'rgba(65, 65, 65, 1)', flex: 1 }}>
+          <View style={{
+          // backgroundColor: "rgba(65, 65, 65, 0.5)",
+          alignItems:'center'
+          }}>
             <Grid size={48} color={colors.darkblue} />
 
           </View>
           : null}
-      </View>
     </SafeAreaView>
   );
 };
@@ -32,7 +33,8 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: colors.green,
+    // backgroundColor: colors.black,
+    justifyContent:'center'
   },
   header: {
     justifyContent: "center",
