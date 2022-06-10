@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
      <View>
-       <Text>,snms,</Text>
+       <Text>hhhhhhhh</Text>
      </View>
     </SafeAreaView>
   );
@@ -68,23 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 10,
   },
-  boxImages: {
-    height: wp(20),
-    width: wp(20),
-    alignSelf: "center",
-  },
-  Middle_Text: {
-    fontSize: hp(1.1),
-    marginTop: 2.8,
-    color: colors.black,
-  },
-  middle_images: {
-    flex: 1,
-    borderRightWidth: 0.4,
-    borderColor: colors.grey,
-    alignItems: "center",
-    paddingVertical: hp(1.7),
-  },
+
 });
 
 // rnfes

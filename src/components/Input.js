@@ -75,14 +75,14 @@ const Input = ({
           width && { width },
           {
             zIndex: zIndex,
-            backgroundColor: backgroundColor ? backgroundColor : colors.green2,
+            backgroundColor: backgroundColor ? backgroundColor : colors.white,
           },
           containerStyle,
         ]}
       >
         {props.leftIcon && (
           <Icon
-            tintColor={tintColor ? tintColor : colors.yellow}
+            tintColor={tintColor ? tintColor : colors.blue2}
             margin={iconMargin ? iconMargin : [0, 10, 0, -4]}
             source={props.leftIcon}
             size={iconSize}

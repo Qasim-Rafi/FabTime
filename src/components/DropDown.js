@@ -29,7 +29,7 @@ export default function DropDown(props) {
         rowTextStyle={{ color:props.btncolor?props.btncolor: colors.black, alignSelf: 'center', fontSize: 14 }}
         rowStyle={{ backgroundColor:props.btnbackgroundColor?props.btnbackgroundColor: colors.white, borderBottomColor: colors.black1, borderBottomWidth: 0 }}
         buttonStyle={{
-          backgroundColor: props.backgroundColor ? props.backgroundColor : colors.green2,
+          backgroundColor: props.backgroundColor ? props.backgroundColor : colors.white,
           height: props.btnheight ? props.btnheight : hp(6.5),
           width: props.btnwidth ? props.btnwidth : wp(90),
           height: props.height ? props.height : hp(6.5),
@@ -37,13 +37,14 @@ export default function DropDown(props) {
           alignSelf: 'center',
           borderRadius: 40,
         }}
-        buttonTextStyle={{ color: props.color ? props.color : colors.white, fontSize: 14, textAlign: 'left', }}
+        buttonTextStyle={{ color: props.color ? props.color : colors.gray, fontSize: 14, textAlign: 'left', }}
         renderDropdownIcon={() => {
           return (
-            <Icon source={globalPath.droparrowgray} tintColor={colors.gray} size={15} margin={[0, 10, 0, 0]} />
+            <Icon source={globalPath.arrow} tintColor={colors.gray} size={15} margin={[0, 10, 0, 0]} />
+            
           );
         }}
-        dropdownIconPosition={"right"}
+        // dropdownIconPosition={"left"}
         data={props.data ? props.data : undefined}
         onSelect={props.onSelect ? props.onSelect : () => { }}
         buttonTextAfterSelection={(selectedItem, index) => {
