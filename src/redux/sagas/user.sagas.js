@@ -26,12 +26,6 @@ function* loginUserApi(data, response) {
       yield put({ type: types.LOGIN_USER_SUCCESS, payload: response });
       if (response.data.role == "Admin") {
         navigation.dispatch(StackActions.replace(routeName.LANDING_SCREEN));
-      } else if (response.data.role == "Student") {
-        navigation.dispatch(StackActions.replace(routeName.STUDENT_DASHBOARD));
-      }else if(response.data.role == "Teacher"){
-        navigation.dispatch(StackActions.replace(routeName.TEACHER_DASHBOARD));
-      }else if(response.data.role == "Parent"){
-        navigation.dispatch(StackActions.replace(routeName.PARENTS));
       }
     } else {
       yield put({ type: types.LOGIN_USER_FAILURE, payload: response });

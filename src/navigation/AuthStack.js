@@ -16,8 +16,8 @@ function AuthStack() {
       }}
      initialRouteName={routeName.SPLASH}
     >
-      {/* <Stack.Screen name={routeName.SPLASH} component={Splash} />   */}
-      <Stack.Screen name={routeName.LOGIN} component={BottomTabs} /> 
+      <Stack.Screen name={routeName.SPLASH} component={Splash} />  
+      <Stack.Screen name={routeName.LOGIN} component={Login} /> 
      
 
 
