@@ -18,6 +18,8 @@ function AuthStack() {
     >
       <Stack.Screen name={routeName.SPLASH} component={Splash} />  
       <Stack.Screen name={routeName.LOGIN} component={Login} /> 
+      <Stack.Screen name={routeName.BOTTOM_TABS} component={BottomTabs} /> 
+
      
 
 

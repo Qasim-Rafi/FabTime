@@ -14,9 +14,7 @@ const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
 export default function BottomTabs() {
-  const ActiveStyle=()=>{
 
-  }
   // Animated Tab Indicator...
   const tabOffsetValue = useRef(new Animated.Value(0)).current;
   return (
