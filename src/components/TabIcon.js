@@ -14,11 +14,12 @@ const TabIcon = (props) => {
         alignItems:'center',
         padding:10,
         borderRadius:10,
-        width:wp(24),
-        height:wp(24)
+        width:wp(22),
+        height:wp(23),
+        margin:2
     }}>
         <Icon size={45} source={props.source} />
-        <ResponsiveText margin={[7,0,0,0]} color={props.titleColor?props.titleColor:colors.blue1}>{props.title}</ResponsiveText>
+        <ResponsiveText size={2.5} margin={[7,0,0,0]} color={props.titleColor?props.titleColor:colors.blue1}>{props.title}</ResponsiveText>
     </View>
   )
 }

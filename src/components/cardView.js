@@ -21,16 +21,16 @@ const CardView = (props) => {
 export default CardView;
 const styles = StyleSheet.create({
   container: {
-    elevation: 9,
-    shadowColor: colors.black,
+    elevation: 1,
+    shadowColor: colors.blue1,
     shadowOpacity: 1,
     padding:20,
     shadowOffset: {
-      width: 90,
-      height: 100,
+      width: 0,
+      height: 0.3,
     },
     backgroundColor: colors.white,
-    top: -10,
+    top: -20,
     marginHorizontal: 20,
     borderRadius: 10
   },

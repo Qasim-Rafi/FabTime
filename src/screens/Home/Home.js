@@ -7,7 +7,6 @@ import { colors } from "../../constants/colorsPallet";
 import Fonts from "../../helpers/Fonts";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Checkin from "../../components/Checkin";
-import TabIcon from "../../components/TabIcon";
 const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
@@ -33,12 +32,7 @@ const Home = ({ navigation }) => {
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>
             <Checkin />
-            <View style={{ marginTop: wp(20) }}>
-              <TabIcon title="Notification"
-               titleColor="#00AEEF" 
-               source={globalPath.notification}
-               />
-            </View>
+            
           </View>
         </View>
       </View>
