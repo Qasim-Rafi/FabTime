@@ -7,6 +7,7 @@ import { colors } from "../../constants/colorsPallet";
 import Fonts from "../../helpers/Fonts";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Checkin from "../../components/Checkin";
+import TabIcon from "../../components/TabIcon";
 const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
@@ -31,7 +32,13 @@ const Home = ({ navigation }) => {
         </View>
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>
-            <Checkin/>
+            <Checkin />
+            <View style={{ marginTop: wp(20) }}>
+              <TabIcon title="Notification"
+               titleColor="#00AEEF" 
+               source={globalPath.notification}
+               />
+            </View>
           </View>
         </View>
       </View>
@@ -49,8 +56,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderTopRightRadius: 30,
     // justifyContent:'center',
-    alignItems:'center',
-    paddingTop:'25%'
+    alignItems: "center",
+    paddingTop: "25%",
   },
   image: {
     flex: 1,
@@ -63,7 +70,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     backgroundColor: colors.blue1,
     borderBottomLeftRadius: 35,
-    paddingBottom:10
+    paddingBottom: 10,
   },
   logo: {
     height: hp(20),

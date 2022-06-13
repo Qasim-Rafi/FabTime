@@ -11,8 +11,14 @@ const home=require("../assets/icons/home.png");
 const history=require("../assets/icons/history.png");
 const report=require("../assets/icons/report.png");
 const splashBackgroung = require("../assets/icons/splash-bg.png");
-
+const leaves = require("../assets/icons/leaves.png");
+const notification = require("../assets/icons/notification.png");
+const requests = require("../assets/icons/requests.png");
+const payslip = require("../assets/icons/payslip.png");
 const plus = require("../assets/icons/plus.png");
+
+
+
 export const globalPath = {
 logo,
 background,
@@ -24,5 +30,9 @@ Lock,
 Email,
 arrow,
 splashBackgroung,
-plus
+plus,
+leaves,
+notification,
+requests,
+payslip
 };
