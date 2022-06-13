@@ -13,9 +13,11 @@ const Graph = (props) => {
     {
       label: "Present",
       value: 0.6,
+      
       color:colors.green,
     },
     {
+  
       label: "Absent",
       value: 0.10,
       color:colors.red,
@@ -37,6 +39,8 @@ const Graph = (props) => {
     const activityConfig = { 
       width: 180,  
       height: 180,
+      radius: 15,
+      ringSize:11,
     };
   return (
 
