@@ -3,49 +3,86 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import {
+  ProgressChart,
+} from "react-native-chart-kit";
 import ResponsiveText from "./RnText";
 import { hp, wp } from "../helpers/Responsiveness";
 import { colors } from "../constants/colorsPallet";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "./Icon";
+import { globalPath } from "../constants/globalPath";
 const CardView = (props) => {
+  const data = {
+    labels: ["present", "Absent", "Leave","late"], // optional
+    data: [0.4, 0.6, 0.8,0.23]
+  };
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <Icon borderRadius={10} size={50} source={require('../assets/fake_Images/femaleuser.jpeg')} />
-      </TouchableOpacity>
-      <View style={{ justifyContent: "center", marginLeft: 10 }}>
-        <ResponsiveText size={3} color={colors.green}>
-          {props.name}
-        </ResponsiveText>
-        <ResponsiveText color={colors.black} size={2.5}>
-          {props.surname}
-        </ResponsiveText>
-        <ResponsiveText color={colors.black} size={2.4}>
-          {props.mail}
-        </ResponsiveText>
+      <ProgressChart
+        data={data}
+        width={wp(90)}
+        height={220}
+        chartConfig={{
+          backgroundColor: colors.white,
+          backgroundGradientFrom: colors.white,
+          backgroundGradientTo: colors.white,
+          fillShadowGradient: colors.pink,
+          fillShadowGradientFrom: colors.pink,
+          decimalPlaces: 2,
+          color: (opacity = 1) => `rgba(19, 69, 148, ${opacity})`,
+          style: {
+            borderRadius: 16,
+          },
+        }}
+        style={{
+          marginVertical: 18,
+          borderRadius: 16,
+        }}
+      />
+
+
+      {/* <View style={{margin:10}}>
+
+      <View style={{ flexDirection: "row",alignItems:'center' }}>
+        <View style={{ backgroundColor: colors.green, height: 20, width: 20, borderRadius: 10, }}></View>
+        <ResponsiveText flex={1} margin={[0, 0, 0, wp(3)]}>Present</ResponsiveText>
       </View>
+      <ResponsiveText weight={'bold'} color={colors.black} size={7} margin={[0, 0, 0, wp(7)]}>50%</ResponsiveText>
+      <View style={{ flexDirection: "row",alignItems:'center' }}>
+        <View style={{ backgroundColor: colors.red, height: 20, width: 20, borderRadius: 10, }}></View>
+        <ResponsiveText flex={1} margin={[0, 0, 0, wp(3)]}>Absent</ResponsiveText>
+      </View>
+      <ResponsiveText weight={'bold'} color={colors.black} size={7} margin={[0, 0, 0, wp(7)]}>10%</ResponsiveText>
+      <View style={{ flexDirection: "row",alignItems:'center' }}>
+        <View style={{ backgroundColor: colors.blue1, height: 20, width: 20, borderRadius: 10, }}></View>
+        <ResponsiveText flex={1} margin={[0, 0, 0, wp(3)]}>Late</ResponsiveText>
+      </View>
+      <ResponsiveText  weight={'bold'} color={colors.black} size={7} margin={[0, 0, 0, wp(7)]}>21%</ResponsiveText>
+      <View style={{ flexDirection: "row",alignItems:'center' }}>
+        <View style={{ backgroundColor: colors.yellow1, height: 20, width: 20, borderRadius: 10, }}></View>
+        <ResponsiveText flex={1} margin={[0, 0, 0, wp(3)]}>Leaves</ResponsiveText>
+      </View>
+      <ResponsiveText weight={'bold'} color={colors.black} size={7} margin={[0, 0, 0, wp(7)]}>19%</ResponsiveText>
+      </View> */}
+
+
     </View>
   );
 };
 export default CardView;
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    elevation: 1,
-    margin: 5,
-    padding: wp(2),
+    elevation: 9,
+    shadowColor: colors.black,
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 90,
+      height: 100,
+    },
     backgroundColor: colors.white,
-    borderRadius: wp(2),
-  },
-  imageView: {
-    height: hp(10),
-    width: wp(12),
-    resizeMode: "contain",
-    borderRadius: 5,
-  },
-  name: {
-    fontSize: hp(1.3),
-    color: colors.green,
+    top: -10,
+    marginHorizontal: 20,
+    borderRadius: 10
   },
 });

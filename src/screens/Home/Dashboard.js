@@ -3,12 +3,11 @@ import { StyleSheet, Text, View, Image, ScrollView, ImageBackground } from "reac
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
 import { colors } from "../../constants/colorsPallet";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Grid } from 'react-native-animated-spinkit'
-import Loader from "../../components/loader";
 import { globalPath } from "../../constants/globalPath";
 import ResponsiveText from "../../components/RnText";
-import DropDown from "../../components/DropDown";
 import Fonts from "../../helpers/Fonts";
+import Icon from "../../components/Icon";
+import CardView from "../../components/cardView";
 const Dashboard = () => {
     const [loader, setLoader] = React.useState(true)
     useEffect(() => {
@@ -21,28 +20,38 @@ const Dashboard = () => {
     return (
         <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
             <View style={{ backgroundColor: colors.white, flex: 1 }}>
-
                 <View style={styles.screeninfo}>
+                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <ResponsiveText
                         margin={[20, 0, 0, 30]}
                         fontFamily={Fonts.Bold}
                         size={8}
-                        color={colors.white}
-                    >
+                        color={colors.white}>
                         Fabintel
                     </ResponsiveText>
-                    <ResponsiveText
-                        margin={[0, 0, 0, 30]}
-                        fontFamily={Fonts.Bold}
-                        size={3.5}
-                        color={colors.white}
-                    >
-                        fabintel international lahore, pakistan
-                    </ResponsiveText>
+                    <View>
+                    <Icon style={{backgroundColor:colors.white}}borderRadius={20} size={35} margin={[0,5,0,0]} source={globalPath.user} />
+                    <View style={{backgroundColor:colors.lightgreen,height:10,width:10,position:'absolute',borderRadius:20,marginLeft:wp(6)}}></View>
+                    </View>
+                    </View>
+                    
+                    <View style={{ flexDirection: 'row' }}>
+                        <Icon size={20} margin={[0, 5, 10, 25]} source={globalPath.location} />
+                        <ResponsiveText
+                            margin={[0, 0, 0, 0]}
+                            fontFamily={Fonts.Bold}
+                            size={3.5}
+                            color={colors.white}>
+                            fabintel international lahore, pakistan
+                        </ResponsiveText>
+                    </View>
                 </View>
-                <View style={styles.footer}>
+                <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
+          <View style={styles.footer}>
+<CardView/>
 
-                </View>
+          </View>
+        </View>
             </View>
         </SafeAreaView>
     );
@@ -54,34 +63,32 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.blue1,
-      },
-      footer: {
+    },
+    footer: {
         flex: 1,
-        backgroundColor: colors.white,
-        // borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        // alignItems: 'center'
-        // marginTop:hp(0.5)
-      },
-      image: {
+    backgroundColor: colors.white,
+    borderTopRightRadius: 30,
+    },
+    image: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-      },
-      screeninfo: {
-        // flex: 0.4,
+    },
+    screeninfo: {
+        // flex: 0.2,
         justifyContent: "center",
+        paddingBottom:30,
         // alignItems: "center",
         backgroundColor: colors.blue1,
         borderBottomLeftRadius: 35,
-      },
-      logo: {
+    },
+    logo: {
         height: hp(20),
         width: wp(40),
         resizeMode: "contain",
         // marginBottom: 20,
         alignItems: "center",
-      },
+    },
 });
 
 // rnfes
