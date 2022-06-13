@@ -6,6 +6,7 @@ import { hp, wp } from "../../helpers/Responsiveness";
 import { colors } from "../../constants/colorsPallet";
 import Fonts from "../../helpers/Fonts";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Checkin from "../../components/Checkin";
 const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
@@ -29,7 +30,9 @@ const Home = ({ navigation }) => {
           </ResponsiveText>
         </View>
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
-          <View style={styles.footer}></View>
+          <View style={styles.footer}>
+            <Checkin/>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -44,10 +47,10 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     backgroundColor: colors.white,
-    // borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    // alignItems: 'center'
-    // marginTop:hp(0.5)
+    // justifyContent:'center',
+    alignItems:'center',
+    paddingTop:'25%'
   },
   image: {
     flex: 1,
