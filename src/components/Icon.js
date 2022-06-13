@@ -22,7 +22,7 @@ const Icon = ({
 }) => {
   return (
     <Image
-      tintColor={tintColor ? tintColor : undefined} //works on android only
+      tintColor={tintColor ? tintColor : 'undefined'} //works on android only
       source={source ? source : {uri: url}}
       resizeMode={resizeMode ? resizeMode : 'contain'}
       style={[
