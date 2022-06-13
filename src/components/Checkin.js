@@ -1,0 +1,44 @@
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { colors } from "../constants/colorsPallet";
+import { wp } from "../helpers/Responsiveness";
+import ResponsiveText from "./RnText";
+const Checkin = () => {
+  
+
+  return (
+      
+
+      <TouchableOpacity
+        style={{
+          padding: wp(20),
+          paddingVertical: wp(25),
+          borderRadius: wp(30),
+          shadowOffset: { width: 10, height: 5 },
+          shadowColor: colors.blue1,
+          shadowOpacity: 1,
+          elevation: 3,
+          backgroundColor: colors.white,
+          // borderWidth:0.4,
+          borderColor: colors.blue1,
+        }}
+      >
+        <View style={{ maxWidth: wp(20) }}>
+          <ResponsiveText size={4}>CHECH IN</ResponsiveText>
+        </View>
+      </TouchableOpacity>
+  );
+};
+
+export default Checkin;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
+
+// rnfes
