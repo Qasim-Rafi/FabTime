@@ -3,6 +3,7 @@ import React from "react";
 import {
   Animated,
   Image,
+  Platform,
   StyleSheet,
   Text,
   View,
@@ -53,7 +54,7 @@ export default function BottomTabs() {
             marginHorizontal: wp(13),
             position: "absolute",
             // justifyContent:'center',
-            paddingTop:20
+            paddingTop:Platform.OS=='ios'? 20:0
           },
           //  }
         }}
