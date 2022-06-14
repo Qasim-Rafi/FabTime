@@ -17,6 +17,7 @@ import { colors } from "../constants/colorsPallet";
 import Home from "../screens/Home/Home";
 import { wp } from "../helpers/Responsiveness";
 import Dashboard from "../screens/Home/Dashboard";
+import PresentTeam from "../screens/Home/PresentTeam";
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -128,7 +129,7 @@ export default function BottomTabs() {
 
         <Tab.Screen
           name={"Notifications"}
-          component={NotificationScreen}
+          component={PresentTeam}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
@@ -149,15 +150,6 @@ export default function BottomTabs() {
         ></Tab.Screen>
       </Tab.Navigator>
     </View>
-  );
-}
-
-
-function EmptyScreen() {
-  return (
-    <View
-      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-    ></View>
   );
 }
 
