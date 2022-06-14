@@ -85,7 +85,7 @@ export default function BottomTabs() {
 
         <Tab.Screen
           name={"REPORT"}
-          component={EmptyScreen}
+          component={Report}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
