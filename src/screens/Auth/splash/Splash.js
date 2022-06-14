@@ -53,6 +53,7 @@ const Splash = ({ navigation }) => {
       }, 0);
     } else {
       // navigation.dispatch(StackActions.replace(routeName.LANDING_SCREEN));
+      navigation.replace(routeName.BOTTOM_TABS);
       
     }
   };
