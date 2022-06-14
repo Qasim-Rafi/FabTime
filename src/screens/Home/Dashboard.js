@@ -14,7 +14,7 @@ import { globalPath } from "../../constants/globalPath";
 import ResponsiveText from "../../components/RnText";
 import Fonts from "../../helpers/Fonts";
 import Icon from "../../components/Icon";
-import CardView from "../../components/cardView";
+import {CardView} from "../../components/cardView";
 import TabIcon from "../../components/TabIcon";
 import Graph from "../../components/Graph";
 

@@ -10,7 +10,7 @@ import Fonts from "../helpers/Fonts";
 import { hp, wp } from "../helpers/Responsiveness";
 import Graph from "./Graph";
 import ResponsiveText from "./RnText";
-const CardView = (props) => {
+ const CardView = (props) => {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -49,7 +49,11 @@ const CardView = (props) => {
     </View>
   )
 }
-export default CardView;
+
+export {CardView}
+
+
+
 const styles = StyleSheet.create({
   Onlinebadge: {
     height: 9, width: 9, backgroundColor: colors.lightgreen, position: 'absolute', marginTop: hp(11), marginLeft: wp(12.5), borderRadius: 10
