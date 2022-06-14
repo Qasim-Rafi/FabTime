@@ -18,7 +18,8 @@ export const colors = {
   red5: '#F63C3C',
   purple: '#8642DE',
   wheat: `#f4a460`,
-
+  green10: "#E5F4E8",
+  green11: "#C1DFC8",
   yellow1: '#FE9D2B',
   yellow: '#d5ac2c',
   yellow1: '#FE9D2B',

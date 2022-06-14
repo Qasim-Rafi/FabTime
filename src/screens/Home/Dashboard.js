@@ -16,6 +16,8 @@ import Fonts from "../../helpers/Fonts";
 import Icon from "../../components/Icon";
 import CardView from "../../components/cardView";
 import TabIcon from "../../components/TabIcon";
+import Graph from "../../components/Graph";
+
 const Dashboard = () => {
   const [loader, setLoader] = React.useState(true);
   useEffect(() => {
@@ -78,7 +80,9 @@ const Dashboard = () => {
         </View>
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>
-            <CardView />
+            <View style={styles.container1}>
+              <Graph/>
+            </View>
             <View style={styles.tabContainer}>
               <TabIcon
                 title="Leaves"
@@ -105,6 +109,7 @@ const Dashboard = () => {
                 source={globalPath.notification}
               />
             </View>
+            <CardView/>
           </View>
         </View>
       </View>
@@ -115,6 +120,16 @@ const Dashboard = () => {
 export default Dashboard;
 
 const styles = StyleSheet.create({
+  container1: {
+    elevation: 9,
+    shadowColor: colors.green,
+    shadowOpacity: 0.2,
+    padding: 20,
+    backgroundColor: colors.white,
+    top: -20,
+    marginHorizontal: 15,
+    borderRadius: 10
+  },
   container: {
     flex: 1,
     backgroundColor: colors.blue1,
@@ -149,10 +164,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.white,
     shadowOpacity: 0.1,
-    padding:5,
-    margin:5,
-    marginHorizontal:15,
-    borderRadius:10,
+    padding: 5,
+    margin: 5,
+    marginHorizontal: 15,
+    borderRadius: 10,
     shadowOffset: {
       width: 0,
       height: 0.1,

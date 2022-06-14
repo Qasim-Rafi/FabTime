@@ -56,20 +56,20 @@ export default function BottomTabs() {
             marginHorizontal: wp(13),
             position: "absolute",
             // justifyContent:'center',
-            paddingTop:Platform.OS=='ios'? 20:0
+            paddingTop: Platform.OS == 'ios' ? 20 : 0
           },
           //  }
         }}
       >
         <Tab.Screen
-          name={"Home"}
+          name={"Empty"}
           component={Home}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
                 <View style={focused ? styles.ActiveTab : styles.inActiveTab}>
                   <Image
-                    source={globalPath.home}
+                    source={globalPath.checkin}
                     resizeMode={"contain"}
                     style={{
                       width: 22,
@@ -81,24 +81,55 @@ export default function BottomTabs() {
               </View>
             ),
           }}
-          //  listeners={({ navigation, route }) => ({
-          //   // Onpress Update....
-          //   tabPress: e => {
-          //     Animated.spring(tabOffsetValue, {
-          //       toValue: getWidth(),
-          //       useNativeDriver: true
-          //     }).start();
-          //   }
-          // })}
         ></Tab.Screen>
 
-        {
-          // Extra Tab Screen For Action Button..
-        }
+        <Tab.Screen
+          name={"REPORT"}
+          component={EmptyScreen}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View style={focused ? styles.TouchableTab : {}}>
+                <View style={focused ? styles.ActiveTab : styles.inActiveTab}>
+                  <Image
+                    source={globalPath.report}
+                    resizeMode={"contain"}
+                    style={{
+                      width: 22,
+                      height: 22,
+                      tintColor: "white",
+                    }}
+                  ></Image>
+                </View>
+              </View>
+            ),
+          }}
+        ></Tab.Screen>
 
         <Tab.Screen
           name={"DASHBOARD"}
           component={Dashboard}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View style={focused ? styles.TouchableTab : {}}>
+                <View style={focused ? styles.ActiveTab : styles.inActiveTab}>
+                  <Image
+                    source={globalPath.dashboard}
+                    resizeMode={"contain"}
+                    style={{
+                      width: 22,
+                      height: 22,
+                      tintColor: "white",
+                    }}
+                  ></Image>
+                </View>
+              </View>
+            ),
+          }}
+        ></Tab.Screen>
+
+        <Tab.Screen
+          name={"History"}
+          component={History}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
@@ -116,15 +147,6 @@ export default function BottomTabs() {
               </View>
             ),
           }}
-          // listeners={({ navigation, route }) => ({
-          //   // Onpress Update....
-          //   tabPress: e => {
-          //     Animated.spring(tabOffsetValue, {
-          //       toValue: getWidth(),
-          //       useNativeDriver: true
-          //     }).start();
-          //   }
-          // })}
         ></Tab.Screen>
 
         <Tab.Screen
@@ -160,8 +182,20 @@ function NotificationScreen() {
     </View>
   );
 }
-
-
+function History() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>History!</Text>
+    </View>
+  );
+}
+function Report() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>History!</Text>
+    </View>
+  );
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
