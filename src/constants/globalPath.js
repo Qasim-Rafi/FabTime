@@ -17,15 +17,18 @@ const leaves = require("../assets/icons/leaves.png");
 const notification = require("../assets/icons/notification.png");
 const requests = require("../assets/icons/requests.png");
 const payslip = require("../assets/icons/payslip.png");
+const checkin = require("../assets/icons/checkin.png");
+const checkout = require("../assets/icons/checkout.png");
 const plus = require("../assets/icons/plus.png");
+const dashboard = require("../assets/icons/dashboard.png");
 
 
 
 export const globalPath = {
 logo,
-background,
-comp,
-home,
+background,checkin,
+comp,checkout,
+home,dashboard,
 history,
 user,
 location,
