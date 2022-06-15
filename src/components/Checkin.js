@@ -27,9 +27,7 @@ const Checkin = (props) => {
         alignItems:'center'
       }}
     >
-      <View style={{ maxWidth: wp(20) }}>
         <ResponsiveText size={4}>CHECH IN</ResponsiveText>
-      </View>
     </TouchableOpacity>
   );
 };
