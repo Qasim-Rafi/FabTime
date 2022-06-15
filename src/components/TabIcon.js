@@ -14,7 +14,7 @@ const TabIcon = (props) => {
         justifyContent:'center',
         elevation:5,
         shadowColor:colors.black,
-        shadowOpacity:8,
+        shadowOpacity:0.1,
         alignItems:'center',
         padding:10,
         borderRadius:10,

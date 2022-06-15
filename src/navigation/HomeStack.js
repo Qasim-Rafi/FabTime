@@ -4,6 +4,8 @@ import { routeName } from '../constants/routeName';
 import Home from '../screens/Home/Home';
 import Notification from '../screens/Home/Notification';
 import PresentTeam from '../screens/Home/PresentTeam';
+import AttendenceDetails from '../screens/Home/AttendenceDetails';
+
 import BottomTabs from './BottomTabs';
 
 const Stack = createNativeStackNavigator();
@@ -20,6 +22,8 @@ function HomeStack() {
       <Stack.Screen name={routeName.LANDING_SCREEN} component={Home} />
       <Stack.Screen name={routeName.PRESENT_TEAM} component={PresentTeam} />
       <Stack.Screen name={routeName.NOTIFICATION} component={Notification} />
+      <Stack.Screen name={routeName.ATTENDENCE_DETAIL} component={AttendenceDetails} />
+
 
 
      

@@ -60,9 +60,11 @@ const Dashboard = ({ navigation }) => {
                   borderRadius: 20,
                   marginLeft: wp(6),
                 }}
-              ></View>
+              >
+
+              </View>
             </View>
-          </View>
+                 </View>
 
           <View style={{ flexDirection: "row" }}>
             <Icon
@@ -91,6 +93,7 @@ const Dashboard = ({ navigation }) => {
                 titleColor="#F6B707"
                 backgroundColor="#FFF9E6"
                 source={globalPath.leaves}
+                onPress={() => navigation.navigate(routeName.ATTENDENCE_DETAIL)}
               />
               <TabIcon
                 title="Payslip"

@@ -62,7 +62,4 @@ const styles = StyleSheet.create({
     },
 
   },
-
-
-
 });
