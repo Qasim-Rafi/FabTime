@@ -17,8 +17,10 @@ import Icon from "../../components/Icon";
 import {CardView} from "../../components/cardView";
 import TabIcon from "../../components/TabIcon";
 import Graph from "../../components/Graph";
+import { NavigationContainer } from "@react-navigation/native";
+import { routeName } from "../../constants/routeName";
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
   const [loader, setLoader] = React.useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -107,6 +109,7 @@ const Dashboard = () => {
                 titleColor="#00AEEF"
                 backgroundColor="#E9F9FF"
                 source={globalPath.notification}
+                onPress={() => navigation.navigate(routeName.NOTIFICATION)}
               />
             </View>
             <CardView/>
