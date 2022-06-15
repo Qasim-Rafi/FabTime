@@ -40,7 +40,7 @@ export default Layout;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.blue3,
+    backgroundColor: colors.blue1,
   },
   footer: {
     flex: 1,

@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
 import { colors } from "../../constants/colorsPallet";
@@ -14,11 +15,11 @@ import { globalPath } from "../../constants/globalPath";
 import ResponsiveText from "../../components/RnText";
 import Fonts from "../../helpers/Fonts";
 import Icon from "../../components/Icon";
-import {CardView} from "../../components/cardView";
+import { CardView } from "../../components/cardView";
 import TabIcon from "../../components/TabIcon";
 import Graph from "../../components/Graph";
-import { NavigationContainer } from "@react-navigation/native";
 import { routeName } from "../../constants/routeName";
+import Card from "../../components/Card";
 
 const Dashboard = ({ navigation }) => {
   const [loader, setLoader] = React.useState(true);
@@ -85,9 +86,9 @@ const Dashboard = ({ navigation }) => {
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>
             <View style={styles.container1}>
-              <Graph/>
+              <Graph />
             </View>
-            <View style={styles.tabContainer}>
+            <Card flexDirection={'row'}>
               <TabIcon
                 title="Leaves"
                 titleColor="#F6B707"
@@ -114,8 +115,25 @@ const Dashboard = ({ navigation }) => {
                 source={globalPath.notification}
                 onPress={() => navigation.navigate(routeName.NOTIFICATION)}
               />
-            </View>
-            <CardView/>
+            </Card>
+            <Card>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  padding:10
+                }}
+              >
+                <ResponsiveText color={colors.blue1}>
+                  Fabintel Team
+                </ResponsiveText>
+                <TouchableOpacity>
+                  <ResponsiveText color={"#00AEEF"}>View All</ResponsiveText>
+                </TouchableOpacity>
+              </View>
+
+              <CardView />
+            </Card>
           </View>
         </View>
       </View>
@@ -134,7 +152,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     top: -20,
     marginHorizontal: 15,
-    borderRadius: 10
+    borderRadius: 10,
   },
   container: {
     flex: 1,
@@ -178,7 +196,6 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0.1,
     },
-
   },
 });
 

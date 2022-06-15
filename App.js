@@ -27,7 +27,9 @@ const App = () => {
 
 export default App;
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
+// YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
+
 
 LogBox.ignoreLogs([
   "Warning: VirtualizedList should",
