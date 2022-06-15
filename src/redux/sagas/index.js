@@ -9,7 +9,7 @@ import * as notificationSagas from "./notification.sagas";
 const combinedSagas = {
   ...userSaga,
   // ...siteSagas,
-  ...notificationSagas,
+  // ...notificationSagas,
 };
 
 // Redux Saga: Root Saga

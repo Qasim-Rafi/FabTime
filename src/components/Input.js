@@ -105,7 +105,7 @@ const Input = ({
             props.textStyle,
             ,
             {
-              color: color ? color : colors.white,
+              color: color ? color : colors.black,
             },
           ]}
           placeholderTextColor={

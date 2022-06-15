@@ -31,9 +31,8 @@ const Login = ({ navigation }) => {
   const [errorString, setErrorString] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [school, setSchool] = React.useState("");
+  const [company, setCompany] = React.useState("");
   const [data, setData] = React.useState([]);
-  const emp = ["Fabintel", "Fabcot Inter."];
   //Redux Action Called
   const dispatch = useDispatch();
   const userLogin = () => {
@@ -42,7 +41,8 @@ const Login = ({ navigation }) => {
         params: {
           username: userName,
           password: password,
-          schoolName1: data.find((item) => item.branchName == school)?.id,
+          // schoolName1: data.find((item) => item.branchName == school)?.id,
+          userType:2
         },
         navigation: navigation,
       })
@@ -50,20 +50,20 @@ const Login = ({ navigation }) => {
   };
 
   useEffect(() => {
-    // getSchool();
+    getCompanies();
   }, []);
   useEffect(() => {
     loginResponse ? setErrorString(loginResponse.message) : null;
     loginNetworkErr ? setErrorString(loginNetworkErr.message) : null;
   }, [loginResponse, loginNetworkErr]);
 
-  console.log(loginResponse, "LOgin screen error");
-  console.log(loginNetworkErr, "LOgin network error");
+  // console.log(loginResponse, "LOgin screen error");
+  // console.log(loginNetworkErr, "LOgin network error");
 
-  const getSchool = async () => {
+  const getCompanies = async () => {
     try {
-      const res = await Api.get(urls.GET_SchoolBranches);
-      console.log("get schools", res);
+      const res = await Api.get(urls.GET_ALL_COMPANIES);
+      // console.log("get compsnies", res);
       if (res && res.success == true) {
         setData(res.data);
       } else {
@@ -73,7 +73,25 @@ const Login = ({ navigation }) => {
 
   const Validation = (item) => {
     // setErrorString("Please Enter Username and
-    navigation.replace(routeName.BOTTOM_TABS);
+    // navigation.replace(routeName.BOTTOM_TABS);
+
+    // setErrorString("Please Enter Username and Password to proceed");
+    setErrorString("");
+    if (userName === "" && password === "" ) {
+      setErrorString("All fields are required");
+    } else if (userName === "" || userName === null) {
+      setErrorString("Username is missing");
+    } else if (password === "") {
+      setErrorString("Password is missing");
+    }
+    //  else if (company === "") {
+    //   setErrorString("Please select school");
+    // } 
+    else {
+      // console.log("ErrorMessage:yhyuu ");
+      userLogin();
+      setErrorString("");
+    }
   };
   return (
     <View style={styles.container}>
@@ -106,7 +124,7 @@ const Login = ({ navigation }) => {
               </ResponsiveText>
               <View style={{ marginTop: hp(5), marginHorizontal: wp(5) }}>
                 <DropDown
-                  data={emp}
+                  data={data.map((v)=>v.name)}
                   defaultButtonText={"Select Your company"}
                   leftIcon={globalPath.arrow}
                   ren
@@ -136,7 +154,7 @@ const Login = ({ navigation }) => {
                   onChnageText={(text) => setPassword(text)}
                   leftIcon={globalPath.Lock}
                 />
-                {/* <ResponsiveText color={colors.red} margin={[20, 0, 0, 10]}>{errorString}</ResponsiveText> */}
+                <ResponsiveText color={colors.red} margin={[20, 0, 0, 10]}>{errorString}</ResponsiveText>
                 <RnButton
                   backgroundColor={colors.blue2}
                   margin={[50, 0, 0, 0]}

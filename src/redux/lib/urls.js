@@ -1,9 +1,18 @@
 // live hosts
 
 export default urls = {
-  HOST: "https://e-learningbox.com/WebAPI",
-  BASE_URL: "https://e-learningbox.com/WebAPI",
+  HOST: "https://test.egreatminds.com/WebApis",
+  BASE_URL: "https://test.egreatminds.com/WebApis",
+  
   //Login
   LOGIN: "/api/Auth/Login",
+  REGISTER:'/api/Auth/Register',
+  ADD_ATTENDENCE:'/api/Attendence/AddAttendence',
+  UPDATE_ATTENDENCE:'/api/Attendence/UpdateAttendence/9',
+  GET_ALL_ATTENDENCE:'/api/Attendence/GetAttendenceAll',
+  ADD_COMPANY:'/api/Company/AddCompany',
+  GET_ALL_COMPANIES:'/api/Company/GetCompaniesAll',
+
+
 
 };

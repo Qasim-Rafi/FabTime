@@ -3,12 +3,15 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { colors } from "../constants/colorsPallet";
 import { wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
-const Checkin = () => {
+const Checkin = (props) => {
   return (
-    <TouchableOpacity
+    <TouchableOpacity  onPress={props.onPress}
       style={{
-        padding: wp(20),
-        paddingVertical: wp(25),
+        // padding: wp(25),
+        // paddingVertical: wp(25),
+        height:wp(60),
+        width:wp(60),
+
         borderRadius: wp(30),
         shadowOffset: { width: 10, height: 12 },
         shadowColor: colors.blue1,
@@ -19,6 +22,9 @@ const Checkin = () => {
         borderColor: colors.blue1,
         shadowOpacity: 0.58,
         shadowRadius: 16.0,
+        alignSelf:'center',
+        justifyContent:'center',
+        alignItems:'center'
       }}
     >
       <View style={{ maxWidth: wp(20) }}>
