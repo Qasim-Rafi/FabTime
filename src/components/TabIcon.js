@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from './Icon'
 import { globalPath } from '../constants/globalPath'
@@ -8,9 +8,13 @@ import { wp } from '../helpers/Responsiveness'
 
 const TabIcon = (props) => {
   return (
-    <View style={{
-        backgroundColor:props.backgroundColor?props.backgroundColor: '#E9F9FF',
+
+    <TouchableOpacity onPress={props.onPress} style={{
+        backgroundColor:props.backgroundColor?props.backgroundColor: colors.white,
         justifyContent:'center',
+        elevation:5,
+        shadowColor:colors.black,
+        shadowOpacity:8,
         alignItems:'center',
         padding:10,
         borderRadius:10,
@@ -18,9 +22,17 @@ const TabIcon = (props) => {
         height:wp(23),
         margin:2
     }}>
+      {props.source?
         <Icon size={45} source={props.source} />
-        <ResponsiveText size={2.5} margin={[7,0,0,0]} color={props.titleColor?props.titleColor:colors.blue1}>{props.title}</ResponsiveText>
-    </View>
+      :
+      <View style={{backgroundColor:props.CircleColor?props.CircleColor: colors.blue ,height:40,width:40,borderRadius:20}}>
+        <ResponsiveText color={colors.white} size={4} weight={'bold'} textAlign={'center'} margin={[7,0,0,0]}>{props.CircleText}</ResponsiveText>
+      </View>
+      
+      
+      }
+        <ResponsiveText  weight={'bold'} size={props.titleSize?props.titleSize:2.5} color={props.titleColor?props.titleColor:colors.black}>{props.title}</ResponsiveText>
+    </TouchableOpacity>
   )
 }
 

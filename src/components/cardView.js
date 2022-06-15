@@ -31,7 +31,7 @@ import ResponsiveText from "./RnText";
         />
         <ResponsiveText
           color={colors.black}
-          weight={'bold'}
+          weight={'bold'} flex={1}
           size={3.5} margin={[0, 0, 0, 5]}>Saniya Tariq</ResponsiveText>
 
         <View style={styles.timestyle}>
@@ -49,11 +49,29 @@ import ResponsiveText from "./RnText";
     </View>
   )
 }
-
-export {CardView}
-
-
-
+const NotifationCard = (props) => {
+  return (
+  <View style={styles.container1}>
+  <View style={{ flexDirection: 'row',  }}>
+    <Image
+      source={globalPath.background}
+      style={{
+        borderRadius: 20,
+        height: hp(5),
+        width: wp(10),
+        resizeMode: "contain",
+      }}
+    />
+    <ResponsiveText
+      color={colors.black}
+      weight={'bold'} flex={1}
+      size={3.5} margin={[0, 0, 0, 5]}>Saniya Tariq</ResponsiveText>
+  </View>
+  <ResponsiveText
+    size={3.5} color={colors.grey1} margin={[-20, 0, 0, wp(11)]}>45 minutes ago</ResponsiveText>
+</View>
+  )}
+export{ CardView,NotifationCard}
 const styles = StyleSheet.create({
   Onlinebadge: {
     height: 9, width: 9, backgroundColor: colors.lightgreen, position: 'absolute', marginTop: hp(11), marginLeft: wp(12.5), borderRadius: 10
@@ -61,13 +79,10 @@ const styles = StyleSheet.create({
   timestyle: {
     backgroundColor: colors.green10,
     borderRadius: 5,
-    left: wp(30),
     justifyContent: 'center',
     height: hp(3.5), width: wp(22)
-    , alignItems: "center", borderWidth: 1.5,
+   , borderWidth: 1.5,
     borderColor: colors.green11
-    , alignContent: 'flex-end'
-
   },
   container: {
     elevation: 9,
@@ -79,7 +94,19 @@ const styles = StyleSheet.create({
       height: 0,
     },
     backgroundColor: colors.white,
-
+    marginHorizontal: 15,
+    borderRadius: 10
+  },
+  container1: {
+    elevation: 9,
+    shadowColor: colors.green,
+    shadowOpacity: 0.2,
+    padding: 25,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    backgroundColor: colors.white,
     marginHorizontal: 15,
     borderRadius: 10
   },

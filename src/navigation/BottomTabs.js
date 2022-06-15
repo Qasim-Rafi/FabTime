@@ -18,6 +18,7 @@ import Home from "../screens/Home/Home";
 import { wp } from "../helpers/Responsiveness";
 import Dashboard from "../screens/Home/Dashboard";
 import PresentTeam from "../screens/Home/PresentTeam";
+import HomeStack from "./HomeStack";
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -63,7 +64,7 @@ export default function BottomTabs() {
       >
         <Tab.Screen
           name={"Empty"}
-          component={Home}
+          component={HomeStack}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
