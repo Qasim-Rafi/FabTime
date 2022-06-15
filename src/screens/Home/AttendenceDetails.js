@@ -2,18 +2,23 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Layout from "../../components/Layout";
 import ResponsiveText from "../../components/RnText";
-import { CardView } from "../../components/cardView";
+import { AttendenceCard} from "../../components/cardView";
+import { CheckinBox} from "../../components/CheckinBox";
 import TabIcon from "../../components/TabIcon";
 import { globalPath } from "../../constants/globalPath";
 import { colors } from "../../constants/colorsPallet";
 import Fonts from "../../helpers/Fonts";
 import Icon from "../../components/Icon";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
+import { CheckOutBox } from "../../components/CheckOutBox";
 
 const AttendenceDetails = () => {
     return (
-        <Layout title={"Attendence Details"} address>
-           
+        <Layout title={"Attendence Details"} profile>
+            <View style={{flexDirection:'row',margin:5}}>
+            <CheckinBox/>
+            <CheckOutBox/>
+            </View>
             <View>
                 <ResponsiveText
                     margin={[10, 0, 0, 8]}
@@ -21,6 +26,7 @@ const AttendenceDetails = () => {
                     size={5}
                     color={colors.blue1}>May Attendence</ResponsiveText>
             </View>
+           
             <View style={styles.tabContainer}>
 
                 <TabIcon
@@ -50,7 +56,9 @@ const AttendenceDetails = () => {
                     CircleColor={colors.yellow3}
                 />
             </View>
-            <CardView />
+            <View style={{backgroundColor:colors.white,borderRadius:10,elevation:10,shadowOpacity: 0.2,}}>
+            <AttendenceCard />
+            </View>
         </Layout>
     );
 };

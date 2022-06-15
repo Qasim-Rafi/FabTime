@@ -6,44 +6,44 @@ import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 const CardView = (props) => {
   return (
-      <View style={{ flexDirection: "row", alignItems:'center',padding:10 }}>
-        <View style={{ alignItems: "flex-end" }}>
-          <Image
-            source={globalPath.background}
-            style={{
-              borderRadius: 20,
-              height: wp(10),
-              width: wp(10),
-              resizeMode: "contain",
-            }}
-          />
-          <View style={styles.Onlinebadge}></View>
-        </View>
-        <View style={{flex:1,paddingHorizontal:10}}>
-          <ResponsiveText
-            color={colors.black}
-            weight={"bold"}
-            flex={1}
-            size={3.5}
-            // margin={[0, 0, 0, 5]}
-          >
-            Saniya Tariq
-          </ResponsiveText>
-          <ResponsiveText
-            size={3.2}
-            color={colors.black}
-            // margin={[0, 0, 0, 5]}
-          >
-            React native developer
-          </ResponsiveText>
-        </View>
-
-        <View style={styles.timestyle}>
-          <ResponsiveText color={colors.black} size={2.8} >
-            10:05 AM
-          </ResponsiveText>
-        </View>
+    <View style={{ flexDirection: "row", alignItems: 'center', padding: 10 }}>
+      <View style={{ alignItems: "flex-end" }}>
+        <Image
+          source={globalPath.background}
+          style={{
+            borderRadius: 20,
+            height: wp(10),
+            width: wp(10),
+            resizeMode: "contain",
+          }}
+        />
+        <View style={styles.Onlinebadge}></View>
       </View>
+      <View style={{ flex: 1, paddingHorizontal: 10 }}>
+        <ResponsiveText
+          color={colors.black}
+          weight={"bold"}
+          flex={1}
+          size={3.5}
+        // margin={[0, 0, 0, 5]}
+        >
+          Saniya Tariq
+        </ResponsiveText>
+        <ResponsiveText
+          size={3.2}
+          color={colors.black}
+        // margin={[0, 0, 0, 5]}
+        >
+          React native developer
+        </ResponsiveText>
+      </View>
+
+      <View style={styles.timestyle}>
+        <ResponsiveText color={colors.black} size={2.8} >
+          10:05 AM
+        </ResponsiveText>
+      </View>
+    </View>
   );
 };
 const NotifationCard = (props) => {
@@ -79,7 +79,77 @@ const NotifationCard = (props) => {
     </View>
   );
 };
-export { CardView, NotifationCard };
+const AttendenceCard = (props) => {
+  return (
+    <View style={{ flexDirection: "row", alignItems: 'center', padding: 10 }}>
+      <View style={{ alignItems: "flex-end" }}>
+        <Image
+          source={globalPath.background}
+          style={{
+            borderRadius: 20,
+            height: wp(11),
+            width: wp(11),
+            resizeMode: "contain",
+          }}
+        />
+        {/* <View style={styles.Onlinebadge}></View> */}
+      </View>
+      <View style={{ flex: 1, paddingHorizontal: 10 }}>
+        <View style={{ flexDirection: 'row' }}>
+          <ResponsiveText
+            color={colors.black}
+            // weight={"bold"}
+            flex={1}
+            size={3.2}
+          // margin={[0, 0, 0, 5]}
+          >
+            Check-In
+          </ResponsiveText>
+          <ResponsiveText
+            color={colors.green1}
+            // weight={"bold"}
+            flex={1.5}
+            size={3.2}
+          // margin={[0, 0, 0, 5]}
+          >
+            10:05 AM
+          </ResponsiveText>
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <ResponsiveText
+            color={colors.black}
+            // weight={"bold"}
+            flex={1}
+            size={3.2}
+          // margin={[0, 0, 0, 5]}
+          >
+            Check-Out
+          </ResponsiveText>
+          <ResponsiveText
+            color={colors.red}
+            // weight={"bold"}
+            flex={1.5}
+            size={3.2}
+          // margin={[0, 0, 0, 5]}
+          >
+            06:30 PM
+          </ResponsiveText>
+        </View>
+      </View>
+      <View>
+      <ResponsiveText color={colors.grey1} size={2.5} >
+            01 May,2022
+          </ResponsiveText>
+        <View style={styles.timestyle}>
+          <ResponsiveText color={colors.black} size={2.8} >
+            Present
+          </ResponsiveText>
+        </View>
+      </View>
+    </View>
+  );
+};
+export { CardView, NotifationCard, AttendenceCard };
 const styles = StyleSheet.create({
   Onlinebadge: {
     height: 9,

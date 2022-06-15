@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Fonts from "../helpers/Fonts";
 import { colors } from "../constants/colorsPallet";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
+import { globalPath } from "../constants/globalPath";
+
 const Layout = (props) => {
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
@@ -28,6 +30,44 @@ const Layout = (props) => {
               fabintel international lahore, pakistan
             </ResponsiveText>
           ) : null}
+          {props.profile ? (
+            <View >
+              <View style={{ alignItems: "flex-end", alignSelf: 'center' }}>
+                <Image
+                  source={globalPath.background}
+                  style={{
+                    borderRadius: 60,
+                    height: wp(30),
+                    width: wp(30),
+                    resizeMode: "contain",
+                  }}
+                />
+                <View style={styles.Onlinebadge}></View>
+              </View>
+              <ResponsiveText
+                margin={[0, 0, 0, 14]}
+                weight={"bold"}
+                fontFamily={Fonts.Bold}
+                size={3.7}
+                color={colors.white}
+                textAlign={'center'}
+              >
+                Waqar Ahmad
+              </ResponsiveText>
+              <ResponsiveText
+                margin={[0, 0, 0, 0]}
+                fontFamily={Fonts.Bold}
+                size={3.5}
+                textAlign={'center'}
+                color={colors.white}
+              >
+                React native developer
+              </ResponsiveText>
+            </View>
+
+
+          ) : null}
+
         </View>
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>{props.children}</View>
@@ -70,5 +110,13 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     // marginBottom: 20,
     alignItems: "center",
+  },
+  Onlinebadge: {
+    height: 10,
+    width: 10,
+    backgroundColor: colors.lightgreen,
+    position: "absolute",
+    borderRadius: 10,
+    bottom: 20,
   },
 });
