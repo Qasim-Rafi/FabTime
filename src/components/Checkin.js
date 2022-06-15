@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { colors } from "../constants/colorsPallet";
 import { wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
-const Checkin = () => {
+const Checkin = (props) => {
   return (
-    <TouchableOpacity
+    <TouchableOpacity  onPress={props.onPress}
       style={{
         padding: wp(20),
         paddingVertical: wp(25),

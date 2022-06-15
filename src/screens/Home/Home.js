@@ -7,7 +7,19 @@ import { colors } from "../../constants/colorsPallet";
 import Fonts from "../../helpers/Fonts";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Checkin from "../../components/Checkin";
+import Api from "../../redux/lib/api";
+import urls from "../../redux/lib/urls";
 const Home = ({ navigation }) => {
+
+  const CheckedIn= async()=>{
+    const res = await Api.post(urls.ADD_ATTENDENCE);
+    console.log('res', res)
+    if (res && res.success == true) {
+      // setData(res.data);
+    } else {
+    }
+  }
+
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
@@ -31,7 +43,7 @@ const Home = ({ navigation }) => {
         </View>
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>
-            <Checkin />
+            <Checkin onPress={()=>CheckedIn()} />
             
           </View>
         </View>
