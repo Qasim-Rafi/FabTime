@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.green10,
     borderRadius: 5,
     justifyContent: "center",
-    height: hp(3.5),
+    height: 25,
     paddingHorizontal: 8,
     // width: wp(22),
     borderWidth: 1.5,

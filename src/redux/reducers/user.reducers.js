@@ -1,4 +1,4 @@
-import types from '../actions/types';
+import types from "../actions/types";
 
 //Get site data from url reducer
 const initialState = {
@@ -9,28 +9,31 @@ const initialState = {
     refreshing: false,
     data: {
       loggedInUserId: null,
-      loggedInUserName: '',
-      loggedInUserTypeId: '',
+      loggedInUserName: "",
+      loggedInUserTypeId: "",
       message: null,
     },
   },
+  presentTeam: {
+    refreshing: false,
+    data: [],
+  },
 };
 
-export const login_User = (state = initialState, action) => {
+export const userReducers = (state = initialState, action) => {
   switch (action.type) {
     case types.LOGIN_USER_REQUEST:
-      console.log(action, 'action in reducer');
+      console.log(action, "action in reducer");
       return {
         ...state,
         loginScreen: {
           ...state.loginScreen,
           refreshing: true,
-
         },
       };
 
     case types.LOGIN_USER_SUCCESS:
-      console.log(action, 'action in reducer');
+      console.log(action, "action in reducer");
       return {
         ...state,
         loginScreen: {
@@ -40,16 +43,47 @@ export const login_User = (state = initialState, action) => {
         },
       };
     case types.LOGIN_USER_FAILURE:
-      console.log(action, 'action in reducer');
+      console.log(action, "action in reducer");
       return {
         ...state,
         loginScreen: {
           ...state.loginScreen,
           refreshing: false,
           data: action.payload,
-          errorMsg: action.error
+          errorMsg: action.error,
         },
       };
-      default:
-        return state;
-    }}
+
+    case types.PRESENT_TEAM_REQUEST:
+      return {
+        ...state,
+        presentTeam: {
+          ...state.presentTeam,
+          refreshing: true,
+        },
+      };
+
+    case types.PRESENT_TEAM_SUCCESS:
+      return {
+        ...state,
+        presentTeam: {
+          ...state.presentTeam,
+          data: action.payload,
+          refreshing: false,
+        },
+      };
+    case types.PRESENT_TEAM_FAILURE:
+      return {
+        ...state,
+        presentTeam: {
+          ...state.presentTeam,
+          refreshing: false,
+          // data: action.payload,
+          errorMsg: action.error,
+        },
+      };
+
+    default:
+      return state;
+  }
+};
