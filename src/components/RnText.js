@@ -24,7 +24,7 @@ const ResponsiveText = ({
   borderWidth,
   borderRightWidth,
   borderLeftWidth,
-  
+  justifyContent,
   //sizes
   ...props
 }) => {
@@ -41,6 +41,7 @@ const ResponsiveText = ({
         (padding && handlePadding(padding): { padding: 10 }),
         position && { alignSelf: position },
         textAlign && { textAlign: 'center' },
+        justifyContent && { justifyContent: 'center' },
         
         cutText && { textDecorationLine: 'line-through' },
         { top: top },

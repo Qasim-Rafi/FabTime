@@ -10,5 +10,5 @@ export const routeName = {
   LEAVES:"LEAVES",
   REQUEST:"REQUEST",
   PROFILE:"PROFILE",
-
+  APPLYLEAVES:"APPLYLEAVES",
 };

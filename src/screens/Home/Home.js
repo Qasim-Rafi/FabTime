@@ -13,6 +13,7 @@ import Layout from "../../components/Layout";
 import { globalPath } from "../../constants/globalPath";
 import { wp } from "../../helpers/Responsiveness";
 import ResponsiveText from "../../components/RnText";
+import { routeName } from "../../constants/routeName";
 const Home = ({ navigation }) => {
   const CheckedIn = async () => {
     const res = await Api.post(urls.ADD_ATTENDENCE);
@@ -41,7 +42,7 @@ const Home = ({ navigation }) => {
             </ImageBackground>
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate(routeName.APPLYLEAVES)}>
             <ImageBackground source={globalPath.leavebutton} style={styles.btn}>
               <ResponsiveText>Apply Leave</ResponsiveText>
             </ImageBackground>

@@ -13,8 +13,8 @@ export default urls = {
   ADD_COMPANY:'/api/Company/AddCompany',
   GET_ALL_COMPANIES:'/api/Company/GetCompaniesAll',
   APPLY_LEAVE:'/api/Leave/AddLeave',
-  GET_LEAVES:'/api/Leave/GetUserLeavesAll'
-
+  GET_LEAVES:'/api/Leave/GetUserLeavesAll',
+  GET_ATDNCE_COUNTSALL:'/api/Attendence/GetAttendenceCountsAll',
 
 
 };

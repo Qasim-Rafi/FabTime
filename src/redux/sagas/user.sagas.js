@@ -92,3 +92,21 @@ function* getRequestDataApi(data) {
     yield put({ type: types.GET_FAILURE, error: error });
   }
 }
+//GetAttendenceCountsAll
+export function* getAttendenceCount() {
+  yield takeLatest(types.GET_ATDNCE_COUNTSALL_REQUEST, getAttendenceCountApi);
+}
+function* getAttendenceCountApi(data) {
+  // let { params, navigation } = data.data;
+  try {
+    const response = yield Api.get(urls.GET_ATDNCE_COUNTSALL);
+    console.log(response, "GET_ATDNCE_COUNTSALL");
+    if (response && response.data != null) {
+      yield put({ type: types.GET_ATDNCE_COUNTSALL_SUCCESS, payload: response.data });
+    } else {
+      yield put({ type: types.GET_ATDNCE_COUNTSALL_FAILURE, payload: response.data });
+    }
+  } catch (error) {
+    yield put({ type: types.GET_ATDNCE_COUNTSALL_FAILURE, error: error });
+  }
+}
