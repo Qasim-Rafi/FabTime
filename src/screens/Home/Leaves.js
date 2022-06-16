@@ -9,7 +9,13 @@ import Card from "../../components/Card";
 import ResponsiveText from "../../components/RnText";
 import { hp, wp } from "../../helpers/Responsiveness";
 import LeavesCard from "../../components/LeaveCard";
+import { useDispatch, useSelector } from "react-redux";
 const Leaves = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const LeavesData = useSelector((state) => state.userReducers.presentTeam.data);
+  useEffect(() => {
+    dispatch(getpresentTeam());
+  }, []);
   return (
     <Layout title={"Leaves"} >
       <LeavesCard
