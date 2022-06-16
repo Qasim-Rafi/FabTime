@@ -128,7 +128,7 @@ console.log('data', data)
                 <ResponsiveText color={colors.blue1}>
                   Fabintel Team
                 </ResponsiveText>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate(routeName.PRESENT_TEAM,data)}>
                   <ResponsiveText color={"#00AEEF"}>View All</ResponsiveText>
                 </TouchableOpacity>
               </View>

@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
-import ResponsiveText from "../../components/RnText";
 import { CardView } from "../../components/cardView";
 import TabIcon from "../../components/TabIcon";
-import { globalPath } from "../../constants/globalPath";
 import { colors } from "../../constants/colorsPallet";
+import { ScrollView } from "react-native-gesture-handler";
 
-const PresentTeam = () => {
+const PresentTeam = ({route}) => {
+  const [data, setData] = useState(route.params)
+
   return (
     <Layout title={"Fabintel Team"}>
       <View style={styles.tabContainer}>
@@ -39,7 +40,11 @@ const PresentTeam = () => {
           CircleColor={colors.yellow3}
         />
       </View>
-      <CardView />
+      <ScrollView>
+
+      {data.length > 0 ? data.map((item,index) =><CardView />) : null}
+      </ScrollView>
+
     </Layout>
   );
 };
