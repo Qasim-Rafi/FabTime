@@ -6,5 +6,11 @@ export const loginUser = (data) => {
     type: types.LOGIN_USER_REQUEST,
     data: data,
   };
+}
 
+export const getpresentTeam = (data) => {
+  return {
+    type: types.PRESENT_TEAM_REQUEST,
+    data: data,
+  };
 }

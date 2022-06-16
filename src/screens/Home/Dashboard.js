@@ -1,13 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
 import { colors } from "../../constants/colorsPallet";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -20,14 +12,23 @@ import TabIcon from "../../components/TabIcon";
 import Graph from "../../components/Graph";
 import { routeName } from "../../constants/routeName";
 import Card from "../../components/Card";
+import { useDispatch, useSelector } from "react-redux";
+import { getpresentTeam } from "../../redux/actions/user.actions";
 
 const Dashboard = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.userReducers.presentTeam.data);
+console.log('data', data)
   const [loader, setLoader] = React.useState(true);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoader(true);
+  //   }, 5000);
+  // });
+
   useEffect(() => {
-    setTimeout(() => {
-      setLoader(true);
-    }, 5000);
-  });
+    dispatch(getpresentTeam());
+  }, []);
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
@@ -88,7 +89,7 @@ const Dashboard = ({ navigation }) => {
             <View style={styles.container1}>
               <Graph />
             </View>
-            <Card flexDirection={'row'}>
+            <Card flexDirection={"row"}>
               <TabIcon
                 title="Leaves"
                 titleColor="#F6B707"
@@ -121,7 +122,7 @@ const Dashboard = ({ navigation }) => {
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  padding:10
+                  padding: 10,
                 }}
               >
                 <ResponsiveText color={colors.blue1}>
@@ -131,8 +132,7 @@ const Dashboard = ({ navigation }) => {
                   <ResponsiveText color={"#00AEEF"}>View All</ResponsiveText>
                 </TouchableOpacity>
               </View>
-
-              <CardView />
+              {data.length > 0 ? data.map((item,index) =>index<4? <CardView />:null) : null}
             </Card>
           </View>
         </View>

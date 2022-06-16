@@ -20,13 +20,13 @@ import Fonts from "../../../helpers/Fonts";
 import { routeName } from "../../../constants/routeName";
 const Login = ({ navigation }) => {
   const loading = useSelector(
-    (state) => state.login_User.loginScreen.refreshing
+    (state) => state.userReducers.loginScreen.refreshing
   );
   const loginResponse = useSelector(
-    (state) => state.login_User.loginScreen.data
+    (state) => state.userReducers.loginScreen.data
   );
   const loginNetworkErr = useSelector(
-    (state) => state.login_User.loginScreen.errorMsg
+    (state) => state.userReducers.loginScreen.errorMsg
   );
   const [errorString, setErrorString] = React.useState("");
   const [userName, setUserName] = React.useState("");
