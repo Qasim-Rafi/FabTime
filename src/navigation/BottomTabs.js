@@ -19,6 +19,7 @@ import { wp } from "../helpers/Responsiveness";
 import Dashboard from "../screens/Home/Dashboard";
 import PresentTeam from "../screens/Home/PresentTeam";
 import HomeStack from "./HomeStack";
+import CheckStack from "./CheckStack";
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -64,7 +65,7 @@ export default function BottomTabs() {
       >
         <Tab.Screen
           name={"Empty"}
-          component={Home}
+          component={CheckStack}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
@@ -148,7 +149,7 @@ export default function BottomTabs() {
           }}
         ></Tab.Screen> */}
 
-        <Tab.Screen
+        {/* <Tab.Screen
           name={"Notifications"}
           component={PresentTeam}
           options={{
@@ -168,7 +169,7 @@ export default function BottomTabs() {
               </View>
             ),
           }}
-        ></Tab.Screen>
+        ></Tab.Screen> */}
       </Tab.Navigator>
     </View>
   );
