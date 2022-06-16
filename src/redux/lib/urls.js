@@ -12,6 +12,8 @@ export default urls = {
   GET_ALL_ATTENDENCE:'/api/Attendence/GetAttendenceAll',
   ADD_COMPANY:'/api/Company/AddCompany',
   GET_ALL_COMPANIES:'/api/Company/GetCompaniesAll',
+  APPLY_LEAVE:'/api/Leave/AddLeave',
+  GET_LEAVES:'/api/Leave/GetUserLeavesAll'
 
 
 
