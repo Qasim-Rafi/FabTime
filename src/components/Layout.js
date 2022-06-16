@@ -13,9 +13,9 @@ const Layout = (props) => {
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
         <View style={styles.screeninfo}>
           <ResponsiveText
-            margin={[20, 0, 0, 30]}
+            margin={[10, 0, 0, 20]}
             fontFamily={Fonts.Bold}
-            size={6}
+            size={props.titleSize?props.titleSize:6}
             color={colors.white}
           >
             {props.title}
@@ -32,7 +32,7 @@ const Layout = (props) => {
           ) : null}
           {props.profile ? (
             <View >
-              <View style={{ alignItems: "flex-end", alignSelf: 'center' }}>
+              <View style={{ alignItems: "flex-end", alignSelf: 'center',marginTop:10 }}>
                 <Image
                   source={globalPath.background}
                   style={{
