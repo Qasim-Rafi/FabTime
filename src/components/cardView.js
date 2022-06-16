@@ -4,10 +4,12 @@ import { colors } from "../constants/colorsPallet";
 import { globalPath } from "../constants/globalPath";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
+import { routeName } from "../constants/routeName";
 const CardView = (props) => {
   return (
-    <TouchableOpacity
+    <TouchableOpacity 
       style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
+      onPress={() => props.navigation.navigate(routeName.ATTENDENCE_DETAIL)}
     >
       <View style={{ alignItems: "flex-end" }}>
         <Image

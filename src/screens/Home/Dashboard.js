@@ -132,9 +132,7 @@ console.log('data', data)
                   <ResponsiveText color={"#00AEEF"}>View All</ResponsiveText>
                 </TouchableOpacity>
               </View>
-              {data.length > 0 ? data.map((item,index) =>index<4? <CardView
-              onPress={() => navigation.navigate(routeName.ATTENDENCE_DETAIL)}
-              />:null) : null}
+              {data.length > 0 ? data.map((item,index) =>index<4? <CardView navigation={navigation}/>:null) : null}
             </Card>
           </View>
         </View>
