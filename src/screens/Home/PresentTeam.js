@@ -5,9 +5,12 @@ import { CardView } from "../../components/cardView";
 import TabIcon from "../../components/TabIcon";
 import { colors } from "../../constants/colorsPallet";
 import { ScrollView } from "react-native-gesture-handler";
+import { formatAMPM } from "../../redux/actions/user.actions";
 
 const PresentTeam = ({route}) => {
-  const [data, setData] = useState(route.params)
+  const [data, setData] = useState(route.params);
+
+  console.log(formatAMPM("Thu 16-Jun-2022 16:00"));
 
   return (
     <Layout title={"Fabintel Team"}>
@@ -42,7 +45,7 @@ const PresentTeam = ({route}) => {
       </View>
       <ScrollView>
 
-      {data.length > 0 ? data.map((item,index) =><CardView />) : null}
+      {data?.length > 0 ? data.map((item,index) =><CardView />) : null}
       </ScrollView>
 
     </Layout>
