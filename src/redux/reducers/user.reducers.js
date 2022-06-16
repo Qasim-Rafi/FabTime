@@ -18,7 +18,6 @@ const initialState = {
     refreshing: false,
     data: [],
   },
-<<<<<<< Updated upstream
   getLeaves:{
     refreshing:false,
     data:[]
@@ -27,12 +26,6 @@ const initialState = {
     refreshing:false,
     data:[]
   }
-=======
-  getAttendenceCount: {
-    refreshing: false,
-    data: [],
-  },
->>>>>>> Stashed changes
 };
 
 export const userReducers = (state = initialState, action) => {
@@ -68,11 +61,7 @@ export const userReducers = (state = initialState, action) => {
           errorMsg: action.error,
         },
       };
-<<<<<<< Updated upstream
 //get present team
-=======
-//presentTeam
->>>>>>> Stashed changes
     case types.PRESENT_TEAM_REQUEST:
       return {
         ...state,
@@ -101,7 +90,6 @@ export const userReducers = (state = initialState, action) => {
           errorMsg: action.error,
         },
       };
-<<<<<<< Updated upstream
 //get Leaves Data
 case types.GET_LEAVES_REQUEST:
       return {
@@ -160,37 +148,6 @@ case types.GET_LEAVES_REQUEST:
           errorMsg: action.error,
         },
       };
-=======
-//GetAttendenceCountsAll
-case types.GET_ATDNCE_COUNTSALL_REQUEST:
-  return {
-    ...state,
-    getAttendenceCount: {
-      ...state.getAttendenceCount,
-      refreshing: true,
-    },
-  };
-
-case types.GET_ATDNCE_COUNTSALL_SUCCESS:
-  return {
-    ...state,
-    getAttendenceCount: {
-      ...state.getAttendenceCount,
-      data: action.payload,
-      refreshing: false,
-    },
-  };
-case types.GET_ATDNCE_COUNTSALL_FAILURE:
-  return {
-    ...state,
-    getAttendenceCount: {
-      ...state.getAttendenceCount,
-      refreshing: false,
-      // data: action.payload,
-      errorMsg: action.error,
-    },
-  };
->>>>>>> Stashed changes
     default:
       return state;
   }
