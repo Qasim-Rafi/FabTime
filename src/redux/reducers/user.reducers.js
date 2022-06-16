@@ -25,7 +25,11 @@ const initialState = {
   getRequestData:{
     refreshing:false,
     data:[]
-  }
+  },
+  getAttendenceCount: {
+    refreshing: false,
+    data: [],
+  },
 };
 
 export const userReducers = (state = initialState, action) => {
@@ -62,6 +66,7 @@ export const userReducers = (state = initialState, action) => {
         },
       };
 //get present team
+//presentTeam
     case types.PRESENT_TEAM_REQUEST:
       return {
         ...state,
@@ -148,6 +153,35 @@ case types.GET_LEAVES_REQUEST:
           errorMsg: action.error,
         },
       };
+//GetAttendenceCountsAll
+case types.GET_ATDNCE_COUNTSALL_REQUEST:
+  return {
+    ...state,
+    getAttendenceCount: {
+      ...state.getAttendenceCount,
+      refreshing: true,
+    },
+  };
+
+case types.GET_ATDNCE_COUNTSALL_SUCCESS:
+  return {
+    ...state,
+    getAttendenceCount: {
+      ...state.getAttendenceCount,
+      data: action.payload,
+      refreshing: false,
+    },
+  };
+case types.GET_ATDNCE_COUNTSALL_FAILURE:
+  return {
+    ...state,
+    getAttendenceCount: {
+      ...state.getAttendenceCount,
+      refreshing: false,
+      // data: action.payload,
+      errorMsg: action.error,
+    },
+  };
     default:
       return state;
   }

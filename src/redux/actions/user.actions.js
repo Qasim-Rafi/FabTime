@@ -27,6 +27,14 @@ export const getRequestList = (data) => {
     data: data,
   };
 };
+//GetAttendenceCountsAll
+export const getAttendenceCount = (data) => {
+  return {
+    type: types.GET_ATDNCE_COUNTSALL_REQUEST,
+    data: data,
+  };
+};
+
 export const formatAMPM = (date1) => {
   var date = new Date(date1);
   var hours = date.getHours();

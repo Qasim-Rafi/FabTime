@@ -7,36 +7,29 @@ import ResponsiveText from "./RnText";
 const CheckinBox = (props) => {
   return (
     <View style={styles.container1}>
-       
-     <ResponsiveText
-          color={colors.black}
-          weight={"bold"}
-        //   flex={1}
-          size={3.8}
-          margin={[10, 0, 0, 5]}
-          textAlign={'center'}
-          
-        >
-          Check-In
-        </ResponsiveText>
-       
-        <ResponsiveText
-          color={colors.green1}
-          weight={"bold"}
-          flex={1}
-          size={3.5}
-          margin={[0, 0, 0, 5]}
-          textAlign={'center'}
-        >
-          10:30 AM
-        </ResponsiveText>
-      
-  </View>
-);
+
+      <ResponsiveText
+        color={props.titleColor}
+        weight={"bold"}
+        size={3.8}
+      > 
+        {props.title}
+      </ResponsiveText>
+
+      <ResponsiveText
+        color={props.subTitlecolor}
+        weight={"bold"}
+        size={3.5}
+      >
+        {props.subTitle}
+      </ResponsiveText>
+
+    </View>
+  );
 };
 export { CheckinBox };
 const styles = StyleSheet.create({
- 
+
   container1: {
     elevation: 9,
     shadowColor: colors.green,
@@ -50,11 +43,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     // marginHorizontal: 40,
     borderRadius: 10,
-    marginTop:5,
-    flex:1,
-   
+    marginTop: 5,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin:5
     
 
-    
+
+
   },
 });

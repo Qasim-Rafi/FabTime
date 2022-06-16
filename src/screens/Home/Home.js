@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { colors } from "../../constants/colorsPallet";
 import Checkin from "../../components/Checkin";
 import Api from "../../redux/lib/api";
 import urls from "../../redux/lib/urls";
 import Layout from "../../components/Layout";
+import { globalPath } from "../../constants/globalPath";
+import { wp } from "../../helpers/Responsiveness";
+import ResponsiveText from "../../components/RnText";
+import { routeName } from "../../constants/routeName";
 const Home = ({ navigation }) => {
   const CheckedIn = async () => {
     const res = await Api.post(urls.ADD_ATTENDENCE);
@@ -19,6 +28,26 @@ const Home = ({ navigation }) => {
     <Layout title={"Fabintel Team"} address>
       <View style={{ marginTop: "20%" }}>
         <Checkin onPress={() => CheckedIn()} />
+
+        <View
+          style={{
+            justifyContent: "center",
+            flexDirection: "row",
+            marginTop: wp(10),
+          }}
+        >
+          <TouchableOpacity>
+            <ImageBackground source={globalPath.latebutton} style={styles.btn}>
+              <ResponsiveText>Late</ResponsiveText>
+            </ImageBackground>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=>navigation.navigate(routeName.APPLYLEAVES)}>
+            <ImageBackground source={globalPath.leavebutton} style={styles.btn}>
+              <ResponsiveText>Apply Leave</ResponsiveText>
+            </ImageBackground>
+          </TouchableOpacity>
+        </View>
       </View>
     </Layout>
   );
@@ -28,5 +57,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blue1,
+  },
+  btn: {
+    height: wp(10),
+    width: wp(30),
+    margin: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
