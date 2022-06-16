@@ -8,42 +8,47 @@ import { colors } from "../../constants/colorsPallet";
 const ApplyLeaves = () => {
     return (
         <Layout title={"Apply Leaves"}>
-         <View style={{ marginTop: hp(5), marginHorizontal: wp(5) }}>
+            <View style={{ marginTop: hp(5)}}>
+
+                <View style={{elevation:20,marginHorizontal:0,borderRadius:10}}>
+                    <Input
+                        placeholder={"Leave Title"}
+                        width={wp(90)}
+                        height={hp(6.5)}
+                        padding={[0, 0, 0, 25]}
+                        margin={[0, 0, 0, 5]}
+                        // onChnageText={(text) => setUserName(text)}
+                        //   leftIcon={globalPath.Email}
+                        // backgroundColor={colors.white}
+                        // shadowColor={colors.green}
+                    />
+                   
+                </View>
                 
-
                 <Input
-                  placeholder={"Leave Title"}
-                  width={wp(90)}
-                  height={hp(6.5)}
-                  padding={[0, 0, 0, 25]}
-                  margin={[20, 0, 5, 0]}
-                  onChnageText={(text) => setUserName(text)}
-                //   leftIcon={globalPath.Email}
-                backgroundColor={colors.white}
-                />
+                    placeholder={"Password"}
+                    width={wp(90)}
+                    height={hp(20)}
+                    padding={[0, 0, 70, 25]}
+                    margin={[20, 0, 5, 0]}
+                    //  backgroundColor={colors.red}
 
-                <Input
-                  placeholder={"Password"}
-                  width={wp(90)}
-                  height={hp(20)}
-                  padding={[0, 0, 0, 25]}
-                  margin={[20, 0, 5, 0]}
-                  backgroundColor={colors.white}
-                  // secureTextEntry
+                // secureTextEntry
                 //   onChnageText={(text) => setPassword(text)}
                 //   leftIcon={globalPath.Lock}
                 />
+               
                 {/* <ResponsiveText color={colors.red} margin={[20, 0, 0, 10]}>{errorString}</ResponsiveText> */}
                 <RnButton
-                  backgroundColor={colors.blue1}
-                  margin={[50, 0, 0, 0]}
-                  title={"Submit"}
+                    backgroundColor={colors.blue}
+                    margin={[50, 0, 0, 0]}
+                    title={"Submit"}
                 //   onPress={() => Validation()}
                 />
-              
-              </View>
 
-        </Layout>
+            </View>
+
+        </Layout >
     );
 };
 
