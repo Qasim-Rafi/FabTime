@@ -27,8 +27,6 @@ export const getRequestList = (data) => {
     data: data,
   };
 };
-<<<<<<< Updated upstream
-=======
 //GetAttendenceCountsAll
 export const getAttendenceCount = (data) => {
   return {
@@ -37,7 +35,6 @@ export const getAttendenceCount = (data) => {
   };
 };
 
->>>>>>> Stashed changes
 export const formatAMPM = (date1) => {
   var date = new Date(date1);
   var hours = date.getHours();

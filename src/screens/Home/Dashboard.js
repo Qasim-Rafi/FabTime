@@ -13,11 +13,13 @@ import Graph from "../../components/Graph";
 import { routeName } from "../../constants/routeName";
 import Card from "../../components/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { getpresentTeam } from "../../redux/actions/user.actions";
+import { getpresentTeam,getAttendenceCount} from "../../redux/actions/user.actions";
+
 
 const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
+  const DashCount = useSelector((state) => state.userReducers.getAttendenceCount.data);
 console.log('data', data)
   const [loader, setLoader] = React.useState(true);
   // useEffect(() => {
@@ -28,6 +30,7 @@ console.log('data', data)
 
   useEffect(() => {
     dispatch(getpresentTeam());
+    dispatch(getAttendenceCount());
   }, []);
 
   return (
