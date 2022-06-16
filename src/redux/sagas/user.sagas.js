@@ -39,7 +39,7 @@ function* loginUserApi(data, response) {
   }
 }
 
-//LOGIN
+//present team
 export function* presentTeamSaga() {
   yield takeLatest(types.PRESENT_TEAM_REQUEST, presentTeamApi);
 }
@@ -55,5 +55,40 @@ function* presentTeamApi(data) {
     }
   } catch (error) {
     yield put({ type: types.PRESENT_TEAM_FAILURE, error: error });
+  }
+}
+//Get leaves
+export function* getLeaves() {
+  yield takeLatest(types.GET_LEAVES_REQUEST, getLeavesApi);
+}
+function* getLeavesApi(data) {
+  try {
+    const response = yield Api.get(urls.GET_LEAVES);
+    console.log(response, "response");
+    if (response && response.data != null) {
+      yield put({ type: types.GET_LEAVES_SUCCESS, payload: response.data });
+    } else {
+      yield put({ type: types.GET_LEAVES_FAILURE, payload: response.data });
+    }
+  } catch (error) {
+    yield put({ type: types.GET_LEAVES_FAILURE, error: error });
+  }
+}
+//get request
+export function* getRequestData() {
+  yield takeLatest(types.GET_REQUEST, getRequestDataApi);
+}
+function* getRequestDataApi(data) {
+  // let { params, navigation } = data.data;
+  try {
+    const response = yield Api.get(urls.GET_LEAVES);
+    console.log(response, "response");
+    if (response && response.data != null) {
+      yield put({ type: types.GET_SUCCESS, payload: response.data });
+    } else {
+      yield put({ type: types.GET_FAILURE, payload: response.data });
+    }
+  } catch (error) {
+    yield put({ type: types.GET_FAILURE, error: error });
   }
 }

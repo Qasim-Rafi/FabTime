@@ -18,6 +18,14 @@ const initialState = {
     refreshing: false,
     data: [],
   },
+  getLeaves:{
+    refreshing:false,
+    data:[]
+  },
+  getRequestData:{
+    refreshing:false,
+    data:[]
+  }
 };
 
 export const userReducers = (state = initialState, action) => {
@@ -53,7 +61,7 @@ export const userReducers = (state = initialState, action) => {
           errorMsg: action.error,
         },
       };
-
+//get present team
     case types.PRESENT_TEAM_REQUEST:
       return {
         ...state,
@@ -82,7 +90,64 @@ export const userReducers = (state = initialState, action) => {
           errorMsg: action.error,
         },
       };
+//get Leaves Data
+case types.GET_LEAVES_REQUEST:
+      return {
+        ...state,
+        getLeaves: {
+          ...state.getLeaves,
+          refreshing: true,
+        },
+      };
 
+    case types.GET_LEAVES_SUCCESS:
+      return {
+        ...state,
+        getLeaves: {
+          ...state.getLeaves,
+          data: action.payload,
+          refreshing: false,
+        },
+      };
+    case types.GET_LEAVES_FAILURE:
+      return {
+        ...state,
+        getLeaves: {
+          ...state.getLeaves,
+          refreshing: false,
+          // data: action.payload,
+          errorMsg: action.error,
+        },
+      };
+      //Get request data
+      case types.GET_REQUEST:
+      return {
+        ...state,
+        getRequestData: {
+          ...state.getRequestData,
+          refreshing: true,
+        },
+      };
+
+    case types.GET_SUCCESS:
+      return {
+        ...state,
+        getRequestData: {
+          ...state.getRequestData,
+          data: action.payload,
+          refreshing: false,
+        },
+      };
+    case types.GET_FAILURE:
+      return {
+        ...state,
+        getRequestData: {
+          ...state.getRequestData,
+          refreshing: false,
+          // data: action.payload,
+          errorMsg: action.error,
+        },
+      };
     default:
       return state;
   }

@@ -6,14 +6,27 @@ export const loginUser = (data) => {
     data: data,
   };
 };
-
+//get present team
 export const getpresentTeam = (data) => {
   return {
     type: types.PRESENT_TEAM_REQUEST,
     data: data,
   };
+}
+//get leaves
+  export const getLeavesRequest = (data) => {
+    return {
+      type: types.GET_LEAVES_REQUEST,
+      data: data,
+    };
 };
-
+//get request data
+export const getRequestList = (data) => {
+  return {
+    type: types.GET_REQUEST,
+    data: data,
+  };
+};
 export const formatAMPM = (date1) => {
   var date = new Date(date1);
   var hours = date.getHours();
