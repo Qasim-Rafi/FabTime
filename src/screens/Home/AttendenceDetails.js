@@ -15,14 +15,28 @@ import { CheckOutBox } from "../../components/CheckOutBox";
 const AttendenceDetails = () => {
     return (
         <Layout title={"Attendence Details"} profile titleSize={5}>
-            <View style={{ flexDirection: 'row', margin: 5 }}>
-                <CheckinBox />
-                <CheckOutBox />
+            <View style={{ flexDirection: 'row', margin: 10, }}>
+        <CheckinBox
+        title='Check-In'
+        subTitle='10:30 AM'
+        titleColor={colors.black}
+        subTitlecolor={colors.green}
+        />
+        
+       <CheckinBox
+        title='Check-Out'
+        subTitle='06:30 PM'
+        titleColor={colors.black}
+        subTitlecolor={colors.red}
+        />
+     
+   
+               
             </View>
             <View>
                 <ResponsiveText
-                    margin={[10, 0, 0, 8]}
-                    fontFamily={Fonts.Bold}
+                    margin={[0, 0, 0, 8]}
+                    // fontFamily={Fonts.Bold}
                     size={5}
                     color={colors.blue1}>May Attendence</ResponsiveText>
             </View>
