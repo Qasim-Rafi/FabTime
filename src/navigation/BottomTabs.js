@@ -54,17 +54,17 @@ export default function BottomTabs() {
             },
             marginBottom: 20,
             paddingHorizontal: 20,
-            marginHorizontal: wp(13),
+            marginHorizontal: wp(10),
             position: "absolute",
             // justifyContent:'center',
-            paddingTop: Platform.OS == 'ios' ? 20 : 0
+            paddingTop: Platform.OS == "ios" ? 20 : 0,
           },
           //  }
         }}
       >
         <Tab.Screen
           name={"Empty"}
-          component={HomeStack}
+          component={Home}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
@@ -83,7 +83,27 @@ export default function BottomTabs() {
             ),
           }}
         ></Tab.Screen>
-
+        <Tab.Screen
+          name={"HomeStack"}
+          component={HomeStack}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View style={focused ? styles.TouchableTab : {}}>
+                <View style={focused ? styles.ActiveTab : styles.inActiveTab}>
+                  <Image
+                    source={globalPath.dashboard}
+                    resizeMode={"contain"}
+                    style={{
+                      width: 22,
+                      height: 22,
+                      tintColor: "white",
+                    }}
+                  ></Image>
+                </View>
+              </View>
+            ),
+          }}
+        ></Tab.Screen>
         <Tab.Screen
           name={"REPORT"}
           component={Report}
@@ -106,29 +126,7 @@ export default function BottomTabs() {
           }}
         ></Tab.Screen>
 
-        <Tab.Screen
-          name={"DASHBOARD"}
-          component={Dashboard}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <View style={focused ? styles.TouchableTab : {}}>
-                <View style={focused ? styles.ActiveTab : styles.inActiveTab}>
-                  <Image
-                    source={globalPath.dashboard}
-                    resizeMode={"contain"}
-                    style={{
-                      width: 22,
-                      height: 22,
-                      tintColor: "white",
-                    }}
-                  ></Image>
-                </View>
-              </View>
-            ),
-          }}
-        ></Tab.Screen>
-
-        <Tab.Screen
+        {/* <Tab.Screen
           name={"History"}
           component={History}
           options={{
@@ -148,7 +146,7 @@ export default function BottomTabs() {
               </View>
             ),
           }}
-        ></Tab.Screen>
+        ></Tab.Screen> */}
 
         <Tab.Screen
           name={"Notifications"}
@@ -158,7 +156,7 @@ export default function BottomTabs() {
               <View style={focused ? styles.TouchableTab : {}}>
                 <View style={focused ? styles.ActiveTab : styles.inActiveTab}>
                   <Image
-                    source={globalPath.report}
+                    source={globalPath.history}
                     resizeMode={"contain"}
                     style={{
                       width: 22,

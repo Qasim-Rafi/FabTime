@@ -1,12 +1,12 @@
 import React, { version } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { colors } from "../constants/colorsPallet";
 import { globalPath } from "../constants/globalPath";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 const CardView = (props) => {
   return (
-      <View style={{ flexDirection: "row", alignItems:'center',padding:10 }}>
+      <TouchableOpacity style={{ flexDirection: "row", alignItems:'center',padding:10 }}>
         <View style={{ alignItems: "flex-end" }}>
           <Image
             source={globalPath.background}
@@ -43,7 +43,7 @@ const CardView = (props) => {
             10:05 AM
           </ResponsiveText>
         </View>
-      </View>
+      </TouchableOpacity>
   );
 };
 const NotifationCard = (props) => {
