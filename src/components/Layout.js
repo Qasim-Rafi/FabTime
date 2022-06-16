@@ -27,6 +27,7 @@ const Layout = (props) => {
               size={3.5}
               color={colors.white}
             >
+              {/* {props.address} */}
               fabintel international lahore, pakistan
             </ResponsiveText>
           ) : null}

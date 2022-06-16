@@ -96,6 +96,7 @@ console.log('data', data)
                 titleColor="#F6B707"
                 backgroundColor="#FFF9E6"
                 source={globalPath.leaves}
+                onPress={() => navigation.navigate(routeName.LEAVES)}
                
               />
               <TabIcon
@@ -103,12 +104,15 @@ console.log('data', data)
                 titleColor="#5958DA"
                 backgroundColor="#F1F5FF"
                 source={globalPath.payslip}
+
               />
               <TabIcon
                 title="Requests"
                 titleColor="#0C7E44"
                 backgroundColor="#E4FEF1"
                 source={globalPath.requests}
+                onPress={() => navigation.navigate(routeName.REQUEST)}
+
               />
               <TabIcon
                 title="Notification"
