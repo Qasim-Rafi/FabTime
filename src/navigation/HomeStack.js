@@ -7,6 +7,7 @@ import Notification from '../screens/Home/Notification';
 import PresentTeam from '../screens/Home/PresentTeam';
 import AttendenceDetails from '../screens/Home/AttendenceDetails';
 
+import Profile from '../screens/Home/Profile';
 import BottomTabs from './BottomTabs';
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.NOTIFICATION} component={Notification} />
       <Stack.Screen name={routeName.ATTENDENCE_DETAIL} component={AttendenceDetails} />
 
+      <Stack.Screen name={routeName.PROFILE} component={Profile} />
 
 
      

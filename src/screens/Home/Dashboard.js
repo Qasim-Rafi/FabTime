@@ -46,6 +46,7 @@ console.log('data', data)
               Fabintel
             </ResponsiveText>
             <View>
+              <TouchableOpacity onPress={()=>navigation.navigate(routeName.PROFILE)}>
               <Icon
                 style={{ backgroundColor: colors.white }}
                 borderRadius={20}
@@ -62,9 +63,9 @@ console.log('data', data)
                   borderRadius: 20,
                   marginLeft: wp(6),
                 }}
-              >
-
-              </View>
+              ></View>
+              </TouchableOpacity>
+             
             </View>
                  </View>
 

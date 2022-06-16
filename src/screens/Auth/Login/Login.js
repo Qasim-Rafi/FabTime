@@ -18,6 +18,7 @@ import Api from "../../../redux/lib/api";
 import urls from "../../../redux/lib/urls";
 import Fonts from "../../../helpers/Fonts";
 import { routeName } from "../../../constants/routeName";
+import { Grid } from "react-native-animated-spinkit";
 const Login = ({ navigation }) => {
   const loading = useSelector(
     (state) => state.userReducers.loginScreen.refreshing
@@ -65,7 +66,6 @@ const Login = ({ navigation }) => {
       const res = await Api.get(urls.GET_ALL_COMPANIES);
       // console.log("get compsnies", res);
       if (res && res.success == true) {
-        setData(res.data);
       } else {
       }
     } catch (error) {}
@@ -95,11 +95,13 @@ const Login = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
+      
       <ImageBackground
         // source={globalPath.background}
         resizeMode="cover"
         style={styles.image}
       >
+        
         <View style={{ marginHorizontal: wp(0) }}>
           <View style={styles.screeninfo}>
             <Image style={styles.logo} source={globalPath.logo} />
@@ -156,16 +158,38 @@ const Login = ({ navigation }) => {
                 />
                 <ResponsiveText color={colors.red} margin={[20, 0, 0, 10]}>{errorString}</ResponsiveText>
                 <RnButton
-                  backgroundColor={colors.blue2}
+                  backgroundColor={colors.blue1}
                   margin={[50, 0, 0, 0]}
                   title={"Sign in"}
                   onPress={() => Validation()}
                 />
+              
               </View>
+                
             </View>
+         
           </View>
+         
         </View>
+        {loading?
+                  <View style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    alignItems:"center",
+                    justifyContent:'center',
+                    right: 0,
+                    backgroundColor: 'rgba(65, 65, 65, 0.5)',
+                    flex: 1,
+                  }}>
+                   <  Grid count={5} color={colors.blue1} size={40} />
+                 </View>
+                   :
+                   undefined
+                }
       </ImageBackground>
+    
     </View>
   );
 };
