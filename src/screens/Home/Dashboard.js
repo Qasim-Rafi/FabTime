@@ -95,7 +95,7 @@ console.log('data', data)
                 titleColor="#F6B707"
                 backgroundColor="#FFF9E6"
                 source={globalPath.leaves}
-                onPress={() => navigation.navigate(routeName.ATTENDENCE_DETAIL)}
+               
               />
               <TabIcon
                 title="Payslip"
@@ -132,7 +132,7 @@ console.log('data', data)
                   <ResponsiveText color={"#00AEEF"}>View All</ResponsiveText>
                 </TouchableOpacity>
               </View>
-              {data.length > 0 ? data.map((item,index) =>index<4? <CardView />:null) : null}
+              {data.length > 0 ? data.map((item,index) =>index<4? <CardView navigation={navigation}/>:null) : null}
             </Card>
           </View>
         </View>
