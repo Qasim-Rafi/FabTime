@@ -10,7 +10,13 @@ import ResponsiveText from "../../components/RnText";
 import { hp, wp } from "../../helpers/Responsiveness";
 import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 import LeavesCard from "../../components/LeaveCard";
+import { useDispatch, useSelector } from "react-redux";
 const Leaves = () => {
+  const dispatch = useDispatch();
+  const RequestData = useSelector((state) => state.userReducers.presentTeam.data);
+  useEffect(() => {
+    dispatch(getpresentTeam());
+  }, []);
   return (
     <Layout title={"Request"} >
        <LeavesCard username={'saniya Tariq'} status={"Pending"}date={"20-04-2022"}
