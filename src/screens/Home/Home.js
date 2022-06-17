@@ -14,7 +14,22 @@ import { globalPath } from "../../constants/globalPath";
 import { wp } from "../../helpers/Responsiveness";
 import ResponsiveText from "../../components/RnText";
 import { routeName } from "../../constants/routeName";
+import { useState } from "react";
+import { formatAMPM } from "../../redux/actions/user.actions";
 const Home = ({ navigation }) => {
+  const [CheckinTime, setCheckinTime] = useState("");
+
+  useEffect(() => {
+    setCheckinTime(formatAMPM(new Date()));
+
+    const interval = setInterval(() => {
+      console.log("Logs every minute");
+      setCheckinTime(formatAMPM(new Date()));
+    }, 60000);
+
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  }, []);
+
   const CheckedIn = async () => {
     const res = await Api.post(urls.ADD_ATTENDENCE);
     console.log("res", res);
@@ -27,7 +42,7 @@ const Home = ({ navigation }) => {
   return (
     <Layout title={"Fabintel Team"} address>
       <View style={{ marginTop: "20%" }}>
-        <Checkin onPress={() => CheckedIn()} />
+        <Checkin time={CheckinTime} onPress={() => CheckedIn()} />
 
         <View
           style={{
@@ -42,7 +57,9 @@ const Home = ({ navigation }) => {
             </ImageBackground>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=>navigation.navigate(routeName.APPLYLEAVES)}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(routeName.APPLYLEAVES)}
+          >
             <ImageBackground source={globalPath.leavebutton} style={styles.btn}>
               <ResponsiveText>Apply Leave</ResponsiveText>
             </ImageBackground>
