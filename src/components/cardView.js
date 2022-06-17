@@ -65,13 +65,13 @@ const NotifationCard = (props) => {
           size={3.5}
           margin={[0, 0, 0, 5]}
         >
-          Saniya Tariq
+          Saniya Tariq Saniya Tariq Saniya Tariq Saniya Tariq
         </ResponsiveText>
       </View>
       <ResponsiveText
         size={3.5}
         color={colors.grey1}
-        margin={[-20, 0, 0, wp(11)]}
+        margin={[0, 0, 0, wp(11)]}
       >
         45 minutes ago
       </ResponsiveText>

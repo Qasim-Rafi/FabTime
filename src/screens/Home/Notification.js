@@ -9,7 +9,7 @@ import { colors } from "../../constants/colorsPallet";
 
 const Notification = () => {
   return (
-    <Layout title={"Fabintel Team"}>
+    <Layout title={"Notification"}>
 <NotifationCard/>
     </Layout>
   );

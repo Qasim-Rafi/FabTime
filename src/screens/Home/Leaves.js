@@ -27,7 +27,7 @@ const Leaves = ({ navigation }) => {
           reason={item.reason} status={"Pending"} date={item.startDate}
           description={"Dear sir, I am writing this application to inform you that I am suffering from severe viral disease and therefore, I want sick leave from work. I got this infection last night and I will not be capable to come to the office for at least 1 day."}
         />
-      )):null
+      )):nulls
       }
     </Layout>
   );
