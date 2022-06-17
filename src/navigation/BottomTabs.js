@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Animated,
   Image,
+  Keyboard,
   Platform,
   StyleSheet,
   Text,
@@ -26,12 +27,34 @@ const Tab = createBottomTabNavigator();
 export default function BottomTabs() {
   // Animated Tab Indicator...
   const tabOffsetValue = useRef(new Animated.Value(0)).current;
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+ useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true); // or some other action
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false); // or some other action
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
   return (
     <View style={{ flex: 1 }}>
       <Tab.Navigator
         style={{ marginHorizontal: 10 }}
         // sceneContainerStyle={{marginHorizontal:20,backgroundColor:'red'}}
         screenOptions={{
+          tabBarHideOnKeyboard:true,
           headerShown: false,
           tabBarShowLabel: false,
           tabBarActiveTintColor: colors.red,
@@ -55,7 +78,7 @@ export default function BottomTabs() {
               width: 40,
               height: 90,
             },
-            marginBottom: 20,
+            marginBottom:isKeyboardVisible?-40:20,
             paddingHorizontal: 20,
             marginHorizontal: wp(8),
             position: "absolute",

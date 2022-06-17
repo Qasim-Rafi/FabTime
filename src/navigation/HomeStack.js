@@ -29,7 +29,6 @@ function HomeStack() {
       <Stack.Screen name={routeName.ATTENDENCE_DETAIL} component={AttendenceDetails} />
       <Stack.Screen name={routeName.LEAVES} component={Leaves} />
       <Stack.Screen name={routeName.REQUEST} component={Request} />
-
       <Stack.Screen name={routeName.PROFILE} component={Profile} />
 
 
