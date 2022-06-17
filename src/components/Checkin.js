@@ -14,8 +14,8 @@ const Checkin = (props) => {
   const [CheckedIn, setCheckedIn] = useState(false);
   return (
     <TouchableOpacity
-      // onPress={props.onPress}
-      onPress={() => setCheckedIn(!CheckedIn)}
+      onPress={props.onPress}
+      // onPress={() => setCheckedIn(!CheckedIn)}
       // style={{
       //   // padding: wp(25),
       //   // paddingVertical: wp(25),
@@ -47,7 +47,7 @@ const Checkin = (props) => {
           alignItems: "center",
         }}
       >
-        <ResponsiveText size={5}>10:30AM</ResponsiveText>
+        <ResponsiveText size={5}>{props.time}</ResponsiveText>
       </ImageBackground>
     </TouchableOpacity>
   );
