@@ -9,7 +9,7 @@ const LeavesCard = (props ) => {
     <Card>
 
         <View style={{ flexDirection: 'row',justifyContent:'space-between',marginHorizontal:10 }}>
-          <ResponsiveText size={4} color={colors.blue2}>{props.username}</ResponsiveText>
+          <ResponsiveText size={4} color={colors.blue2}>{props.reason}</ResponsiveText>
           <View style={{backgroundColor:colors.green11,borderWidth:1.2,borderColor:colors.green2,borderRadius:3,width:wp(16),alignItems:"center",height:hp(2.5)}}>
             <ResponsiveText size={3}>{props.status}</ResponsiveText>
           </View>
