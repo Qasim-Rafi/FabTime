@@ -16,22 +16,19 @@ const AttendenceDetails = () => {
     return (
         <Layout title={"Attendence Details"} profile titleSize={5}>
             <View style={{ flexDirection: 'row', margin: 10, }}>
-        <CheckinBox
-        title='Check-In'
-        subTitle='10:30 AM'
-        titleColor={colors.black}
-        subTitlecolor={colors.green}
-        />
-        
-       <CheckinBox
-        title='Check-Out'
-        subTitle='06:30 PM'
-        titleColor={colors.black}
-        subTitlecolor={colors.red}
-        />
-     
-   
-               
+                <CheckinBox
+                    title='Check-In'
+                    subTitle='10:30 AM'
+                    titleColor={colors.black}
+                    subTitlecolor={colors.green}
+                />
+
+                <CheckinBox
+                    title='Check-Out'
+                    subTitle='06:30 PM'
+                    titleColor={colors.black}
+                    subTitlecolor={colors.red}
+                />
             </View>
             <View>
                 <ResponsiveText
