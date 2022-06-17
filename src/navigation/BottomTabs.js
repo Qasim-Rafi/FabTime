@@ -43,7 +43,7 @@ export default function BottomTabs() {
             fontWeight: "bold",
           },
           tabBarStyle: {
-            backgroundColor: colors.darkblue,
+            backgroundColor: colors.blue1,
             height: 55,
             borderRadius: 10,
             borderBottomLeftRadius:20,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   ActiveTab: {
     width: 60,
     height: 60,
-    backgroundColor: colors.darkblue,
+    backgroundColor: colors.blue1,
     borderRadius: 30,
     borderWidth: 4,
     borderColor: colors.white,

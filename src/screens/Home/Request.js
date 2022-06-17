@@ -15,7 +15,7 @@ const Leaves = () => {
   const dispatch = useDispatch();
   const RequestData = useSelector((state) => state.userReducers.presentTeam.data);
   useEffect(() => {
-    dispatch(getpresentTeam());
+    // dispatch(getpresentTeam());
   }, []);
   return (
     <Layout title={"Request"} >

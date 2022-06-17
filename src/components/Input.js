@@ -37,6 +37,7 @@ const Input = ({
   onSubmitEditing,
   searchBox,
   shadowColor,
+  inputHeight,
   ...props
 }) => {
   const textInputChange = (val) => {
@@ -95,9 +96,12 @@ const Input = ({
           // value={value && value}
           {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
           editable={props.editable}
+
           // secureTextEntry={false}
           style={[
             fontSize && { fontSize },
+            inputHeight && {height: inputHeight },
+
             styles.Input,
             fontFamily && { fontFamily: Fonts[fontFamily] },
             (onSubmitEditing = props.onSubmitEditing),
@@ -168,6 +172,8 @@ const styles = StyleSheet.create({
     // paddingRight: 15,
     fontFamily: Fonts.Regular,
     color: colors.black,
+    // height:wp(30),
+    textAlignVertical: 'top'
   },
   Feather: {
     marginRight: 5,
