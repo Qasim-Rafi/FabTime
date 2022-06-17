@@ -36,6 +36,7 @@ const Input = ({
   value,
   onSubmitEditing,
   searchBox,
+  shadowColor,
   ...props
 }) => {
   const textInputChange = (val) => {
@@ -76,6 +77,7 @@ const Input = ({
           {
             zIndex: zIndex,
             backgroundColor: backgroundColor ? backgroundColor : colors.white,
+            shadowColor: shadowColor ? shadowColor : colors.white,
           },
           containerStyle,
         ]}
@@ -139,7 +141,7 @@ const Input = ({
         {searchBox && (
           <TouchableOpacity
             style={styles.showPasswordBtn}
-            // onPress={updateSecureTextEntry}
+          // onPress={updateSecureTextEntry}
           >
             <Feather name="search" size={20} style={styles.Feather} />
           </TouchableOpacity>
