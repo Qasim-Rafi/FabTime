@@ -36,10 +36,10 @@ const ApplyLeaves = () => {
                         shadowRadius: 4.65,
 
                         elevation: 3,
-                        borderRadius: 20,
-                        marginTop: 10,
-                        marginRight: 7,
-                        marginLeft: 5
+                        borderRadius: 30,
+                        marginTop: 5,
+                        backgroundColor:colors.white,
+                        marginHorizontal:5,
                     }}
                 >
                     <Input
@@ -47,7 +47,7 @@ const ApplyLeaves = () => {
                         width={wp(90)}
                         height={hp(6.5)}
                         padding={[0, 0, 0, 25]}
-                        margin={[0, 0, 0, 5]}
+                        margin={[0, 0, 0, 0]}
                     // onChnageText={(text) => setUserName(text)}
                     //   leftIcon={globalPath.Email}
                     // backgroundColor={colors.green}
@@ -64,11 +64,12 @@ const ApplyLeaves = () => {
                         shadowOpacity: 0.29,
                         shadowRadius: 4.65,
 
-                        elevation: 3,
+                        elevation: 5,
                         borderRadius: 20,
                         marginTop: 10,
-                        marginRight: 10,
-                        marginLeft: 5
+                        shadowOffset:0,
+                        backgroundColor:colors.white,
+                        marginHorizontal:5
                     }}
                 >
                     <Input
