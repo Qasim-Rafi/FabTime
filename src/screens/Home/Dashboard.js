@@ -20,13 +20,9 @@ const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
   const DashCount = useSelector((state) => state.userReducers.getAttendenceCount.data);
-console.log('data', data)
+  // console.log('DashCount', DashCount)
   const [loader, setLoader] = React.useState(true);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoader(true);
-  //   }, 5000);
-  // });
+  
 
   useEffect(() => {
     dispatch(getpresentTeam());

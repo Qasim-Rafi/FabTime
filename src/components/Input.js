@@ -36,6 +36,8 @@ const Input = ({
   value,
   onSubmitEditing,
   searchBox,
+  shadowColor,
+  inputHeight,
   ...props
 }) => {
   const textInputChange = (val) => {
@@ -76,6 +78,7 @@ const Input = ({
           {
             zIndex: zIndex,
             backgroundColor: backgroundColor ? backgroundColor : colors.white,
+            shadowColor: shadowColor ? shadowColor : colors.white,
           },
           containerStyle,
         ]}
@@ -93,9 +96,12 @@ const Input = ({
           // value={value && value}
           {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
           editable={props.editable}
+
           // secureTextEntry={false}
           style={[
             fontSize && { fontSize },
+            inputHeight && {height: inputHeight },
+
             styles.Input,
             fontFamily && { fontFamily: Fonts[fontFamily] },
             (onSubmitEditing = props.onSubmitEditing),
@@ -139,7 +145,7 @@ const Input = ({
         {searchBox && (
           <TouchableOpacity
             style={styles.showPasswordBtn}
-            // onPress={updateSecureTextEntry}
+          // onPress={updateSecureTextEntry}
           >
             <Feather name="search" size={20} style={styles.Feather} />
           </TouchableOpacity>
@@ -166,6 +172,8 @@ const styles = StyleSheet.create({
     // paddingRight: 15,
     fontFamily: Fonts.Regular,
     color: colors.black,
+    // height:wp(30),
+    textAlignVertical: 'top'
   },
   Feather: {
     marginRight: 5,
