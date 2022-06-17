@@ -1,17 +1,18 @@
 import React, { version } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image,TouchableOpacity } from "react-native";
 import { colors } from "../constants/colorsPallet";
 import { globalPath } from "../constants/globalPath";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 const CheckinBox = (props) => {
   return (
-    <View style={styles.container1}>
+    <TouchableOpacity disabled={!props.disabled?props.disabled:true} style={styles.container1}>
 
       <ResponsiveText
         color={props.titleColor}
         weight={"bold"}
         size={3.8}
+      
       > 
         {props.title}
       </ResponsiveText>
@@ -19,12 +20,12 @@ const CheckinBox = (props) => {
       <ResponsiveText
         color={props.subTitlecolor}
         weight={"bold"}
-        size={3.5}
+        size={3.8}
       >
         {props.subTitle}
       </ResponsiveText>
 
-    </View>
+    </TouchableOpacity>
   );
 };
 export { CheckinBox };

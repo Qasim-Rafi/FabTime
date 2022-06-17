@@ -1,27 +1,70 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import Input from "../../components/Input";
 import { hp, wp } from "../../helpers/Responsiveness";
 import RnButton from "../../components/RnButton";
 import { colors } from "../../constants/colorsPallet";
 import { CheckinBox } from "../../components/CheckinBox";
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 const ApplyLeaves = () => {
+    const [date, setDate] = useState(null);
+    const [show, setShow] = useState(false);
+    const [date2, setDate2] = useState(null);
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+        setDate2(currentDate)
+    
+      };
+    const showDAtepicker = () => {
+        setShow(true);
+    };
     return (
         <Layout title={"Apply Leaves"}>
-            <View style={{ flexDirection: 'row', margin: 10, }}>
-                <CheckinBox
-                    title='Start Time'
+            <View style={{ flexDirection: 'row', margin: 10 }}>
+
+                <CheckinBox onPress={showDAtepicker}
+                
+                    title='Start Date'
                     subTitle='10:30 AM'
                     titleColor={colors.black}
                     subTitlecolor={colors.green}
-                />
+                    disabled={false}
 
+                />
+                {show && (
+                    //         <DateTimePicker
+                    //           // testID="dateTimePicker"
+                    //           value={new Date()}
+                    //           mode={'date'}
+                    //           // is24Hour={true}
+                    //           display="default"
+                    //           // format="YYYY-MM-DD HH:mm"
+                    //           onChange={onChange}
+                    //           format={"YYYY-MM-DD"}
+                    // displayFormat={"DD MMM YYYY"}
+                    //         />
+                    <DateTimePicker
+                        timeZoneOffsetInMinutes={0}
+                        value={new Date()}
+                        mode="date"
+                        is24Hour
+                        display="default"
+                        onChange={onChange}
+                        format={'YYYY-MM-DD'}
+                        displayFormat={'DD MMM YYYY'}
+                        maximumDate={new Date(2009, 1, 1)}
+                    />
+                )}
                 <CheckinBox
-                    title='End Time'
+                    title='End Date'
                     subTitle='06:30 PM'
                     titleColor={colors.black}
                     subTitlecolor={colors.red}
+                    disabled={true}
                 />
             </View>
             <View style={{ marginTop: hp(0) }}>
@@ -36,10 +79,10 @@ const ApplyLeaves = () => {
                         shadowRadius: 4.65,
 
                         elevation: 3,
-                        borderRadius: 30,
-                        marginTop: 5,
-                        backgroundColor:colors.white,
-                        marginHorizontal:5,
+                        borderRadius: 20,
+                        marginTop: 10,
+                        marginRight: 7,
+                        marginLeft: 5
                     }}
                 >
                     <Input
@@ -47,7 +90,7 @@ const ApplyLeaves = () => {
                         width={wp(90)}
                         height={hp(6.5)}
                         padding={[0, 0, 0, 25]}
-                        margin={[0, 0, 0, 0]}
+                        margin={[0, 0, 0, 5]}
                     // onChnageText={(text) => setUserName(text)}
                     //   leftIcon={globalPath.Email}
                     // backgroundColor={colors.green}
@@ -64,12 +107,11 @@ const ApplyLeaves = () => {
                         shadowOpacity: 0.29,
                         shadowRadius: 4.65,
 
-                        elevation: 5,
+                        elevation: 3,
                         borderRadius: 20,
                         marginTop: 10,
-                        shadowOffset:0,
-                        backgroundColor:colors.white,
-                        marginHorizontal:5
+                        marginRight: 10,
+                        marginLeft: 5
                     }}
                 >
                     <Input
