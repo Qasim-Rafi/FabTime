@@ -53,7 +53,7 @@ const Home = ({ navigation }) => {
             marginTop: wp(10),
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity  onPress={()=>navigation.navigate(routeName.APPLY_LATE)}>
             <ImageBackground source={globalPath.latebutton} style={styles.btn}>
               <ResponsiveText>Late</ResponsiveText>
             </ImageBackground>
