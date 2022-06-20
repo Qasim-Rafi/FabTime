@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image,TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Fonts from "../helpers/Fonts";
 import { colors } from "../constants/colorsPallet";
@@ -7,11 +7,14 @@ import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 import { globalPath } from "../constants/globalPath";
 
+
 const Layout = (props) => {
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
         <View style={styles.screeninfo}>
+       
+          <View style={{flexDirection:'row',justifyContent: "space-between" }}>
           <ResponsiveText
             margin={[10, 0, 0, 20]}
             fontFamily={Fonts.Bold}
@@ -20,6 +23,19 @@ const Layout = (props) => {
           >
             {props.title}
           </ResponsiveText>
+          <TouchableOpacity disabled={!props.disabled?props.disabled:true} onPress={props.onPress}>
+          <Image
+          source={props.source}
+          style={{
+            // borderRadius: 20,
+            height: wp(7),
+            width: wp(13),
+            resizeMode: "contain", 
+          }}
+        />
+        </TouchableOpacity>
+          </View>
+         
           {props.address ? (
             <ResponsiveText
               margin={[0, 0, 0, 30]}
