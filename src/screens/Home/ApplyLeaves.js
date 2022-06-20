@@ -7,30 +7,91 @@ import RnButton from "../../components/RnButton";
 import { colors } from "../../constants/colorsPallet";
 import { CheckinBox } from "../../components/CheckinBox";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { _toast } from "../../constants/Index";
+import urls from "../../redux/lib/urls";
+import Api from "../../redux/lib/api";
 
-const ApplyLeaves = () => {
+const ApplyLeaves = (props) => {
     const [date, setDate] = useState(null);
-    const [show, setShow] = useState(false);
     const [date2, setDate2] = useState(null);
+    const [show, setShow] = useState(false);
+    const [show1, setShow1] = useState(false);
+    const [Title, setTitle] = useState(false);
+    const [Message, setMessage] = useState(false);
+    const [Loading, setLoading] = useState("");
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-         setShow(Platform.OS === 'ios');
+        setShow(Platform.OS === 'ios');
         setDate(currentDate);
-        setDate2(currentDate)
-    
+        // setDate2(currentDate)
+
+    };
+    const dateFormat = incomingdate => {
+        var date = new Date(incomingdate);
+        if (date != null) {
+          return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+        }
       };
+    const onChange1 = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow1(Platform.OS === 'ios');
+        // setDate(currentDate);
+        setDate2(currentDate)
+
+    };
     const showDAtepicker = () => {
         setShow(true);
         console.log('show', show)
+    };
+    const showDAtepicker1 = () => {
+        setShow1(true);
+        console.log('show', show1)
+    };
+    const Submit = async (id) => {
+        const obj ={
+            "id": 0,
+            // "userId": 0,
+            // "companyId": 0,
+            "reason": Title,
+            "startDate":dateFormat( date),
+            "endDate": dateFormat(date2),
+            // "approvalStatus": true,
+            // "createdDatetime": "string",
+            "description": Message,
+            "status": "Pending"
+        }
+        console.log("reason", obj);
+        if (Title == "") {
+            _toast("Type Leave Title");
+            return false;
+        } else if (Message == "") {
+            _toast("Type Message");
+            return false;
+        }
+        
+        setLoading(true);
+        const res = await Api.post(urls.ADD_APPLY_LEAVE, obj);
+        console.log("res", res);
+        if (res.json && res.json.success == true) {
+            // setText("");
+            _toast("submit successfully");
+            setLoading(false);
+            //   setTimeout(() => {
+            //     // navigation.goBack();
+            //   }, 1000);
+        } else {
+            setLoading(false);
+            _toast("something went wrong");
+        }
     };
     return (
         <Layout title={"Apply Leaves"}>
             <View style={{ flexDirection: 'row', margin: 10 }}>
 
                 <CheckinBox onPress={showDAtepicker}
-                
+
                     title='Start Date'
-                    subTitle='10:30 AM'
+                    subTitle={dateFormat( date)}
                     titleColor={colors.black}
                     subTitlecolor={colors.green}
                     disabled={false}
@@ -57,12 +118,36 @@ const ApplyLeaves = () => {
                         onChange={onChange}
                         format={'YYYY-MM-DD'}
                         displayFormat={'DD MMM YYYY'}
-                        maximumDate={new Date(2009, 1, 1)}
+                        // maximumDate={new Date(2009, 1, 1)}
                     />
                 )}
-                <CheckinBox onPress={showDAtepicker}
+                {show1 && (
+                    //         <DateTimePicker
+                    //           // testID="dateTimePicker"
+                    //           value={new Date()}
+                    //           mode={'date'}
+                    //           // is24Hour={true}
+                    //           display="default"
+                    //           // format="YYYY-MM-DD HH:mm"
+                    //           onChange={onChange}
+                    //           format={"YYYY-MM-DD"}
+                    // displayFormat={"DD MMM YYYY"}
+                    //         />
+                    <DateTimePicker
+                        timeZoneOffsetInMinutes={0}
+                        value={new Date()}
+                        mode="date"
+                        is24Hour
+                        display="default"
+                        onChange={onChange1}
+                        format={'YYYY-MM-DD'}
+                        displayFormat={'DD MMM YYYY'}
+                        // maximumDate={new Date(2009, 1, 1)}
+                    />
+                )}
+                <CheckinBox onPress={showDAtepicker1}
                     title='End Date'
-                    subTitle='06:30 PM'
+                    subTitle={dateFormat(date2)}
                     titleColor={colors.black}
                     subTitlecolor={colors.red}
                     disabled={false}
@@ -92,7 +177,8 @@ const ApplyLeaves = () => {
                         height={hp(6.5)}
                         padding={[0, 0, 0, 25]}
                         margin={[0, 0, 0, 5]}
-                    // onChnageText={(text) => setUserName(text)}
+                        onChnageText={(text) => setTitle(text)}
+                        value={Title}
                     //   leftIcon={globalPath.Email}
                     // backgroundColor={colors.green}
                     // shadowColor={colors.green}
@@ -124,14 +210,16 @@ const ApplyLeaves = () => {
                         margin={[0, 0, 0, 0]}
                         // backgroundColor={colors.red}
                         multiline={true}
-                    // secureTextEntry
-                    //   onChnageText={(text) => setPassword(text)}
+                        // secureTextEntry
+                        onChnageText={(text) => setMessage(text)}
+                        value={Message}
                     //   leftIcon={globalPath.Lock}
                     />
                 </View>
                 {/* <ResponsiveText color={colors.red} margin={[20, 0, 0, 10]}>{errorString}</ResponsiveText> */}
                 <View style={{ marginHorizontal: 20 }}>
                     <RnButton
+                        onPress={() => Submit()}
                         backgroundColor={colors.blue}
                         margin={[50, 0, 0, 0]}
                         title={"Submit"}
