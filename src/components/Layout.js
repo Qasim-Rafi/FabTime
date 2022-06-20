@@ -51,7 +51,7 @@ const Layout = (props) => {
             <View >
               <View style={{ alignItems: "flex-end", alignSelf: 'center',marginTop:10 }}>
                 <Image
-                  source={globalPath.background}
+                  source={props.userimg}
                   style={{
                     borderRadius: 60,
                     height: wp(30),

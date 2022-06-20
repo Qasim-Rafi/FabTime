@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Alert } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import ResponsiveText from "../../components/RnText";
@@ -12,14 +12,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserAttendanceRecord, getUserProfile } from "../../redux/actions/user.actions";
 import { _toast } from "../../constants/Index";
 import AsyncStorage from '@react-native-community/async-storage';
-import {StackActions} from '@react-navigation/native';
+import { StackActions } from '@react-navigation/native';
 
 const Profile = ({ navigation }) => {
   const dispatch = useDispatch();
   const ProfileData = useSelector((state) => state.userReducers.getProfileData.data);
   const AttendanceRecord = useSelector((state) => state.userReducers.getAttendanceRecord.data);
   console.log("profile", ProfileData)
-  console.log("profile", AttendanceRecord)
+  console.log("AttendanceRecord", AttendanceRecord)
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(getUserAttendanceRecord());
@@ -39,15 +39,14 @@ const Profile = ({ navigation }) => {
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
 
-           navigation.dispatch(StackActions.replace('Auth'));
+          navigation.dispatch(StackActions.replace('Auth'));
         },
       },
     ]);
   };
   return (
-    <Layout Field={"React native developer"} username={ProfileData.username}
-      title={"Profile"}
-      profile titleSize={5}
+
+    <Layout userimg={ProfileData.fullPath} Field={"React native developer"} username={ProfileData.username} title={"Profile"} profile titleSize={5}
       source={globalPath.checkin}
       disabled={false}
       onPress={logout}
@@ -103,7 +102,7 @@ const Profile = ({ navigation }) => {
         />
       </View>
       <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2, }}>
-        <AttendenceCard />
+        {AttendanceRecord.length > 0 ? AttendanceRecord.map((item, index) => <AttendenceCard userimg={item.fullPath} checkTime={item.createdDateTime} />) : null}
       </View>
     </Layout>
   );

@@ -5,6 +5,7 @@ import { globalPath } from "../constants/globalPath";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 import { routeName } from "../constants/routeName";
+import { formatAMPM } from "../redux/actions/user.actions";
 const CardView = (props) => {
   return (
     <TouchableOpacity 
@@ -83,7 +84,7 @@ const AttendenceCard = (props) => {
     <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
       <View style={{ alignItems: "flex-end" }}>
         <Image
-          source={globalPath.background}
+          source={props.userimg}
           style={{
             borderRadius: 20,
             height: wp(11),
@@ -111,7 +112,7 @@ const AttendenceCard = (props) => {
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            10:05 AM
+           {formatAMPM(props.checkTime) }
           </ResponsiveText>
         </View>
         <View style={{ flexDirection: "row" }}>
