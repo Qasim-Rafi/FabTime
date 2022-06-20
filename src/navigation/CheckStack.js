@@ -10,6 +10,8 @@ const Stack = createNativeStackNavigator();
 function CheckStack() {
   return (
     <Stack.Navigator
+    initialRouteName={routeName.LANDING_SCREEN}
+
       screenOptions={{
         headerShown: false,
       }}

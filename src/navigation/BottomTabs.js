@@ -11,14 +11,10 @@ import {
 } from "react-native";
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import { useRef } from "react";
 import { globalPath } from "../constants/globalPath";
 import { colors } from "../constants/colorsPallet";
-import Home from "../screens/Home/Home";
 import { wp } from "../helpers/Responsiveness";
-import Dashboard from "../screens/Home/Dashboard";
-import PresentTeam from "../screens/Home/PresentTeam";
 import HomeStack from "./HomeStack";
 import CheckStack from "./CheckStack";
 const Tab = createBottomTabNavigator();
@@ -89,7 +85,7 @@ export default function BottomTabs() {
         }}
       >
         <Tab.Screen
-          name={"Empty"}
+          name={"CheckStack"}
           component={CheckStack}
           options={{
             tabBarIcon: ({ focused }) => (

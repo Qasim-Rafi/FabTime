@@ -36,4 +36,6 @@ LogBox.ignoreLogs([
   "Warning: Each child",
   "Warning: Each child in a",
   "Warning: Failed prop type",
+  'Remote debugger',
+  'Require cycle:'
 ]);

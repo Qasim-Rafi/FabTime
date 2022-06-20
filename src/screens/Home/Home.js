@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -14,7 +14,7 @@ import { globalPath } from "../../constants/globalPath";
 import { wp } from "../../helpers/Responsiveness";
 import ResponsiveText from "../../components/RnText";
 import { routeName } from "../../constants/routeName";
-import { useState } from "react";
+import { _toast } from "../../constants/Index";
 import { formatAMPM } from "../../redux/actions/user.actions";
 const Home = ({ navigation }) => {
   const [CheckinTime, setCheckinTime] = useState("");
@@ -35,7 +35,9 @@ const Home = ({ navigation }) => {
     console.log("res", res);
     if (res && res.success == true) {
       // setData(res.data);
+      _toast('Checked In')
     } else {
+
     }
   };
 
