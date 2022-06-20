@@ -10,8 +10,14 @@ const LeavesCard = (props ) => {
 
         <View style={{ flexDirection: 'row',justifyContent:'space-between',marginHorizontal:10 }}>
           <ResponsiveText size={4} color={colors.blue2}>{props.reason}</ResponsiveText>
-          <View style={{backgroundColor:colors.green11,borderWidth:1.2,borderColor:colors.green2,borderRadius:3,width:wp(16),alignItems:"center",height:hp(2.5)}}>
-            <ResponsiveText size={3}>{props.status}</ResponsiveText>
+          <View  style={[styles.Boxstyle,{backgroundColor:props.status==false?colors.red4: props.status=true? colors.red:colors.green},{borderColor:props.status==false?colors.red4: props.status=true? colors.green10:colors.yellow1}]}>
+            <ResponsiveText size={3}>
+              {
+                  props.status==true?"Accept":props.status==false?"Reject":",pending"
+
+
+              }
+              </ResponsiveText>
           </View>
         </View>
         <View style={{marginHorizontal:10}}>
@@ -26,4 +32,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  Boxstyle:{
+    backgroundColor:colors.green11,
+    borderWidth:1.2,borderColor:colors.green2,borderRadius:3,width:wp(16),alignItems:"center",height:hp(2.5)
+  }
 });

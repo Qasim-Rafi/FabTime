@@ -11,11 +11,32 @@ import { globalPath } from "../constants/globalPath";
 import { wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 const Checkin = (props) => {
-  const [CheckedIn, setCheckedIn] = useState(false);
+  const [CheckedIn, setCheckedIn] = useState(true);
+  const [Late, setLate] = useState(false)
+ 
+  //day == 0 && hour == 9 && minutes < 30 && minutes > 10 || day == 0 && hour == 9
+
+  console.log('first', chexk())
+
+  function chexk(){
+    var now = new Date();
+    var hour = now.getHours();
+    var day = now.getDay();
+    var minutes = now.getMinutes();
+
+    if (CheckedIn){
+      return 'checkedin'
+    }
+    else if(hour == 10 && minutes < 15){
+      return 'ontime'
+    }else{
+      return 'late'
+    }
+  }
   return (
     <TouchableOpacity
-      // onPress={props.onPress}
-      onPress={() => setCheckedIn(!CheckedIn)}
+      onPress={props.onPress}
+      // onPress={() => setCheckedIn(!CheckedIn)}
       // style={{
       //   // padding: wp(25),
       //   // paddingVertical: wp(25),
@@ -38,7 +59,7 @@ const Checkin = (props) => {
       // }}
     >
       <ImageBackground
-        source={CheckedIn ? globalPath.defaultcheckin : globalPath.checkinbtn}
+        source={chexk()=='checkedin' ?globalPath.checkinbtn:chexk()=='ontime' ? globalPath.defaultcheckin : globalPath.checkoutbtn}
         style={{
           height: wp(55),
           width: wp(55),
@@ -47,7 +68,7 @@ const Checkin = (props) => {
           alignItems: "center",
         }}
       >
-        <ResponsiveText size={5}>10:30AM</ResponsiveText>
+        <ResponsiveText size={5}>{props.time}</ResponsiveText>
       </ImageBackground>
     </TouchableOpacity>
   );
