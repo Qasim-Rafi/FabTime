@@ -92,6 +92,22 @@ function* getRequestDataApi(data) {
     yield put({ type: types.GET_FAILURE, error: error });
   }
 }
+//get user profile
+export function* getUserProfile() {
+  yield takeLatest(types.GET_USER_PROFILE_REQUEST, getUserProfileApi);
+}
+function* getUserProfileApi(data) {
+  try {
+    const response = yield Api.get(urls.GET_USER_PROFILE);
+    if (response && response.data != null) {
+      yield put({ type: types.GET_USER_PROFILE_SUCCESS, payload: response.data });
+    } else {
+      yield put({ type: types.GET_USER_PROFILE_FAILURE, payload: response.data });
+    }
+  } catch (error) {
+    yield put({ type: types.GET_USER_PROFILE_FAILURE, error: error });
+  }
+}
 //GetAttendenceCountsAll
 export function* getAttendenceCount() {
   yield takeLatest(types.GET_ATDNCE_COUNTSALL_REQUEST, getAttendenceCountApi);

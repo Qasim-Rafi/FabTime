@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import ResponsiveText from "../../components/RnText";
 import { AttendenceCard } from "../../components/cardView";
@@ -7,20 +7,17 @@ import { CheckinBox } from "../../components/CheckinBox";
 import TabIcon from "../../components/TabIcon";
 import { globalPath } from "../../constants/globalPath";
 import { colors } from "../../constants/colorsPallet";
-import Fonts from "../../helpers/Fonts";
-import Icon from "../../components/Icon";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
-import { CheckOutBox } from "../../components/CheckOutBox";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile } from "../../redux/actions/user.actions";
 
 const Profile = ({ navigation }) => {
-  const Profile = async () => {
-    const res = await Api.post(urls.ADD_ATTENDENCE);
-    console.log("res", res);
-    if (res && res.success == true) {
-      // setData(res.data);
-    } else {
-    }
-  };
+  const dispatch = useDispatch();
+  const ProfileData = useSelector((state) => state.userReducers.getProfileData.data);
+console.log("profile",ProfileData)  
+  useEffect(() => {
+    dispatch(getUserProfile());
+  }, []);
 
   return (
     <Layout title={"Profile"} profile titleSize={5}>

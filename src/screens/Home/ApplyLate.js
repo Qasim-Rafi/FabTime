@@ -10,7 +10,7 @@ import {_toast} from '../../constants/Index';
 import ResponsiveText from "../../components/RnText";
 import urls from "../../redux/lib/urls";
 import Api from "../../redux/lib/api";
-const ApplyLate = () => {
+const ApplyLate = ({navigation}) => {
     const [text, setText] = useState('');
     const [Loading, setLoading] = useState('');
     const AddReason = async id => {
