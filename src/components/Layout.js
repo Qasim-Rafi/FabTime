@@ -53,7 +53,7 @@ const Layout = (props) => {
                 color={colors.white}
                 textAlign={'center'}
               >
-                Waqar Ahmad
+               {props.username}
               </ResponsiveText>
               <ResponsiveText
                 margin={[0, 0, 0, 0]}
@@ -62,7 +62,8 @@ const Layout = (props) => {
                 textAlign={'center'}
                 color={colors.white}
               >
-                React native developer
+               {props.Field}
+
               </ResponsiveText>
             </View>
 

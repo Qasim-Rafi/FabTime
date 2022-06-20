@@ -163,7 +163,6 @@ const ApplyLeaves = (props) => {
                         },
                         shadowOpacity: 0.29,
                         shadowRadius: 4.65,
-
                         elevation: 3,
                         borderRadius: 20,
                         marginTop: 10,

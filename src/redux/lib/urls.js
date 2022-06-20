@@ -18,4 +18,6 @@ export default urls = {
   ADD_REASON_OF_LATE: "/api/Attendence/LateAttendence",
   ADD_APPLY_LEAVE: "/api/Leave/AddLeave",
 
+  GET_USER_PROFILE:"/api/Users/GetUsersById/",
+GET_MONTHLY_ATTENDANCE_OF_USER:"/api/Attendence/GetMonthlyAttendenceById?Monthid=6"
 };
