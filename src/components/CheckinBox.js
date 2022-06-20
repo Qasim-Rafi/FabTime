@@ -6,7 +6,7 @@ import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 const CheckinBox = (props) => {
   return (
-    <TouchableOpacity disabled={!props.disabled?props.disabled:true} style={styles.container1}>
+    <TouchableOpacity disabled={!props.disabled?props.disabled:true} style={styles.container1} onPress={props.onPress}>
 
       <ResponsiveText
         color={props.titleColor}

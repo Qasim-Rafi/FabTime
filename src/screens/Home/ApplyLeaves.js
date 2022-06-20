@@ -14,13 +14,14 @@ const ApplyLeaves = () => {
     const [date2, setDate2] = useState(null);
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        setShow(Platform.OS === 'ios');
+         setShow(Platform.OS === 'ios');
         setDate(currentDate);
         setDate2(currentDate)
     
       };
     const showDAtepicker = () => {
         setShow(true);
+        console.log('show', show)
     };
     return (
         <Layout title={"Apply Leaves"}>
@@ -59,12 +60,12 @@ const ApplyLeaves = () => {
                         maximumDate={new Date(2009, 1, 1)}
                     />
                 )}
-                <CheckinBox
+                <CheckinBox onPress={showDAtepicker}
                     title='End Date'
                     subTitle='06:30 PM'
                     titleColor={colors.black}
                     subTitlecolor={colors.red}
-                    disabled={true}
+                    disabled={false}
                 />
             </View>
             <View style={{ marginTop: hp(0) }}>
