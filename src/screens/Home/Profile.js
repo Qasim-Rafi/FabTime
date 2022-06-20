@@ -16,14 +16,14 @@ const Profile = ({ navigation }) => {
   const ProfileData = useSelector((state) => state.userReducers.getProfileData.data);
   const AttendanceRecord = useSelector((state) => state.userReducers.getAttendanceRecord.data);
   console.log("profile", ProfileData)
-  console.log("profile", AttendanceRecord)
+  console.log("AttendanceRecord", AttendanceRecord)
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(getUserAttendanceRecord());
   }, []);
 
   return (
-    <Layout Field={"React native developer"} username={ProfileData.username} title={"Profile"} profile titleSize={5}>
+    <Layout userimg={ProfileData.fullPath} Field={"React native developer"} username={ProfileData.username} title={"Profile"} profile titleSize={5}>
       <View style={{ flexDirection: 'row', margin: 10, }}>
         <CheckinBox
           title={ProfileData.createdDateTime}
@@ -75,7 +75,7 @@ const Profile = ({ navigation }) => {
         />
       </View>
       <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2, }}>
-        <AttendenceCard />
+      {AttendanceRecord.length > 0 ? AttendanceRecord.map((item,index) => <AttendenceCard userimg={item.fullPath} checkTime={item.createdDateTime}/>) : null}
       </View>
     </Layout>
   );
