@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import ResponsiveText from "../../components/RnText";
 import { AttendenceCard } from "../../components/cardView";
@@ -7,78 +7,77 @@ import { CheckinBox } from "../../components/CheckinBox";
 import TabIcon from "../../components/TabIcon";
 import { globalPath } from "../../constants/globalPath";
 import { colors } from "../../constants/colorsPallet";
-import Fonts from "../../helpers/Fonts";
-import Icon from "../../components/Icon";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
-import { CheckOutBox } from "../../components/CheckOutBox";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserAttendanceRecord, getUserProfile } from "../../redux/actions/user.actions";
 
 const Profile = ({ navigation }) => {
-  const Profile = async () => {
-    const res = await Api.post(urls.ADD_ATTENDENCE);
-    console.log("res", res);
-    if (res && res.success == true) {
-      // setData(res.data);
-    } else {
-    }
-  };
+  const dispatch = useDispatch();
+  const ProfileData = useSelector((state) => state.userReducers.getProfileData.data);
+  const AttendanceRecord = useSelector((state) => state.userReducers.getAttendanceRecord.data);
+  console.log("profile", ProfileData)
+  console.log("profile", AttendanceRecord)
+  useEffect(() => {
+    dispatch(getUserProfile());
+    dispatch(getUserAttendanceRecord());
+  }, []);
 
   return (
-    <Layout title={"Profile"} profile titleSize={5}>
-    <View style={{ flexDirection: 'row', margin: 10, }}>
+    <Layout Field={"React native developer"} username={ProfileData.username} title={"Profile"} profile titleSize={5}>
+      <View style={{ flexDirection: 'row', margin: 10, }}>
         <CheckinBox
-        title='10 Mar,2022'
-        subTitle='Join Date'
-        titleColor={colors.blue}
+          title={ProfileData.createdDateTime}
+          subTitle='Join Date'
+          titleColor={colors.blue}
         />
-        
-       <CheckinBox
-        title='$1000.00'
-        subTitle='Net Salary'
-        titleColor={colors.blue}
+
+        <CheckinBox
+          title={ProfileData.createdDateTime}
+          subTitle='Net Salary'
+          titleColor={colors.blue}
         />
-     
-    </View>
-    <View>
+      </View>
+      <View>
         <ResponsiveText
-            margin={[0, 0, 0, 8]}
-            // fontFamily={Fonts.LightItalic}
-            size={5}
-            color={colors.blue1}>May Attendence</ResponsiveText>
-    </View>
+          margin={[0, 0, 0, 8]}
+          // fontFamily={Fonts.LightItalic}
+          size={5}
+          color={colors.blue1}>May Attendence</ResponsiveText>
+      </View>
 
-    <View style={styles.tabContainer}>
+      <View style={styles.tabContainer}>
 
         <TabIcon
-            title="Present"
-            CircleText={'10'}
-            CircleColor={colors.green}
-            titleSize={3.4}
+          title="Present"
+          CircleText={'10'}
+          CircleColor={colors.green}
+          titleSize={3.4}
         />
         <TabIcon
-            title="Absent"
-            titleSize={3.4}
-            CircleText={'30'}
-            CircleColor={colors.red}
-
-        />
-        <TabIcon
-            title="Late"
-            titleSize={3.4}
-            CircleText={'27'}
-            CircleColor={colors.blue1}
+          title="Absent"
+          titleSize={3.4}
+          CircleText={'30'}
+          CircleColor={colors.red}
 
         />
         <TabIcon
-            title="Leave"
-            titleSize={3.4}
-            CircleText={'9'}
-            CircleColor={colors.yellow3}
+          title="Late"
+          titleSize={3.4}
+          CircleText={'27'}
+          CircleColor={colors.blue1}
+
         />
-    </View>
-    <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2, }}>
+        <TabIcon
+          title="Leave"
+          titleSize={3.4}
+          CircleText={'9'}
+          CircleColor={colors.yellow3}
+        />
+      </View>
+      <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2, }}>
         <AttendenceCard />
-    </View>
-</Layout>
+      </View>
+    </Layout>
   );
 };
 export default Profile;
@@ -93,9 +92,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     borderRadius: 10,
     shadowOffset: {
-        width: 0,
-        height: 0.1,
+      width: 0,
+      height: 0.1,
     },
 
-},
+  },
 });

@@ -9,7 +9,7 @@ import { _toast } from "../../constants/Index";
 import ResponsiveText from "../../components/RnText";
 import urls from "../../redux/lib/urls";
 import Api from "../../redux/lib/api";
-const ApplyLate = () => {
+const ApplyLate = ({navigation}) => {
   const [text, setText] = useState("");
   const [Loading, setLoading] = useState("");
   const AddReason = async (id) => {
@@ -28,9 +28,9 @@ const ApplyLate = () => {
       setText("");
       _toast("submit successfully");
       setLoading(false);
-    //   setTimeout(() => {
-    //     // navigation.goBack();
-    //   }, 1000);
+      setTimeout(() => {
+        navigation.goBack();
+      }, 1000);
     } else {
       setLoading(false);
       _toast("something went wrong");

@@ -30,6 +30,14 @@ const initialState = {
     refreshing: false,
     data: [],
   },
+  getProfileData:{
+    refreshing: false,
+    data: [],
+  },
+  getAttendanceRecord:{
+    refreshing: false,
+    data: [],
+  },
 };
 
 export const userReducers = (state = initialState, action) => {
@@ -65,7 +73,34 @@ export const userReducers = (state = initialState, action) => {
           errorMsg: action.error,
         },
       };
-//get present team
+//get profile data
+case types.GET_USER_PROFILE_REQUEST:
+  return {
+    ...state,
+    getProfileData: {
+      ...state.getProfileData,
+      refreshing: true,
+    },
+  };
+
+case types.GET_USER_PROFILE_SUCCESS:
+  return {
+    ...state,
+    getProfileData: {
+      ...state.getProfileData,
+      data: action.payload,
+      refreshing: false,
+    },
+  };
+case types.GET_USER_PROFILE_FAILURE:
+  return {
+    ...state,
+    getProfileData: {
+      ...state.getProfileData,
+      refreshing: false,
+    },
+  };
+
 //presentTeam
     case types.PRESENT_TEAM_REQUEST:
       return {
@@ -91,10 +126,37 @@ export const userReducers = (state = initialState, action) => {
         presentTeam: {
           ...state.presentTeam,
           refreshing: false,
-          // data: action.payload,
           errorMsg: action.error,
         },
       };
+      //Get attendance record
+      case types.GET_MOTHLY_ATTENDANCE_OF_USER_REQUEST:
+        return {
+          ...state,
+          getAttendanceRecord: {
+            ...state.getAttendanceRecord,
+            refreshing: true,
+          },
+        };
+  
+      case types.GET_MOTHLY_ATTENDANCE_OF_USER_SUCCESS:
+        return {
+          ...state,
+          getAttendanceRecord: {
+            ...state.getAttendanceRecord,
+            data: action.payload,
+            refreshing: false,
+          },
+        };
+      case types.GET_MOTHLY_ATTENDANCE_OF_USER_FAILURE:
+        return {
+          ...state,
+          getAttendanceRecord: {
+            ...state.getAttendanceRecord,
+            refreshing: false,
+            errorMsg: action.error,
+          },
+        };
 //get Leaves Data
 case types.GET_LEAVES_REQUEST:
       return {

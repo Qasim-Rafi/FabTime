@@ -20,6 +20,20 @@ export const getpresentTeam = (data) => {
       data: data,
     };
 };
+//GET USER PROFILE
+export const getUserProfile = (data) => {
+  return {
+    type: types.GET_USER_PROFILE_REQUEST,
+    data: data,
+  };
+};
+//get user attendance record
+export const getUserAttendanceRecord = (data) => {
+  return {
+    type: types.GET_MOTHLY_ATTENDANCE_OF_USER_REQUEST,
+    data: data,
+  };
+};
 //get request data
 export const getRequestList = (data) => {
   return {
