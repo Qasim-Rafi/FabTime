@@ -97,8 +97,10 @@ export function* getUserProfile() {
   yield takeLatest(types.GET_USER_PROFILE_REQUEST, getUserProfileApi);
 }
 function* getUserProfileApi(data) {
+ const profileId= yield AsyncStorage.getItem("@userId");
+
   try {
-    const response = yield Api.get(urls.GET_USER_PROFILE);
+    const response = yield Api.get(urls.GET_USER_PROFILE+profileId);
     if (response && response.data != null) {
       yield put({ type: types.GET_USER_PROFILE_SUCCESS, payload: response.data });
     } else {
@@ -106,6 +108,23 @@ function* getUserProfileApi(data) {
     }
   } catch (error) {
     yield put({ type: types.GET_USER_PROFILE_FAILURE, error: error });
+  }
+}
+//get user attendance record
+export function* getUserAttendanceRecord() {
+  yield takeLatest(types.GET_MOTHLY_ATTENDANCE_OF_USER_REQUEST, getUserAttendanceRecordApi);
+}
+function* getUserAttendanceRecordApi(data) {
+
+  try {
+    const response = yield Api.get(urls.GET_MONTHLY_ATTENDANCE_OF_USER);
+    if (response && response.data != null) {
+      yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_SUCCESS, payload: response.data });
+    } else {
+      yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_FAILURE, payload: response.data });
+    }
+  } catch (error) {
+    yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_FAILURE, error: error });
   }
 }
 //GetAttendenceCountsAll

@@ -27,6 +27,13 @@ export const getUserProfile = (data) => {
     data: data,
   };
 };
+//get user attendance record
+export const getUserAttendanceRecord = (data) => {
+  return {
+    type: types.GET_MOTHLY_ATTENDANCE_OF_USER_REQUEST,
+    data: data,
+  };
+};
 //get request data
 export const getRequestList = (data) => {
   return {

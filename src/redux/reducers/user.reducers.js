@@ -34,6 +34,10 @@ const initialState = {
     refreshing: false,
     data: [],
   },
+  getAttendanceRecord:{
+    refreshing: false,
+    data: [],
+  },
 };
 
 export const userReducers = (state = initialState, action) => {
@@ -122,10 +126,37 @@ case types.GET_USER_PROFILE_FAILURE:
         presentTeam: {
           ...state.presentTeam,
           refreshing: false,
-          // data: action.payload,
           errorMsg: action.error,
         },
       };
+      //Get attendance record
+      case types.GET_MOTHLY_ATTENDANCE_OF_USER_REQUEST:
+        return {
+          ...state,
+          getAttendanceRecord: {
+            ...state.getAttendanceRecord,
+            refreshing: true,
+          },
+        };
+  
+      case types.GET_MOTHLY_ATTENDANCE_OF_USER_SUCCESS:
+        return {
+          ...state,
+          getAttendanceRecord: {
+            ...state.getAttendanceRecord,
+            data: action.payload,
+            refreshing: false,
+          },
+        };
+      case types.GET_MOTHLY_ATTENDANCE_OF_USER_FAILURE:
+        return {
+          ...state,
+          getAttendanceRecord: {
+            ...state.getAttendanceRecord,
+            refreshing: false,
+            errorMsg: action.error,
+          },
+        };
 //get Leaves Data
 case types.GET_LEAVES_REQUEST:
       return {

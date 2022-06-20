@@ -16,6 +16,6 @@ export default urls = {
   GET_LEAVES: '/api/Leave/GetUserLeavesAll',
   GET_ATDNCE_COUNTSALL: '/api/Attendence/GetAttendenceCountsAll',
   ADD_REASON_OF_LATE: "/api/Attendence/LateAttendence",
-  GET_USER_PROFILE:" /api/Users/GetUsersById/23",
-
+  GET_USER_PROFILE:"/api/Users/GetUsersById/",
+GET_MONTHLY_ATTENDANCE_OF_USER:"/api/Attendence/GetMonthlyAttendenceById?Monthid=6"
 };

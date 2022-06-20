@@ -34,7 +34,6 @@ const ApplyLeaves = () => {
                         },
                         shadowOpacity: 0.29,
                         shadowRadius: 4.65,
-
                         elevation: 3,
                         borderRadius: 30,
                         marginTop: 5,
@@ -67,7 +66,6 @@ const ApplyLeaves = () => {
                         elevation: 5,
                         borderRadius: 20,
                         marginTop: 10,
-                        shadowOffset:0,
                         backgroundColor:colors.white,
                         marginHorizontal:5
                     }}
