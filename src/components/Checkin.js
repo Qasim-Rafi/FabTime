@@ -9,30 +9,39 @@ import {
 import { colors } from "../constants/colorsPallet";
 import { globalPath } from "../constants/globalPath";
 import { wp } from "../helpers/Responsiveness";
+import { formatAMPM } from "../redux/actions/user.actions";
 import ResponsiveText from "./RnText";
 const Checkin = (props) => {
-  const [CheckedIn, setCheckedIn] = useState(true);
-  const [Late, setLate] = useState(false)
- 
+  const [CheckedIn, setCheckedIn] = useState(false);
+  const [Late, setLate] = useState(false);
+  const [data, setData] = useState(props.data);
+
   //day == 0 && hour == 9 && minutes < 30 && minutes > 10 || day == 0 && hour == 9
 
-  console.log('first', chexk())
+  console.log("first", props.userid);
 
-  function chexk(){
+  function chexk() {
     var now = new Date();
     var hour = now.getHours();
     var day = now.getDay();
     var minutes = now.getMinutes();
 
-    if (CheckedIn){
-      return 'checkedin'
-    }
-    else if(hour == 10 && minutes < 15){
-      return 'ontime'
-    }else{
-      return 'late'
+    if (props.data.some((v) => v.id == props.userid)) {
+      return "checkedin";
+    } else if (hour == 10 && minutes < 15) {
+      return "ontime";
+    } else {
+      return "late";
     }
   }
+  function checkinTime() {
+    if (props.data) {
+      return formatAMPM(props.data.find((v) => v.id == props.userid)?.createdDateTime);
+    } else {
+      return props.time;
+    }
+  }
+
   return (
     <TouchableOpacity
       onPress={props.onPress}
@@ -59,7 +68,13 @@ const Checkin = (props) => {
       // }}
     >
       <ImageBackground
-        source={chexk()=='checkedin' ?globalPath.checkinbtn:chexk()=='ontime' ? globalPath.defaultcheckin : globalPath.checkoutbtn}
+        source={
+          chexk() == "checkedin"
+            ? globalPath.checkinbtn
+            : chexk() == "ontime"
+            ? globalPath.defaultcheckin
+            : globalPath.checkoutbtn
+        }
         style={{
           height: wp(55),
           width: wp(55),
@@ -68,7 +83,7 @@ const Checkin = (props) => {
           alignItems: "center",
         }}
       >
-        <ResponsiveText size={5}>{props.time}</ResponsiveText>
+        <ResponsiveText size={5}>{checkinTime()}</ResponsiveText>
       </ImageBackground>
     </TouchableOpacity>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -15,15 +15,28 @@ import { wp } from "../../helpers/Responsiveness";
 import ResponsiveText from "../../components/RnText";
 import { routeName } from "../../constants/routeName";
 import { _toast } from "../../constants/Index";
-import { formatAMPM } from "../../redux/actions/user.actions";
+import { formatAMPM, getpresentTeam } from "../../redux/actions/user.actions";
+import { useDispatch, useSelector } from "react-redux";
+import AsyncStorage from "@react-native-community/async-storage";
 const Home = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.userReducers.presentTeam.data);
   const [CheckinTime, setCheckinTime] = useState("");
+  const [userid, setUserid] = useState("");
 
   useEffect(() => {
+    (async () => {
+      var id = await AsyncStorage.getItem("@userId");
+      console.log("id", id);
+      setUserid(74);
+    })();
     setCheckinTime(formatAMPM(new Date()));
+    dispatch(getpresentTeam());
+  }, []);
 
+  useEffect(() => {
     const interval = setInterval(() => {
-      console.log("Logs every minute");
+      // console.log("Logs every minute");
       setCheckinTime(formatAMPM(new Date()));
     }, 60000);
 
@@ -35,16 +48,20 @@ const Home = ({ navigation }) => {
     console.log("res", res);
     if (res && res.success == true) {
       // setData(res.data);
-      _toast('Checked In')
+      _toast("Checked In");
     } else {
-
     }
   };
 
   return (
     <Layout title={"Fabintel Team"} address>
       <View style={{ marginTop: "20%" }}>
-        <Checkin time={CheckinTime} onPress={() => CheckedIn()} />
+        <Checkin
+          time={CheckinTime}
+          onPress={() => CheckedIn()}
+          data={data}
+          userid={userid}
+        />
 
         <View
           style={{
@@ -53,7 +70,9 @@ const Home = ({ navigation }) => {
             marginTop: wp(10),
           }}
         >
-          <TouchableOpacity  onPress={()=>navigation.navigate(routeName.APPLY_LATE)}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(routeName.APPLY_LATE)}
+          >
             <ImageBackground source={globalPath.latebutton} style={styles.btn}>
               <ResponsiveText>Late</ResponsiveText>
             </ImageBackground>
