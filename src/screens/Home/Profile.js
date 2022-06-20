@@ -56,12 +56,14 @@ const Profile = ({ navigation }) => {
           title={ProfileData.createdDateTime}
           subTitle='Join Date'
           titleColor={colors.blue}
+          disabled={true}
         />
 
         <CheckinBox
           title={ProfileData.createdDateTime}
           subTitle='Net Salary'
           titleColor={colors.blue}
+          disabled={true}
         />
       </View>
       <View>

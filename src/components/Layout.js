@@ -14,7 +14,7 @@ const Layout = (props) => {
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
         <View style={styles.screeninfo}>
        
-          <View style={{flexDirection:'row',justifyContent: "space-between" }}>
+          <View style={{flexDirection:'row',justifyContent: "space-between",marginTop:10,marginLeft:20 }}>
           <ResponsiveText
             // margin={[10, 0, 0, 20]}
             fontFamily={Fonts.Bold}
@@ -29,7 +29,7 @@ const Layout = (props) => {
           style={{
             // borderRadius: 20,
             height: wp(7),
-            width: wp(16),
+             width: wp(18),
             resizeMode: "contain", 
           }}
         />
