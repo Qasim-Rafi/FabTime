@@ -15,7 +15,7 @@ const PresentTeam = ({ navigation, route }) => {
 
   return (
     <Layout title={"Fabintel Team"}>
-      <View style={styles.tabContainer}>
+      {/* <View style={styles.tabContainer}>
         <TabIcon
           title="Present"
           CircleText={"10"}
@@ -40,7 +40,7 @@ const PresentTeam = ({ navigation, route }) => {
           CircleText={"9"}
           CircleColor={colors.yellow3}
         />
-      </View>
+      </View> */}
       <ScrollView>
         {data?.length > 0
           ? data.map((item, index) => (
