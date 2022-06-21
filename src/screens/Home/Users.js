@@ -25,14 +25,12 @@ const Users = ({ navigation }) => {
   return (
     <Layout title={"Users"}>
       <Card>
-        <CardView></CardView>
         {user.length > 0
           ? user.map((item, index) =>
               item.userTypeId == 2 ? (
                 <CardView
                   title={item.fullName}
                   userDesignation={item.userDesignation}
-                  checkInTime={item.createdDateTime}
                   source={item.fullPath}
                   navigation={navigation}
                 />

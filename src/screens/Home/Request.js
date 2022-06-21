@@ -8,14 +8,15 @@ import Api from "../../redux/lib/api";
 import urls from "../../redux/lib/urls";
 import RoundButton from "../../components/RoundButton";
 import { routeName } from "../../constants/routeName";
-const Leaves = ({navigation}) => {
+import { ScrollView } from "react-native-gesture-handler";
+const Leaves = ({ navigation ,route}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     getRequests();
   }, []);
   const getRequests = async () => {
     const res = await Api.get(urls.GET_REQUESTS);
-    console.log('res', res)
+    console.log("res", res);
     if (res && res.success == true) {
       setData(res.data);
     } else {
@@ -24,15 +25,20 @@ const Leaves = ({navigation}) => {
   };
   return (
     <Layout title={"Request"}>
-      <LeavesCard
-        username={"saniya Tariq"}
-        status={"Pending"}
-        date={"20-04-2022"}
-        description={
-          "Dear sir, I am writing this application to inform you that I am suffering from severe viral disease and therefore, I want sick leave from work. I got this infection last night and I will not be capable to come to the office for at least 1 day."
-        }
-      />
-      <RoundButton onPress={()=>navigation.navigate(routeName.ADDREQUEST)}/>
+      <ScrollView>
+        {data.length > 0
+          ? data.map((item, index) => (
+              <LeavesCard
+                title={item.title}
+                status={item.approvalStatus}
+                date={item.createdDatetime}
+                description={item.description}
+              />
+            ))
+          : null}
+      </ScrollView>
+
+      <RoundButton onPress={() => navigation.navigate(routeName.ADDREQUEST,getRequests)} />
     </Layout>
   );
 };
