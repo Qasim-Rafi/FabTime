@@ -13,7 +13,7 @@ const LeavesCard = (props ) => {
           <View  style={[styles.Boxstyle,{backgroundColor:props.status==false?colors.red4: props.status=true? colors.red:colors.green},{borderColor:props.status==false?colors.red4: props.status=true? colors.green10:colors.yellow1}]}>
             <ResponsiveText size={3}>
               {
-                  props.status==true?"Accept":props.status==false?"Reject":",pending"
+                  props.status==true?"Accept":props.status==false?"Reject":"pending"
 
 
               }

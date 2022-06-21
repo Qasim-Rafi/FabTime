@@ -12,4 +12,5 @@ export const routeName = {
   REQUEST:"REQUEST",
   PROFILE:"PROFILE",
   APPLYLEAVES:"APPLYLEAVES",
+  USERS:'USERS',
 };

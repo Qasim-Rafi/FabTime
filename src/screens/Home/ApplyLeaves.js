@@ -50,13 +50,9 @@ const ApplyLeaves = (props) => {
     const Submit = async (id) => {
         const obj ={
             "id": 0,
-            // "userId": 0,
-            // "companyId": 0,
             "reason": Title,
-            "startDate":dateFormat( date),
+            "startDate":dateFormat(date),
             "endDate": dateFormat(date2),
-            // "approvalStatus": true,
-            // "createdDatetime": "string",
             "description": Message,
             "status": "Pending"
         }
@@ -92,7 +88,7 @@ const ApplyLeaves = (props) => {
                 <CheckinBox onPress={showDAtepicker}
 
                     title='Start Date'
-                    subTitle={dateFormat( date)}
+                    subTitle={dateFormat(date)}
                     titleColor={colors.black}
                     subTitlecolor={colors.green}
                     disabled={false}

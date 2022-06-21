@@ -17,6 +17,7 @@ import { colors } from "../constants/colorsPallet";
 import { wp } from "../helpers/Responsiveness";
 import HomeStack from "./HomeStack";
 import CheckStack from "./CheckStack";
+import ReportStack from "./ReportStack";
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -128,7 +129,7 @@ export default function BottomTabs() {
         ></Tab.Screen>
         <Tab.Screen
           name={"REPORT"}
-          component={Report}
+          component={ReportStack}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
