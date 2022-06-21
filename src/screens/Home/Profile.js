@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import ResponsiveText from "../../components/RnText";
@@ -10,31 +10,60 @@ import { colors } from "../../constants/colorsPallet";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserAttendanceRecord, getUserProfile } from "../../redux/actions/user.actions";
+import { _toast } from "../../constants/Index";
+import AsyncStorage from '@react-native-community/async-storage';
+import { StackActions } from '@react-navigation/native';
 
 const Profile = ({ navigation }) => {
   const dispatch = useDispatch();
   const ProfileData = useSelector((state) => state.userReducers.getProfileData.data);
   const AttendanceRecord = useSelector((state) => state.userReducers.getAttendanceRecord.data);
   console.log("profile", ProfileData)
-  console.log("profile", AttendanceRecord)
+  console.log("AttendanceRecord", AttendanceRecord)
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(getUserAttendanceRecord());
   }, []);
+  const logout = () => {
+    Alert.alert('Logout', 'Confirm Logout', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        onPress: async () => {
+          // await AsyncStorage.removeItem('@token');
+          // await AsyncStorage.removeItem('cartData');
+          // await AsyncStorage.removeItem('@userId');
+          await AsyncStorage.clear();
 
+          navigation.dispatch(StackActions.replace('Auth'));
+        },
+      },
+    ]);
+  };
   return (
-    <Layout Field={"React native developer"} username={ProfileData.username} title={"Profile"} profile titleSize={5}>
+
+    <Layout userimg={ProfileData.fullPath} Field={"React native developer"} username={ProfileData.username} title={"Profile"} profile titleSize={5}
+      source={globalPath.checkin}
+      disabled={false}
+      onPress={logout}
+    >
       <View style={{ flexDirection: 'row', margin: 10, }}>
         <CheckinBox
           title={ProfileData.createdDateTime}
           subTitle='Join Date'
           titleColor={colors.blue}
+          disabled={true}
         />
 
         <CheckinBox
           title={ProfileData.createdDateTime}
           subTitle='Net Salary'
           titleColor={colors.blue}
+          disabled={true}
         />
       </View>
       <View>
@@ -75,7 +104,7 @@ const Profile = ({ navigation }) => {
         />
       </View>
       <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2, }}>
-        <AttendenceCard />
+        {AttendanceRecord.length > 0 ? AttendanceRecord.map((item, index) => <AttendenceCard userimg={item.fullPath} checkTime={item.createdDateTime} />) : null}
       </View>
     </Layout>
   );

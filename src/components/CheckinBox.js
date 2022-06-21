@@ -4,6 +4,7 @@ import { colors } from "../constants/colorsPallet";
 import { globalPath } from "../constants/globalPath";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
+import moment from 'moment'
 const CheckinBox = (props) => {
   return (
     <TouchableOpacity disabled={!props.disabled?props.disabled:true} style={styles.container1} onPress={props.onPress}>
@@ -14,7 +15,8 @@ const CheckinBox = (props) => {
         size={3.8}
       
       > 
-        {props.title}
+       {moment(new Date(props.title)).format(" MMMM Do YYYY") }
+        
       </ResponsiveText>
 
       <ResponsiveText
