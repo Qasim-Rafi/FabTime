@@ -4,6 +4,7 @@ import { colors } from "../constants/colorsPallet";
 import ResponsiveText from "../components/RnText";
 import { hp, wp } from "../helpers/Responsiveness";
 import Card from "./Card";
+import moment from "moment";
 const LeavesCard = (props) => {
   return (
     <Card>
@@ -14,8 +15,8 @@ const LeavesCard = (props) => {
           marginHorizontal: 10,
         }}
       >
-        <ResponsiveText size={4} color={colors.blue2}>
-          {props.reason}
+        <ResponsiveText size={4} color={colors.blue1}>
+          {props.title}
         </ResponsiveText>
         <View
           style={[
@@ -47,13 +48,22 @@ const LeavesCard = (props) => {
           </ResponsiveText>
         </View>
       </View>
-      <View style={{ marginHorizontal: 10 }}>
-        <ResponsiveText size={3} color={colors.black}>
-          {props.date}
-        </ResponsiveText>
-        <ResponsiveText size={2.5} color={colors.grey1}>
+      <View style={{ marginHorizontal: 5 }}>
+        {props.startDate ? (
+          <ResponsiveText size={2.9} color={colors.grey1}>
+            {moment(new Date(props.startDate)).format(" MMMM Do YYYY")} to{" "}
+            {moment(new Date(props.endDate)).format(" MMMM Do YYYY")}
+          </ResponsiveText>
+        ) : null}
+
+        <ResponsiveText margin={[5, 5, 5, 5]} size={2.5} color={colors.black}>
           {props.description}
         </ResponsiveText>
+        <View style={{ alignItems: "flex-end" }}>
+          <ResponsiveText size={2.5} color={colors.grey1}>
+            {moment(new Date(props.date)).format(" MMMM Do YYYY")}
+          </ResponsiveText>
+        </View>
       </View>
     </Card>
   );
@@ -70,7 +80,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     width: wp(16),
     alignItems: "center",
-    justifyContent:'center',
+    justifyContent: "center",
     height: hp(2.5),
   },
 });

@@ -16,7 +16,7 @@ const ApplyLeaves = (props) => {
     const [date2, setDate2] = useState(null);
     const [show, setShow] = useState(false);
     const [show1, setShow1] = useState(false);
-    const [Title, setTitle] = useState(false);
+    const [Title, setTitle] = useState('');
     const [Message, setMessage] = useState(false);
     const [Loading, setLoading] = useState("");
     const onChange = (event, selectedDate) => {

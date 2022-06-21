@@ -6,31 +6,34 @@ import { hp, wp } from "../../helpers/Responsiveness";
 import RnButton from "../../components/RnButton";
 import { colors } from "../../constants/colorsPallet";
 import { _toast } from "../../constants/Index";
-import ResponsiveText from "../../components/RnText";
 import urls from "../../redux/lib/urls";
 import Api from "../../redux/lib/api";
-const AddRequests = ({navigation}) => {
+const AddRequests = ({ navigation ,route}) => {
   const [text, setText] = useState("");
   const [Loading, setLoading] = useState("");
-  const AddReason = async (id) => {
+  const [Title, setTitle] = useState("");
+
+  const submit = async (id) => {
+
     const obj = {
-      LateReason: text,
+      title: Title,
+      description: text,
     };
     console.log("reason", obj);
-    if (text == "") {
-      _toast("Enter reason");
+    if (text == "" || Title=="") {
+      _toast("All fields are required");
       return false;
     }
     setLoading(true);
-    const res = await Api.post(urls.ADD_REASON_OF_LATE, obj);
+    const res = await Api.post(urls.ADD_REQUEST, obj);
     console.log("res", res);
     if (res && res.success == true) {
+      
       setText("");
       _toast("submit successfully");
       setLoading(false);
-      setTimeout(() => {
-        navigation.goBack();
-      }, 1000);
+      route.params()
+      navigation.goBack();
     } else {
       setLoading(false);
       _toast("something went wrong");
@@ -38,10 +41,36 @@ const AddRequests = ({navigation}) => {
   };
   return (
     <Layout title={"Add Request"}>
-      <View style={{ marginTop: wp(10), marginHorizontal: wp(4) }}>
-        <ResponsiveText size={3}>
-          write the reason why are you late today?
-        </ResponsiveText>
+      <View style={{ marginTop: hp(0) }}>
+        <View
+          style={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            shadowOpacity: 0.29,
+            shadowRadius: 4.65,
+            elevation: 3,
+            borderRadius: 20,
+            marginTop: 10,
+            marginRight: 7,
+            marginLeft: 5,
+          }}
+        >
+          <Input
+            placeholder={"Request title"}
+            width={wp(90)}
+            height={hp(6.5)}
+            padding={[0, 0, 0, 25]}
+            margin={[0, 0, 0, 5]}
+            onChnageText={(text) => setTitle(text)}
+            value={Title}
+            //   leftIcon={globalPath.Email}
+            // backgroundColor={colors.green}
+            // shadowColor={colors.green}
+          />
+        </View>
       </View>
       <View>
         <View
@@ -77,7 +106,7 @@ const AddRequests = ({navigation}) => {
 
         <View style={{ marginHorizontal: 20 }}>
           <RnButton
-            onPress={() => AddReason()}
+            onPress={() => submit()}
             backgroundColor={colors.blue}
             margin={[50, 0, 0, 0]}
             title={"Submit"}

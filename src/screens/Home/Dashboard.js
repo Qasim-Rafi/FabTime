@@ -154,7 +154,7 @@ const Dashboard = ({ navigation }) => {
                         userDesignation={item.userDesignation}
                         checkInTime={item.createdDateTime}
                         navigation={navigation}
-                        source={item.fullPath}
+                        source={item.fullPath }
                       />
                     ) : null
                   )
