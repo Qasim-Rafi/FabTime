@@ -23,10 +23,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.DASHBOARD} component={Dashboard} />
       <Stack.Screen name={routeName.PRESENT_TEAM} component={PresentTeam} />
       <Stack.Screen name={routeName.NOTIFICATION} component={Notification} />
-      <Stack.Screen
-        name={routeName.ATTENDENCE_DETAIL}
-        component={AttendenceDetails}
-      />
+      <Stack.Screen name={routeName.ATTENDENCE_DETAIL}component={AttendenceDetails}/>
       <Stack.Screen name={routeName.LEAVES} component={Leaves} />
       <Stack.Screen name={routeName.REQUEST} component={Request} />
       <Stack.Screen name={routeName.ADDREQUEST} component={AddRequests} />
