@@ -1,41 +1,48 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Image,TouchableOpacity } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Fonts from "../helpers/Fonts";
 import { colors } from "../constants/colorsPallet";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 import { globalPath } from "../constants/globalPath";
-
+import { isImage } from "../constants/Index";
 
 const Layout = (props) => {
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
         <View style={styles.screeninfo}>
-       
-          <View style={{flexDirection:'row',justifyContent: "space-between",marginTop:10,marginLeft:20 }}>
-          <ResponsiveText
-            // margin={[10, 0, 0, 20]}
-            fontFamily={Fonts.Bold}
-            size={props.titleSize?props.titleSize:6}
-            color={colors.white}
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: 10,
+              marginLeft: 20,
+            }}
           >
-            {props.title}
-          </ResponsiveText>
-          <TouchableOpacity disabled={!props.disabled?props.disabled:true} onPress={props.onPress}>
-          <Image
-          source={props.source}
-          style={{
-            // borderRadius: 20,
-            height: wp(7),
-             width: wp(18),
-            resizeMode: "contain", 
-          }}
-        />
-        </TouchableOpacity>
+            <ResponsiveText
+              fontFamily={Fonts.Bold}
+              size={props.titleSize ? props.titleSize : 6}
+              color={colors.white}
+            >
+              {props.title}
+            </ResponsiveText>
+            <TouchableOpacity
+              disabled={!props.disabled ? props.disabled : true}
+              onPress={props.onPress}
+            >
+              <Image
+                source={props.source}
+                style={{
+                  height: wp(7),
+                  width: wp(18),
+                  resizeMode: "contain",
+                }}
+              />
+            </TouchableOpacity>
           </View>
-         
+
           {props.address ? (
             <ResponsiveText
               margin={[0, 0, 0, 30]}
@@ -48,10 +55,20 @@ const Layout = (props) => {
             </ResponsiveText>
           ) : null}
           {props.profile ? (
-            <View >
-              <View style={{ alignItems: "flex-end", alignSelf: 'center',marginTop:10 }}>
+            <View>
+              <View
+                style={{
+                  alignItems: "flex-end",
+                  alignSelf: "center",
+                  marginTop: 10,
+                }}
+              >
                 <Image
-                  source={props.userimg}
+                  source={
+                    isImage(props.userimg)
+                      ? { uri: props.userimg }
+                      : globalPath.user
+                  }
                   style={{
                     borderRadius: 60,
                     height: wp(30),
@@ -67,25 +84,21 @@ const Layout = (props) => {
                 fontFamily={Fonts.Bold}
                 size={3.7}
                 color={colors.white}
-                textAlign={'center'}
+                textAlign={"center"}
               >
-               {props.username}
+                {props.username}
               </ResponsiveText>
               <ResponsiveText
                 margin={[0, 0, 0, 0]}
                 fontFamily={Fonts.Bold}
                 size={3.5}
-                textAlign={'center'}
+                textAlign={"center"}
                 color={colors.white}
               >
-               {props.Field}
-
+                {props.Field}
               </ResponsiveText>
             </View>
-
-
           ) : null}
-
         </View>
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>{props.children}</View>

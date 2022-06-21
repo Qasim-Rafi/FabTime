@@ -4,13 +4,17 @@ import { colors } from "../constants/colorsPallet";
 import { globalPath } from "../constants/globalPath";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
+import Card from "./Card";
 import { routeName } from "../constants/routeName";
+import { isImage } from "../constants/Index";
 import { formatAMPM } from "../redux/actions/user.actions";
 const CardView = (props) => {
   return (
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
-      onPress={() => props.navigation.navigate(routeName.ATTENDENCE_DETAIL,props.data)}
+      onPress={() =>
+        props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.data)
+      }
     >
       <View style={{ alignItems: "flex-end" }}>
         <Image
@@ -48,8 +52,7 @@ const CardView = (props) => {
 };
 const NotifationCard = (props) => {
   return (
-    <View style={styles.container1}>
-      <View style={{ flexDirection: "row" }}>
+      <Card flexDirection={'row'}>
         <Image
           source={globalPath.background}
           style={{
@@ -59,24 +62,22 @@ const NotifationCard = (props) => {
             resizeMode: "contain",
           }}
         />
-        <ResponsiveText
-          color={colors.black}
-          weight={"bold"}
-          flex={1}
-          size={3.5}
-          margin={[0, 0, 0, 5]}
-        >
-          Saniya Tariq Saniya Tariq Saniya Tariq Saniya Tariq
-        </ResponsiveText>
-      </View>
-      <ResponsiveText
-        size={3.5}
-        color={colors.grey1}
-        margin={[0, 0, 0, wp(11)]}
-      >
-        45 minutes ago
-      </ResponsiveText>
-    </View>
+        <View style={{padding:5}}>
+          <ResponsiveText
+            color={colors.black}
+            // weight={"bold"}
+            size={3.5}
+          >
+            Your request approved for leave
+          </ResponsiveText>
+          <ResponsiveText
+            size={3}
+            color={colors.grey1}
+          >
+            45 minutes ago
+          </ResponsiveText>
+        </View>
+      </Card>
   );
 };
 const AttendenceCard = (props) => {
@@ -84,7 +85,7 @@ const AttendenceCard = (props) => {
     <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
       <View style={{ alignItems: "flex-end" }}>
         <Image
-          source={props.userimg}
+          source={isImage(props.userimg)?{uri:props.userimg}:globalPath.user}
           style={{
             borderRadius: 20,
             height: wp(11),
@@ -112,7 +113,7 @@ const AttendenceCard = (props) => {
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-           {formatAMPM(props.checkTime) }
+            {formatAMPM(props.checkTime)}
           </ResponsiveText>
         </View>
         <View style={{ flexDirection: "row" }}>

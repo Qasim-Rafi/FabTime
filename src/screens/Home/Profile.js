@@ -9,59 +9,73 @@ import { globalPath } from "../../constants/globalPath";
 import { colors } from "../../constants/colorsPallet";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserAttendanceRecord, getUserProfile } from "../../redux/actions/user.actions";
+import {
+  getUserAttendanceRecord,
+  getUserProfile,
+} from "../../redux/actions/user.actions";
 import { _toast } from "../../constants/Index";
-import AsyncStorage from '@react-native-community/async-storage';
-import { StackActions } from '@react-navigation/native';
+import AsyncStorage from "@react-native-community/async-storage";
+import { StackActions } from "@react-navigation/native";
+import Card from "../../components/Card";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Profile = ({ navigation }) => {
   const dispatch = useDispatch();
-  const ProfileData = useSelector((state) => state.userReducers.getProfileData.data);
-  const AttendanceRecord = useSelector((state) => state.userReducers.getAttendanceRecord.data);
-  console.log("profile", ProfileData)
-  console.log("AttendanceRecord", AttendanceRecord)
+  const ProfileData = useSelector(
+    (state) => state.userReducers.getProfileData.data
+  );
+  const AttendanceRecord = useSelector(
+    (state) => state.userReducers.getAttendanceRecord.data
+  );
+  console.log("profile", ProfileData);
+  console.log("AttendanceRecord", AttendanceRecord);
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(getUserAttendanceRecord());
   }, []);
   const logout = () => {
-    Alert.alert('Logout', 'Confirm Logout', [
+    Alert.alert("Logout", "Confirm Logout", [
       {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
       },
       {
-        text: 'OK',
+        text: "OK",
         onPress: async () => {
           // await AsyncStorage.removeItem('@token');
           // await AsyncStorage.removeItem('cartData');
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
 
-          navigation.dispatch(StackActions.replace('Auth'));
+          navigation.dispatch(StackActions.replace("Auth"));
         },
       },
     ]);
   };
   return (
-
-    <Layout userimg={ProfileData.fullPath} Field={"React native developer"} username={ProfileData.username} title={"Profile"} profile titleSize={5}
+    <Layout
+      userimg={ProfileData.fullPath}
+      Field={"React native developer"}
+      username={ProfileData.username}
+      title={"Profile"}
+      profile
+      titleSize={5}
       source={globalPath.checkin}
       disabled={false}
       onPress={logout}
     >
-      <View style={{ flexDirection: 'row', margin: 10, }}>
+      <View style={{ flexDirection: "row", margin: 10 }}>
         <CheckinBox
           title={ProfileData.createdDateTime}
-          subTitle='Join Date'
+          subTitle="Join Date"
           titleColor={colors.blue}
           disabled={true}
         />
 
         <CheckinBox
           title={ProfileData.createdDateTime}
-          subTitle='Net Salary'
+          subTitle="Net Salary"
           titleColor={colors.blue}
           disabled={true}
         />
@@ -71,41 +85,50 @@ const Profile = ({ navigation }) => {
           margin={[0, 0, 0, 8]}
           // fontFamily={Fonts.LightItalic}
           size={5}
-          color={colors.blue1}>May Attendence</ResponsiveText>
+          color={colors.blue1}
+        >
+          May Attendence
+        </ResponsiveText>
       </View>
 
-      <View style={styles.tabContainer}>
-
+      <Card flexDirection={'row'}>
         <TabIcon
           title="Present"
-          CircleText={'10'}
+          CircleText={"19"}
           CircleColor={colors.green}
-          titleSize={3.4}
+          titleSize={3.2}
         />
         <TabIcon
           title="Absent"
-          titleSize={3.4}
-          CircleText={'30'}
+          titleSize={3.2}
+          CircleText={"1"}
           CircleColor={colors.red}
-
         />
         <TabIcon
           title="Late"
-          titleSize={3.4}
-          CircleText={'27'}
+          titleSize={3.2}
+          CircleText={"4"}
           CircleColor={colors.blue1}
-
         />
         <TabIcon
           title="Leave"
-          titleSize={3.4}
-          CircleText={'9'}
+          titleSize={3.2}
+          CircleText={"1"}
           CircleColor={colors.yellow3}
         />
-      </View>
-      <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2, }}>
-        {AttendanceRecord.length > 0 ? AttendanceRecord.map((item, index) => <AttendenceCard userimg={item.fullPath} checkTime={item.createdDateTime} />) : null}
-      </View>
+      </Card>
+      <Card>
+        <ScrollView>
+          {AttendanceRecord.length > 0
+            ? AttendanceRecord.map((item, index) => (
+                <AttendenceCard
+                  userimg={item.fullPath}
+                  checkTime={item.createdDateTime}
+                />
+              ))
+            : null}
+        </ScrollView>
+      </Card>
     </Layout>
   );
 };
@@ -124,6 +147,5 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0.1,
     },
-
   },
 });
