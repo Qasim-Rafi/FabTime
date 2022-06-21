@@ -13,17 +13,20 @@ import Graph from "../../components/Graph";
 import { routeName } from "../../constants/routeName";
 import Card from "../../components/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { getpresentTeam,getAttendenceCount} from "../../redux/actions/user.actions";
+import {
+  getpresentTeam,
+  getAttendenceCount,
+} from "../../redux/actions/user.actions";
 import { ScrollView } from "react-native-gesture-handler";
-
 
 const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
-  const DashCount = useSelector((state) => state.userReducers.getAttendenceCount.data);
-  console.log('DashCount', data)
+  const DashCount = useSelector(
+    (state) => state.userReducers.getAttendenceCount.data
+  );
+  console.log("DashCount", data);
   const [loader, setLoader] = React.useState(true);
-  
 
   useEffect(() => {
     dispatch(getpresentTeam());
@@ -35,7 +38,13 @@ const Dashboard = ({ navigation }) => {
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
         <View style={styles.screeninfo}>
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" ,margin:wp(5),marginBottom:5,marginTop:wp(2)}}
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              margin: wp(5),
+              marginBottom: 5,
+              marginTop: wp(2),
+            }}
           >
             <ResponsiveText
               // margin={[20, 0, 0, 30]}
@@ -45,7 +54,9 @@ const Dashboard = ({ navigation }) => {
             >
               Fabintel
             </ResponsiveText>
-              <TouchableOpacity onPress={()=>navigation.navigate(routeName.PROFILE)}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(routeName.PROFILE)}
+            >
               <Icon
                 style={{ backgroundColor: colors.white }}
                 borderRadius={20}
@@ -62,9 +73,8 @@ const Dashboard = ({ navigation }) => {
                   marginLeft: wp(6),
                 }}
               ></View>
-              </TouchableOpacity>
-             
-                 </View>
+            </TouchableOpacity>
+          </View>
 
           <View style={{ flexDirection: "row" }}>
             <Icon
@@ -94,14 +104,12 @@ const Dashboard = ({ navigation }) => {
                 backgroundColor="#FFF9E6"
                 source={globalPath.leaves}
                 onPress={() => navigation.navigate(routeName.LEAVES)}
-               
               />
               <TabIcon
                 title="Payslip"
                 titleColor="#5958DA"
                 backgroundColor="#F1F5FF"
                 source={globalPath.payslip}
-
               />
               <TabIcon
                 title="Requests"
@@ -109,7 +117,6 @@ const Dashboard = ({ navigation }) => {
                 backgroundColor="#E4FEF1"
                 source={globalPath.requests}
                 onPress={() => navigation.navigate(routeName.REQUEST)}
-
               />
               <TabIcon
                 title="Notification"
@@ -130,12 +137,28 @@ const Dashboard = ({ navigation }) => {
                 <ResponsiveText color={colors.blue1}>
                   Fabintel Team
                 </ResponsiveText>
-                <TouchableOpacity onPress={()=>navigation.navigate(routeName.PRESENT_TEAM,data)}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(routeName.PRESENT_TEAM, data)
+                  }
+                >
                   <ResponsiveText color={"#00AEEF"}>View All</ResponsiveText>
                 </TouchableOpacity>
               </View>
               <ScrollView></ScrollView>
-              {data.length > 0 ? data.map((item,index) =>index<4? <CardView data={item} navigation={navigation}/>:null) : null}
+              {data.length > 0
+                ? data.map((item, index) =>
+                    index < 4 ? (
+                      <CardView
+                        title={item.name}
+                        userDesignation={item.userDesignation}
+                        checkInTime={item.createdDateTime}
+                        navigation={navigation}
+                        source={item.fullPath}
+                      />
+                    ) : null
+                  )
+                : null}
             </Card>
           </View>
         </View>

@@ -37,7 +37,7 @@ const AddRequests = ({navigation}) => {
     }
   };
   return (
-    <Layout title={"Apply for Late"}>
+    <Layout title={"Add Request"}>
       <View style={{ marginTop: wp(10), marginHorizontal: wp(4) }}>
         <ResponsiveText size={3}>
           write the reason why are you late today?

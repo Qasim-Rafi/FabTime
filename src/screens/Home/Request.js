@@ -19,7 +19,7 @@ const Leaves = ({navigation}) => {
     if (res && res.success == true) {
       setData(res.data);
     } else {
-      _toast("No record found");
+      _toast(res.message);
     }
   };
   return (

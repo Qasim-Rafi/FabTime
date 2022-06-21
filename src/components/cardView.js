@@ -18,7 +18,9 @@ const CardView = (props) => {
     >
       <View style={{ alignItems: "flex-end" }}>
         <Image
-          source={globalPath.background}
+          source={
+            isImage(props.source) ? { uri: props.source } : globalPath.user
+          }
           style={{
             borderRadius: 20,
             height: wp(10),
@@ -35,49 +37,47 @@ const CardView = (props) => {
           flex={1}
           size={3.5}
         >
-          {props.data?.name}
+          {props.title}
         </ResponsiveText>
         <ResponsiveText size={3.2} color={colors.black}>
-          React native developer
+          {props.userDesignation}
         </ResponsiveText>
       </View>
-
-      <View style={styles.timestyle}>
-        <ResponsiveText color={colors.black} size={2.8}>
-          {formatAMPM(props.data?.createdDateTime)}
-        </ResponsiveText>
-      </View>
+      {props.checkInTime ? (
+        <View style={styles.timestyle}>
+          <ResponsiveText color={colors.black} size={2.8}>
+            {formatAMPM(props.checkInTime)}
+          </ResponsiveText>
+        </View>
+      ) : null}
     </TouchableOpacity>
   );
 };
 const NotifationCard = (props) => {
   return (
-      <Card flexDirection={'row'}>
-        <Image
-          source={globalPath.background}
-          style={{
-            borderRadius: 20,
-            height: hp(5),
-            width: wp(10),
-            resizeMode: "contain",
-          }}
-        />
-        <View style={{padding:5}}>
-          <ResponsiveText
-            color={colors.black}
-            // weight={"bold"}
-            size={3.5}
-          >
-            Your request approved for leave
-          </ResponsiveText>
-          <ResponsiveText
-            size={3}
-            color={colors.grey1}
-          >
-            45 minutes ago
-          </ResponsiveText>
-        </View>
-      </Card>
+    <Card flexDirection={"row"}>
+      <Image
+        source={globalPath.background}
+        style={{
+          borderRadius: 20,
+          height: hp(5),
+          width: wp(10),
+          resizeMode: "contain",
+        }}
+      />
+      <View style={{ padding: 5 }}>
+        <ResponsiveText
+          color={colors.black}
+          // weight={"bold"}
+          size={3.5}
+        >
+          Your request approved for leave
+        </ResponsiveText>
+        <ResponsiveText size={3} color={colors.grey1}>
+          45 minutes ago
+        </ResponsiveText>
+      </View>
+    </Card>
   );
 };
 const AttendenceCard = (props) => {
@@ -85,7 +85,9 @@ const AttendenceCard = (props) => {
     <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
       <View style={{ alignItems: "flex-end" }}>
         <Image
-          source={isImage(props.userimg)?{uri:props.userimg}:globalPath.user}
+          source={
+            isImage(props.userimg) ? { uri: props.userimg } : globalPath.user
+          }
           style={{
             borderRadius: 20,
             height: wp(11),

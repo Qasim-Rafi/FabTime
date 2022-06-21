@@ -8,7 +8,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { formatAMPM } from "../../redux/actions/user.actions";
 import { hp } from "../../helpers/Responsiveness";
 
-const PresentTeam = ({navigation,route}) => {
+const PresentTeam = ({ navigation, route }) => {
   const [data, setData] = useState(route.params);
 
   console.log(formatAMPM("Thu 16-Jun-2022 16:00"));
@@ -16,40 +16,45 @@ const PresentTeam = ({navigation,route}) => {
   return (
     <Layout title={"Fabintel Team"}>
       <View style={styles.tabContainer}>
-
         <TabIcon
           title="Present"
-          CircleText={'10'}
+          CircleText={"10"}
           CircleColor={colors.green}
           titleSize={3.4}
         />
         <TabIcon
           title="Absent"
           titleSize={3.4}
-          CircleText={'30'}
+          CircleText={"30"}
           CircleColor={colors.red}
-
         />
         <TabIcon
           title="Late"
           titleSize={3.4}
-          CircleText={'27'}
+          CircleText={"27"}
           CircleColor={colors.blue1}
-
         />
         <TabIcon
           title="Leave"
           titleSize={3.4}
-          CircleText={'9'}
+          CircleText={"9"}
           CircleColor={colors.yellow3}
         />
       </View>
       <ScrollView>
-
-      {data?.length > 0 ? data.map((item,index) =><CardView data={item} navigation={navigation}/>) : null}
-      <View style={{height:hp(20)}}/>
+        {data?.length > 0
+          ? data.map((item, index) => (
+              <CardView
+                title={item.name}
+                userDesignation={item.userDesignation}
+                checkInTime={item.createdDateTime}
+                navigation={navigation}
+                source={item.fullPath}
+              />
+            ))
+          : null}
+        <View style={{ height: hp(20) }} />
       </ScrollView>
-
     </Layout>
   );
 };
@@ -70,6 +75,5 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0.1,
     },
-
   },
 });
