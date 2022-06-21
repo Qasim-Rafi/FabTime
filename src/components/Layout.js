@@ -70,16 +70,17 @@ const Layout = (props) => {
                       : globalPath.user
                   }
                   style={{
-                    borderRadius: 60,
+                    borderRadius: 70,
                     height: wp(30),
                     width: wp(30),
                     resizeMode: "contain",
+                    backgroundColor:colors.white
                   }}
                 />
-                <View style={styles.Onlinebadge}></View>
+                {/* <View style={styles.Onlinebadge}></View> */}
               </View>
               <ResponsiveText
-                margin={[0, 0, 0, 14]}
+                margin={[8, 0, 0, 14]}
                 weight={"bold"}
                 fontFamily={Fonts.Bold}
                 size={3.7}
@@ -89,7 +90,7 @@ const Layout = (props) => {
                 {props.username}
               </ResponsiveText>
               <ResponsiveText
-                margin={[0, 0, 0, 0]}
+                margin={[5, 0, 5, 0]}
                 fontFamily={Fonts.Bold}
                 size={3.5}
                 textAlign={"center"}
@@ -143,11 +144,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   Onlinebadge: {
-    height: 10,
-    width: 10,
+    height: 15,
+    width: 15,
     backgroundColor: colors.lightgreen,
     position: "absolute",
     borderRadius: 10,
     bottom: 20,
+    right:10
   },
 });

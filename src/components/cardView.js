@@ -28,7 +28,7 @@ const CardView = (props) => {
             resizeMode: "contain",
           }}
         />
-        <View style={styles.Onlinebadge}></View>
+        {props.checkInTime ? <View style={styles.Onlinebadge}></View> : null}
       </View>
       <View style={{ flex: 1, paddingHorizontal: 10 }}>
         <ResponsiveText
