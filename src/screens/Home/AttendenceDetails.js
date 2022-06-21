@@ -9,7 +9,7 @@ import { colors } from "../../constants/colorsPallet";
 
 const AttendenceDetails = (props) => {
     return (
-        <Layout username={props.route.params.name}  title={"Attendence Details"} profile titleSize={5}>
+        <Layout username={'props.route.params.name'}  title={"Attendence Details"} profile titleSize={5}>
             <View style={{ flexDirection: 'row', marginVertical: 10, }}>
                 <CheckinBox
                     title='Check-In'

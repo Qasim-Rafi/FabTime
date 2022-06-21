@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { routeName } from "../constants/routeName";
-import Dashboard from "../screens/Home/Dashboard";
+import AttendenceDetails from "../screens/Home/AttendenceDetails";
 import Users from "../screens/Home/Users";
 
 
@@ -16,7 +16,7 @@ function ReportStack() {
       initialRouteName={routeName.USERS}
     >
       <Stack.Screen name={routeName.USERS} component={Users} />
-      {/* <Stack.Screen name={routeName.PRESENT_TEAM} component={PresentTeam} /> */}
+      <Stack.Screen name={routeName.ATTENDENCE_DETAIL}component={AttendenceDetails}/>
     </Stack.Navigator>
   );
 }
