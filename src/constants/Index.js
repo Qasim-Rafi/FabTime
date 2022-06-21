@@ -11,9 +11,11 @@ function _toast(string) {
             ToastAndroid.CENTER,
         );
     }
-
 }
-
+function isImage(url) {
+    return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+  }
 module.exports={
-    _toast:_toast
+    _toast:_toast,
+    isImage:isImage
 }
