@@ -28,7 +28,7 @@ const Home = ({ navigation }) => {
     (async () => {
       var id = await AsyncStorage.getItem("@userId");
       console.log("id", id);
-      setUserid(74);
+      setUserid(Number(id));
     })();
     setCheckinTime(formatAMPM(new Date()));
     dispatch(getpresentTeam());
@@ -48,6 +48,7 @@ const Home = ({ navigation }) => {
     console.log("res", res);
     if (res && res.success == true) {
       // setData(res.data);
+      dispatch(getpresentTeam());
       _toast("Checked In");
     } else {
     }

@@ -5,11 +5,12 @@ import { globalPath } from "../constants/globalPath";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 import { routeName } from "../constants/routeName";
+import { formatAMPM } from "../redux/actions/user.actions";
 const CardView = (props) => {
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
-      onPress={() => props.navigation.navigate(routeName.ATTENDENCE_DETAIL)}
+      onPress={() => props.navigation.navigate(routeName.ATTENDENCE_DETAIL,props.data)}
     >
       <View style={{ alignItems: "flex-end" }}>
         <Image
@@ -30,7 +31,7 @@ const CardView = (props) => {
           flex={1}
           size={3.5}
         >
-          Saniya Tariq
+          {props.data?.name}
         </ResponsiveText>
         <ResponsiveText size={3.2} color={colors.black}>
           React native developer
@@ -39,7 +40,7 @@ const CardView = (props) => {
 
       <View style={styles.timestyle}>
         <ResponsiveText color={colors.black} size={2.8}>
-          10:05 AM
+          {formatAMPM(props.data?.createdDateTime)}
         </ResponsiveText>
       </View>
     </TouchableOpacity>

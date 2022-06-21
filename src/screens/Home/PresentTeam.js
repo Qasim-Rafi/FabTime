@@ -6,8 +6,9 @@ import TabIcon from "../../components/TabIcon";
 import { colors } from "../../constants/colorsPallet";
 import { ScrollView } from "react-native-gesture-handler";
 import { formatAMPM } from "../../redux/actions/user.actions";
+import { hp } from "../../helpers/Responsiveness";
 
-const PresentTeam = ({route}) => {
+const PresentTeam = ({navigation,route}) => {
   const [data, setData] = useState(route.params);
 
   console.log(formatAMPM("Thu 16-Jun-2022 16:00"));
@@ -45,7 +46,8 @@ const PresentTeam = ({route}) => {
       </View>
       <ScrollView>
 
-      {data?.length > 0 ? data.map((item,index) =><CardView />) : null}
+      {data?.length > 0 ? data.map((item,index) =><CardView data={item} navigation={navigation}/>) : null}
+      <View style={{height:hp(20)}}/>
       </ScrollView>
 
     </Layout>

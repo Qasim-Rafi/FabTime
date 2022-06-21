@@ -14,13 +14,14 @@ import { routeName } from "../../constants/routeName";
 import Card from "../../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { getpresentTeam,getAttendenceCount} from "../../redux/actions/user.actions";
+import { ScrollView } from "react-native-gesture-handler";
 
 
 const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
   const DashCount = useSelector((state) => state.userReducers.getAttendenceCount.data);
-  // console.log('DashCount', DashCount)
+  console.log('DashCount', data)
   const [loader, setLoader] = React.useState(true);
   
 
@@ -34,23 +35,21 @@ const Dashboard = ({ navigation }) => {
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
         <View style={styles.screeninfo}>
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
+            style={{ flexDirection: "row", justifyContent: "space-between" ,margin:wp(5),marginBottom:5,marginTop:wp(2)}}
           >
             <ResponsiveText
-              margin={[20, 0, 0, 30]}
+              // margin={[20, 0, 0, 30]}
               fontFamily={Fonts.Bold}
               size={8}
               color={colors.white}
             >
               Fabintel
             </ResponsiveText>
-            <View>
               <TouchableOpacity onPress={()=>navigation.navigate(routeName.PROFILE)}>
               <Icon
                 style={{ backgroundColor: colors.white }}
                 borderRadius={20}
                 size={35}
-                margin={[0, 5, 0, 0]}
                 source={globalPath.user}
               />
               <View
@@ -65,7 +64,6 @@ const Dashboard = ({ navigation }) => {
               ></View>
               </TouchableOpacity>
              
-            </View>
                  </View>
 
           <View style={{ flexDirection: "row" }}>
@@ -136,7 +134,8 @@ const Dashboard = ({ navigation }) => {
                   <ResponsiveText color={"#00AEEF"}>View All</ResponsiveText>
                 </TouchableOpacity>
               </View>
-              {data.length > 0 ? data.map((item,index) =>index<4? <CardView navigation={navigation}/>:null) : null}
+              <ScrollView></ScrollView>
+              {data.length > 0 ? data.map((item,index) =>index<4? <CardView data={item} navigation={navigation}/>:null) : null}
             </Card>
           </View>
         </View>

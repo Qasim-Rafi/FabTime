@@ -5,17 +5,12 @@ import ResponsiveText from "../../components/RnText";
 import { AttendenceCard } from "../../components/cardView";
 import { CheckinBox } from "../../components/CheckinBox";
 import TabIcon from "../../components/TabIcon";
-import { globalPath } from "../../constants/globalPath";
 import { colors } from "../../constants/colorsPallet";
-import Fonts from "../../helpers/Fonts";
-import Icon from "../../components/Icon";
-import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
-import { CheckOutBox } from "../../components/CheckOutBox";
 
-const AttendenceDetails = () => {
+const AttendenceDetails = (props) => {
     return (
-        <Layout title={"Attendence Details"} profile titleSize={5}>
-            <View style={{ flexDirection: 'row', margin: 10, }}>
+        <Layout username={props.route.params.name}  title={"Attendence Details"} profile titleSize={5}>
+            <View style={{ flexDirection: 'row', marginVertical: 10, }}>
                 <CheckinBox
                     title='Check-In'
                     subTitle='10:30 AM'
@@ -67,7 +62,7 @@ const AttendenceDetails = () => {
                     CircleColor={colors.yellow3}
                 />
             </View>
-            <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2, }}>
+            <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2,shadowRadius:10 }}>
                 <AttendenceCard />
             </View>
         </Layout>
@@ -82,9 +77,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: colors.white,
         shadowOpacity: 0.1,
-        padding: 5,
+        // padding: 5,
         margin: 5,
-        marginHorizontal: 15,
+        marginHorizontal: 10,
         borderRadius: 10,
         shadowOffset: {
             width: 0,

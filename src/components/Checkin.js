@@ -26,7 +26,7 @@ const Checkin = (props) => {
     var day = now.getDay();
     var minutes = now.getMinutes();
 
-    if (props.data.some((v) => v.id == props.userid)) {
+    if (props.data.some((v) => v.userId == props.userid)) {
       return "checkedin";
     } else if (hour == 10 && minutes < 15) {
       return "ontime";
@@ -35,8 +35,9 @@ const Checkin = (props) => {
     }
   }
   function checkinTime() {
-    if (props.data) {
-      return formatAMPM(props.data.find((v) => v.id == props.userid)?.createdDateTime);
+    if (props.data?.find((v) => v.userId == props.userid)?.createdDateTime) {
+      console.log('props.data', props.data)
+      return formatAMPM(props.data?.find((v) => v.userId == props.userid)?.createdDateTime);
     } else {
       return props.time;
     }

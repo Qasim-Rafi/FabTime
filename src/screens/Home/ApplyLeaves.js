@@ -72,10 +72,11 @@ const ApplyLeaves = (props) => {
         setLoading(true);
         const res = await Api.post(urls.ADD_APPLY_LEAVE, obj);
         console.log("res", res);
-        if (res.json && res.json.success == true) {
+        if (res && res.success == true) {
             // setText("");
             _toast("submit successfully");
             setLoading(false);
+            props.navigation.goBack();
             //   setTimeout(() => {
             //     // navigation.goBack();
             //   }, 1000);
