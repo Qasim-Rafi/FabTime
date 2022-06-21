@@ -1,28 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { colors } from "../../constants/colorsPallet";
-import Checkin from "../../components/Checkin";
+import { _toast } from "../../constants/Index";
+import Layout from "../../components/Layout";
+import LeavesCard from "../../components/LeaveCard";
 import Api from "../../redux/lib/api";
 import urls from "../../redux/lib/urls";
-import Layout from "../../components/Layout";
-import Card from "../../components/Card";
-import ResponsiveText from "../../components/RnText";
-import { hp, wp } from "../../helpers/Responsiveness";
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
-import LeavesCard from "../../components/LeaveCard";
-import { useDispatch, useSelector } from "react-redux";
-const Leaves = () => {
-  const dispatch = useDispatch();
-  const RequestData = useSelector((state) => state.userReducers.presentTeam.data);
+import RoundButton from "../../components/RoundButton";
+import { routeName } from "../../constants/routeName";
+const Leaves = ({navigation}) => {
+  const [data, setData] = useState([]);
   useEffect(() => {
-    // dispatch(getpresentTeam());
+    getRequests();
   }, []);
+  const getRequests = async () => {
+    const res = await Api.get(urls.GET_REQUESTS);
+    console.log('res', res)
+    if (res && res.success == true) {
+      setData(res.data);
+    } else {
+      _toast("No record found");
+    }
+  };
   return (
-    <Layout title={"Request"} >
-       <LeavesCard username={'saniya Tariq'} status={"Pending"}date={"20-04-2022"}
-       description={"Dear sir, I am writing this application to inform you that I am suffering from severe viral disease and therefore, I want sick leave from work. I got this infection last night and I will not be capable to come to the office for at least 1 day."}
-       
-       />
+    <Layout title={"Request"}>
+      <LeavesCard
+        username={"saniya Tariq"}
+        status={"Pending"}
+        date={"20-04-2022"}
+        description={
+          "Dear sir, I am writing this application to inform you that I am suffering from severe viral disease and therefore, I want sick leave from work. I got this infection last night and I will not be capable to come to the office for at least 1 day."
+        }
+      />
+      <RoundButton onPress={()=>navigation.navigate(routeName.ADDREQUEST)}/>
     </Layout>
   );
 };
