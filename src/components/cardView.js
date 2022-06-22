@@ -13,7 +13,7 @@ const CardView = (props) => {
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
       onPress={() =>
-        props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.title)
+        props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.data)
       }
     >
       <View style={{ alignItems: "flex-end" }}>

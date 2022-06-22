@@ -41,6 +41,7 @@ const Users = ({ navigation }) => {
               item.userTypeId == 2 ? (
                 <CardView
                   title={item.fullName}
+                  data={item}
                   userDesignation={item.userDesignation}
                   source={item.fullPath}
                   navigation={navigation}
