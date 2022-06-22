@@ -29,7 +29,7 @@ const Dashboard = ({ navigation }) => {
   const DashCount = useSelector(
     (state) => state.userReducers.getAttendenceCount.data
   );
-  console.log("DashCount", data);
+  console.log("DashCount", DashCount);
   const [loader, setLoader] = React.useState(true);
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const Dashboard = ({ navigation }) => {
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>
             <View style={styles.container1}>
-              <Graph />
+              <Graph data={DashCount}  />
             </View>
             <Card flexDirection={"row"}>
               <TabIcon
