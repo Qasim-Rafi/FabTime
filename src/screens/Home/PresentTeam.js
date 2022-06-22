@@ -7,6 +7,7 @@ import { colors } from "../../constants/colorsPallet";
 import { ScrollView } from "react-native-gesture-handler";
 import { formatAMPM } from "../../redux/actions/user.actions";
 import { hp } from "../../helpers/Responsiveness";
+import RecordNotFound from "../../components/RecordnotFound";
 
 const PresentTeam = ({ navigation, route }) => {
   const [data, setData] = useState(route.params);
@@ -52,7 +53,7 @@ const PresentTeam = ({ navigation, route }) => {
                 source={item.fullPath}
               />
             ))
-          : null}
+          : <RecordNotFound/>}
         <View style={{ height: hp(20) }} />
       </ScrollView>
     </Layout>

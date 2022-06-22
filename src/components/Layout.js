@@ -7,6 +7,7 @@ import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 import { globalPath } from "../constants/globalPath";
 import { isImage } from "../constants/Index";
+import Icon from "./Icon";
 
 const Layout = (props) => {
   return (
@@ -16,13 +17,20 @@ const Layout = (props) => {
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent:'space-between',
               marginTop: 10,
-              marginLeft: 20,
+              marginLeft: 30,
             }}
           >
+            {
+              props.backbutton ?
+                <TouchableOpacity onPress={()=>props.navigation.goBack()}> 
+                  <Icon size={18} margin={[5, 0, 0, 0]} source={globalPath.backArrow} />
+                </TouchableOpacity>
+                : null}
             <ResponsiveText
               fontFamily={Fonts.Bold}
+              margin={[0, 0, 0, 10]}
               size={props.titleSize ? props.titleSize : 6}
               color={colors.white}
             >
@@ -74,7 +82,7 @@ const Layout = (props) => {
                     height: wp(30),
                     width: wp(30),
                     resizeMode: "contain",
-                    backgroundColor:colors.white
+                    backgroundColor: colors.white
                   }}
                 />
                 {/* <View style={styles.Onlinebadge}></View> */}
@@ -150,6 +158,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 10,
     bottom: 20,
-    right:10
+    right: 10
   },
 });

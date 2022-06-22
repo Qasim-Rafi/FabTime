@@ -14,15 +14,16 @@ import {
   getUserProfile,
 } from "../../redux/actions/user.actions";
 import Loader from "../../components/loader";
-
+import {PreView} from '../../constants/Index'
 import { _toast } from "../../constants/Index";
 import AsyncStorage from "@react-native-community/async-storage";
 import { StackActions } from "@react-navigation/native";
 import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
-
+import { useState } from "react";
 const Profile = ({ navigation }) => {
+  const [isLoading, setisLoading] = useState(false);
   const dispatch = useDispatch();
   const ProfileData = useSelector(
     (state) => state.userReducers.getProfileData.data
@@ -62,6 +63,8 @@ const Profile = ({ navigation }) => {
   return (
     <>
     <Layout
+    navigation={navigation}
+    backbutton
       userimg={ProfileData.fullPath}
       Field={"React native developer"}
       username={ProfileData.username}
@@ -74,23 +77,26 @@ const Profile = ({ navigation }) => {
     >
       <View style={{ flexDirection: "row", margin: 10 }}>
         <CheckinBox
-          title={ProfileData.createdDateTime}
-          subTitle="Join Date"
-          titleColor={colors.blue}
-          disabled={true}
+          subTitle="Resume"
+          ti
+          onPress={()=>PreView(setisLoading)}
+          disabled={false}
+          tintColor={colors.yellow1}
+          source={globalPath.report}
+
         />
 
         <CheckinBox
-          title={ProfileData.createdDateTime}
-          subTitle="Net Salary"
-          titleColor={colors.blue}
+          subTitle="Emoplyee card"
+          tintColor={colors.blue1}
           disabled={true}
+          source={globalPath.report}
+
         />
       </View>
       <View>
         <ResponsiveText
           margin={[0, 0, 0, 8]}
-          // fontFamily={Fonts.LightItalic}
           size={5}
           color={colors.blue1}
         >
@@ -139,7 +145,7 @@ const Profile = ({ navigation }) => {
         </ScrollView>
       </Card>
     </Layout>
-     {Loading?
+     {isLoading||Loading?
       <Loader/>
         :
         undefined
