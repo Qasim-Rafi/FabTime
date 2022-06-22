@@ -12,14 +12,17 @@ import LeavesCard from "../../components/LeaveCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getLeavesRequest } from "../../redux/actions/user.actions";
 import { ScrollView } from "react-native-gesture-handler";
+import Loader from "../../components/loader";
 const Leaves = ({ navigation }) => {
   const dispatch = useDispatch();
   const LeavesData = useSelector((state) => state.userReducers.getLeaves.data);
+  const Loading = useSelector((state) => state.userReducers.getLeaves.refreshing);
   console.log("leaves", LeavesData);
   useEffect(() => {
     dispatch(getLeavesRequest());
   }, []);
   return (
+    <>
     <Layout title={"Leaves"}>
       <ScrollView>
         {LeavesData.length > 0
@@ -37,6 +40,12 @@ const Leaves = ({ navigation }) => {
           <View style={{height:hp(10)}}/>
       </ScrollView>
     </Layout>
+    {Loading?
+      <Loader/>
+        :
+        undefined
+     }
+     </>
   );
 };
 export default Leaves;

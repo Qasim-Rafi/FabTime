@@ -9,21 +9,29 @@ import urls from "../../redux/lib/urls";
 import RoundButton from "../../components/RoundButton";
 import { routeName } from "../../constants/routeName";
 import { ScrollView } from "react-native-gesture-handler";
+import { Grid } from "react-native-animated-spinkit";
+import Loader from "../../components/loader";
 const Leaves = ({ navigation ,route}) => {
   const [data, setData] = useState([]);
+  const [Loading, setLoading] = useState(false);
   useEffect(() => {
     getRequests();
   }, []);
   const getRequests = async () => {
+
     const res = await Api.get(urls.GET_REQUESTS);
+    setLoading(true);
     console.log("res", res);
     if (res && res.success == true) {
+      setLoading(false);
       setData(res.data);
     } else {
+      setLoading(false);
       _toast(res.message);
     }
   };
   return (
+    <>
     <Layout title={"Request"}>
       <ScrollView>
         {data.length > 0
@@ -36,10 +44,18 @@ const Leaves = ({ navigation ,route}) => {
               />
             ))
           : null}
+           
       </ScrollView>
 
       <RoundButton onPress={() => navigation.navigate(routeName.ADDREQUEST,getRequests)} />
+     
     </Layout>
+    {Loading?
+       <Loader/>
+         :
+         undefined
+      }
+      </>
   );
 };
 export default Leaves;

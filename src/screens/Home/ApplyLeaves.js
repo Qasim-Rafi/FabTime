@@ -10,6 +10,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { _toast } from "../../constants/Index";
 import urls from "../../redux/lib/urls";
 import Api from "../../redux/lib/api";
+import { Grid } from "react-native-animated-spinkit";
+import Loader from "../../components/loader";
 
 const ApplyLeaves = (props) => {
     const [date, setDate] = useState(null);
@@ -82,6 +84,7 @@ const ApplyLeaves = (props) => {
         }
     };
     return (
+        <>
         <Layout title={"Apply Leaves"}>
             <View style={{ flexDirection: 'row', margin: 10 }}>
 
@@ -224,6 +227,12 @@ const ApplyLeaves = (props) => {
                 </View>
             </View>
         </Layout>
+          {Loading?
+           <Loader/>
+             :
+             undefined
+          }
+          </>
     );
 };
 

@@ -18,10 +18,14 @@ import {
   getAttendenceCount,
 } from "../../redux/actions/user.actions";
 import { ScrollView } from "react-native-gesture-handler";
+import { Grid } from "react-native-animated-spinkit";
+import Loader from "../../components/loader";
+import RecordNotFound from "../../components/RecordnotFound";
 
 const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
+  const Loading = useSelector((state) => state.userReducers.presentTeam.refreshing);
   const DashCount = useSelector(
     (state) => state.userReducers.getAttendenceCount.data
   );
@@ -127,6 +131,7 @@ const Dashboard = ({ navigation }) => {
               />
             </Card>
             <Card>
+              
               <View
                 style={{
                   flexDirection: "row",
@@ -145,8 +150,8 @@ const Dashboard = ({ navigation }) => {
                   <ResponsiveText color={"#00AEEF"}>View All</ResponsiveText>
                 </TouchableOpacity>
               </View>
-              <ScrollView></ScrollView>
-              {data.length > 0
+              <ScrollView showsVerticalScrollIndicator={false}>
+              {data.length >0
                 ? data.map((item, index) =>
                     index < 4 ? (
                       <CardView
@@ -158,11 +163,20 @@ const Dashboard = ({ navigation }) => {
                       />
                     ) : null
                   )
-                : null}
+                :<RecordNotFound/>}
+                  <View style={{height:hp(60)}}>
+                </View>
+                </ScrollView>
+              
             </Card>
           </View>
         </View>
       </View>
+      {Loading?
+   <Loader/>
+     :
+     undefined
+  }
     </SafeAreaView>
   );
 };
