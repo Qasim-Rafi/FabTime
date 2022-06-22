@@ -8,6 +8,10 @@ const Lock = require("../assets/icons/password.png");
 const Email = require("../assets/icons/email.png");
 const arrow = require("../assets/icons/arrow-dropdown.png");
 const user = require("../assets/icons/userlogo.png");
+const RecordNotFound = require("../assets/icons/rnf.png");
+
+
+
 const location = require("../assets/icons/Fablocation.png");
 const home = require("../assets/icons/home.png");
 const history = require("../assets/icons/history.png");
@@ -57,4 +61,6 @@ export const globalPath = {
   lateicon,
   leavebutton,
   leaveicon,
+ RecordNotFound
+
 };

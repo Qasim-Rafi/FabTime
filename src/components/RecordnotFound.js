@@ -16,7 +16,7 @@ import Icon from "./Icon";
 import ResponsiveText from "./RnText";
 export default function RecordNotFound(props) {
     return(
-<View style={{ width: wp(100), marginTop: 100, alignItems: 'center', alignSelf: 'center' }}>             
-<Icon size={200}   source={globalPath.NotFoundImage}/>
-<ResponsiveText textAlign={'center'}>Record not found</ResponsiveText>
+<View style={{ width: wp(100), alignItems: 'center', alignSelf: 'center' }}>             
+<Icon size={200}   source={globalPath.RecordNotFound}/>
+<ResponsiveText margin={[-30,0,0,0]} textAlign={'center'}>Record not found</ResponsiveText>
 </View>)}

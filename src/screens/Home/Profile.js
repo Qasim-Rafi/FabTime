@@ -13,16 +13,22 @@ import {
   getUserAttendanceRecord,
   getUserProfile,
 } from "../../redux/actions/user.actions";
+import Loader from "../../components/loader";
+
 import { _toast } from "../../constants/Index";
 import AsyncStorage from "@react-native-community/async-storage";
 import { StackActions } from "@react-navigation/native";
 import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
+import RecordNotFound from "../../components/RecordnotFound";
 
 const Profile = ({ navigation }) => {
   const dispatch = useDispatch();
   const ProfileData = useSelector(
     (state) => state.userReducers.getProfileData.data
+  );
+  const Loading = useSelector(
+    (state) => state.userReducers.getProfileData.refreshing
   );
   const AttendanceRecord = useSelector(
     (state) => state.userReducers.getAttendanceRecord.data
@@ -54,6 +60,7 @@ const Profile = ({ navigation }) => {
     ]);
   };
   return (
+    <>
     <Layout
       userimg={ProfileData.fullPath}
       Field={"React native developer"}
@@ -118,7 +125,7 @@ const Profile = ({ navigation }) => {
         />
       </Card>
       <Card>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {AttendanceRecord.length > 0
             ? AttendanceRecord.map((item, index) => (
                 <AttendenceCard
@@ -126,10 +133,18 @@ const Profile = ({ navigation }) => {
                   checkTime={item.createdDateTime}
                 />
               ))
-            : null}
+            : <RecordNotFound/>}
+            <View style={{height:hp(60)}}>
+                </View>
         </ScrollView>
       </Card>
     </Layout>
+     {Loading?
+      <Loader/>
+        :
+        undefined
+     }
+     </>
   );
 };
 export default Profile;

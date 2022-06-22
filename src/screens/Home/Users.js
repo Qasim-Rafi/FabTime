@@ -6,8 +6,11 @@ import Layout from "../../components/Layout";
 import Api from "../../redux/lib/api";
 import urls from "../../redux/lib/urls";
 import { _toast } from "../../constants/Index";
+import Loader from "../../components/loader";
 const Users = ({ navigation }) => {
   const [user, setuser] = useState([]);
+  const [Loading, setLoading] = useState(false);
+
   useEffect(() => {
     // dispatch(getUser());
     getUser();
@@ -15,14 +18,21 @@ const Users = ({ navigation }) => {
 
   const getUser = async () => {
     const res = await Api.get(urls.GET_ALL_USERS);
+    setLoading(true);
+
     console.log("firstttt", res);
     if (res && res.success == true) {
       setuser(res.data);
+    setLoading(false);
+
     } else {
       _toast("something went wrong");
+    setLoading(false);
+
     }
   };
   return (
+    <>
     <Layout title={"Users"}>
       <Card>
         {user.length > 0
@@ -39,6 +49,12 @@ const Users = ({ navigation }) => {
           : null}
       </Card>
     </Layout>
+       {Loading?
+        <Loader/>
+          :
+          undefined
+       }
+       </>
   );
 };
 

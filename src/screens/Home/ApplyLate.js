@@ -9,9 +9,11 @@ import { _toast } from "../../constants/Index";
 import ResponsiveText from "../../components/RnText";
 import urls from "../../redux/lib/urls";
 import Api from "../../redux/lib/api";
+import { Grid } from "react-native-animated-spinkit";
+import Loader from "../../components/loader";
 const ApplyLate = ({navigation}) => {
   const [text, setText] = useState("");
-  const [Loading, setLoading] = useState("");
+  const [Loading, setLoading] = useState(false);
   const AddReason = async (id) => {
     const obj = {
       LateReason: text,
@@ -22,21 +24,24 @@ const ApplyLate = ({navigation}) => {
       return false;
     }
     setLoading(true);
+
     const res = await Api.post(urls.ADD_REASON_OF_LATE, obj);
     console.log("res", res);
     if (res && res.success == true) {
       setText("");
+      setLoading(false)
       _toast("submit successfully");
       setLoading(false);
       setTimeout(() => {
         navigation.goBack();
       }, 1000);
     } else {
-      setLoading(false);
+      setLoading(false)
       _toast("something went wrong");
     }
   };
   return (
+    <>
     <Layout title={"Apply for Late"}>
       <View style={{ marginTop: wp(10), marginHorizontal: wp(4) }}>
         <ResponsiveText size={3}>
@@ -83,8 +88,17 @@ const ApplyLate = ({navigation}) => {
             title={"Submit"}
           />
         </View>
+       
       </View>
+      {Loading?
+   <Loader/>
+     :
+     undefined
+  }
     </Layout>
+  
+    </>
+  
   );
 };
 
