@@ -1,7 +1,6 @@
 import React, { version } from "react";
 import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 import { colors } from "../constants/colorsPallet";
-import { globalPath } from "../constants/globalPath";
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 import moment from "moment";
