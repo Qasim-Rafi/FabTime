@@ -13,7 +13,7 @@ const CardView = (props) => {
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
       onPress={() =>
-        props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.data)
+        props.checkInTime ?null: props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.title)
       }
     >
       <View style={{ alignItems: "flex-end" }}>
@@ -26,7 +26,6 @@ const CardView = (props) => {
             height: wp(10),
             width: wp(10),
             resizeMode: "contain",
-            backgroundColor:'#eeeeee'
           }}
         />
         {props.checkInTime ? <View style={styles.Onlinebadge}></View> : null}
