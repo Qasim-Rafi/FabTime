@@ -25,6 +25,7 @@ const ResponsiveText = ({
   borderRightWidth,
   borderLeftWidth,
   justifyContent,
+  flexShrink,
   //sizes
   ...props
 }) => {
@@ -45,6 +46,7 @@ const ResponsiveText = ({
         
         cutText && { textDecorationLine: 'line-through' },
         { top: top },
+        {flexShrink:flexShrink},
         {fontWeight:weight},
         {flex:flex},
         { color: color },

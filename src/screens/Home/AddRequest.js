@@ -40,7 +40,7 @@ const AddRequests = ({ navigation ,route}) => {
     }
   };
   return (
-    <Layout title={"Add Request"}>
+    <Layout navigation={navigation} backbutton title={"Add Request"}>
       <View style={{ marginTop: hp(0) }}>
         <View
           style={{

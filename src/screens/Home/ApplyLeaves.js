@@ -85,7 +85,7 @@ const ApplyLeaves = (props) => {
     };
     return (
         <>
-        <Layout title={"Apply Leaves"}>
+        <Layout  navigation={props.navigation} backbutton title={"Apply Leaves"}>
             <View style={{ flexDirection: 'row', margin: 10 }}>
 
                 <CheckinBox onPress={showDAtepicker}

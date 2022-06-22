@@ -23,7 +23,7 @@ const Leaves = ({ navigation }) => {
   }, []);
   return (
     <>
-    <Layout title={"Leaves"}>
+    <Layout  navigation={navigation} backbutton title={"Leaves"}>
       <ScrollView>
         {LeavesData.length > 0
           ? LeavesData.map((item, index) => (
