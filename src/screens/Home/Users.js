@@ -17,8 +17,9 @@ const Users = ({ navigation }) => {
   }, []);
 
   const getUser = async () => {
-    const res = await Api.get(urls.GET_ALL_USERS);
     setLoading(true);
+
+    const res = await Api.get(urls.GET_ALL_USERS);
 
     console.log("firstttt", res);
     if (res && res.success == true) {
@@ -33,7 +34,7 @@ const Users = ({ navigation }) => {
   };
   return (
     <>
-    <Layout title={"Users"}>
+    <Layout  title={"Users"}>
       <Card>
         {user.length > 0
           ? user.map((item, index) =>

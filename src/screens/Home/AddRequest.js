@@ -8,6 +8,7 @@ import { colors } from "../../constants/colorsPallet";
 import { _toast } from "../../constants/Index";
 import urls from "../../redux/lib/urls";
 import Api from "../../redux/lib/api";
+import Loader from "../../components/loader";
 const AddRequests = ({ navigation ,route}) => {
   const [text, setText] = useState("");
   const [Loading, setLoading] = useState("");
@@ -40,7 +41,8 @@ const AddRequests = ({ navigation ,route}) => {
     }
   };
   return (
-    <Layout title={"Add Request"}>
+    <>
+    <Layout navigation={navigation} backbutton title={"Add Request"}>
       <View style={{ marginTop: hp(0) }}>
         <View
           style={{
@@ -114,6 +116,12 @@ const AddRequests = ({ navigation ,route}) => {
         </View>
       </View>
     </Layout>
+    {Loading?
+      <Loader/>
+        :
+        undefined
+     }
+     </>
   );
 };
 

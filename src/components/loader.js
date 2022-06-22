@@ -9,7 +9,8 @@ import {
     ImageBackground,
     ScrollView
 } from 'react-native';
-import { Grid } from 'react-native-animated-spinkit'
+import {Bounce } from 'react-native-animated-spinkit'
+import { Circle } from "react-native-svg";
 
 import { colors } from "../constants/colorsPallet";
 export default function Loader(props) {
@@ -27,7 +28,7 @@ return(
   flex: 1,
 }}
 >
-            <Grid size={48} color={colors.blue1} />
+            <Bounce size={48} color={colors.blue1} />
 
           </View>
 )

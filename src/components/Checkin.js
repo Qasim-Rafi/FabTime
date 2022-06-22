@@ -18,7 +18,6 @@ const Checkin = (props) => {
 
   //day == 0 && hour == 9 && minutes < 30 && minutes > 10 || day == 0 && hour == 9
 
-  console.log("first", props.userid);
 
   function chexk() {
     var now = new Date();

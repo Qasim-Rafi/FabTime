@@ -9,6 +9,7 @@ const Email = require("../assets/icons/email.png");
 const arrow = require("../assets/icons/arrow-dropdown.png");
 const user = require("../assets/icons/userlogo.png");
 const RecordNotFound = require("../assets/icons/rnf.png");
+const backArrow = require("../assets/icons/back1.png");
 
 
 
@@ -65,6 +66,6 @@ export const globalPath = {
   lateicon,
   leavebutton,
   leaveicon,
- RecordNotFound
-
+ RecordNotFound,
+ backArrow
 };

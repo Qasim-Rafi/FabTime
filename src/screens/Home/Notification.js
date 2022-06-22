@@ -3,9 +3,9 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { CardView, NotifationCard } from "../../components/cardView";
 
-const Notification = () => {
+const Notification = ({navigation}) => {
   return (
-    <Layout title={"Notification"}>
+    <Layout  navigation={navigation} backbutton title={"Notification"}>
       <NotifationCard />
     </Layout>
   );

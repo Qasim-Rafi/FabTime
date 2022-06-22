@@ -53,13 +53,24 @@ const Home = ({ navigation }) => {
     } else {
     }
   };
-
+  const CheckedOut = async () => {
+    const res = await Api.post(urls.CHECKOUT);
+    console.log("res", res);
+    if (res && res.success == true) {
+      // setData(res.data);
+      dispatch(getpresentTeam());
+      _toast("Checked Out");
+    } else {
+    }
+  };
   return (
     <Layout title={"Fabintel Team"} address>
       <View style={{ marginTop: "20%" }}>
         <Checkin
           time={CheckinTime}
-          onPress={() => CheckedIn()}
+          onPress={() =>
+            data.some((v) => v.userId == userid) ? CheckedOut() : CheckedIn()
+          }
           data={data}
           userid={userid}
         />

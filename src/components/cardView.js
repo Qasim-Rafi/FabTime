@@ -26,6 +26,7 @@ const CardView = (props) => {
             height: wp(10),
             width: wp(10),
             resizeMode: "contain",
+            backgroundColor:'#eeeeee'
           }}
         />
         {props.checkInTime ? <View style={styles.Onlinebadge}></View> : null}
