@@ -152,7 +152,7 @@ const Login = ({ navigation }) => {
                   height={hp(6.5)}
                   padding={[0, 0, 0, 25]}
                   margin={[20, 0, 5, 0]}
-                  // secureTextEntry
+                  secureTextEntry
                   onChnageText={(text) => setPassword(text)}
                   leftIcon={globalPath.Lock}
                 />

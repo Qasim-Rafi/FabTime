@@ -37,5 +37,6 @@ LogBox.ignoreLogs([
   "Warning: Each child in a",
   "Warning: Failed prop type",
   'Remote debugger',
-  'Require cycle:'
+  'Require cycle:',
+  'Non-serializable values were found in the navigation state',
 ]);
