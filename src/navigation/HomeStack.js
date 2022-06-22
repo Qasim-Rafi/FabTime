@@ -9,7 +9,7 @@ import Profile from "../screens/Home/Profile";
 import Leaves from "../screens/Home/Leaves";
 import Request from "../screens/Home/Request";
 import AddRequests from "../screens/Home/AddRequest";
-
+import EmployeProfile from "../screens/Home/EmployeProfile";
 const Stack = createNativeStackNavigator();
 
 function HomeStack() {
@@ -27,7 +27,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.LEAVES} component={Leaves} />
       <Stack.Screen name={routeName.REQUEST} component={Request} />
       <Stack.Screen name={routeName.ADDREQUEST} component={AddRequests} />
-
+      <Stack.Screen name={routeName.EMPLOYEE_PROFILE}component={EmployeProfile}/>
       <Stack.Screen name={routeName.PROFILE} component={Profile} />
     </Stack.Navigator>
   );

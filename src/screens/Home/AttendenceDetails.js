@@ -15,7 +15,8 @@ const AttendenceDetails = (props) => {
     return (
         <Layout navigation={props.navigation} backbutton username={data.fullName}  title={"Employess Detail"} profile titleSize={5}>
             <View style={{ flexDirection: 'row', marginVertical: 10, }}>
-                <CheckinBox onPress={() => props.navigation.navigate(routeName.EMPLOYEE_PROFILE,props.route.params)}
+                <CheckinBox 
+                onPress={() => props.navigation.navigate(routeName.EMPLOYEE_PROFILE,props.route.params)}
                     title='Check-In'
                     subTitle='10:30 AM'
                     titleColor={colors.black}

@@ -9,6 +9,7 @@ import { globalPath } from "../../constants/globalPath";
 import { colors } from "../../constants/colorsPallet";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
 import { useDispatch, useSelector } from "react-redux";
+import { routeName } from "../../constants/routeName";
 import {
   getUserAttendanceRecord,
   getUserProfile,
@@ -22,7 +23,7 @@ import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
 import { useState } from "react";
-const Profile = ({ navigation }) => {
+const Profile = (props,{navigation}) => {
   const [isLoading, setisLoading] = useState(false);
   const dispatch = useDispatch();
   const ProfileData = useSelector(
@@ -86,11 +87,12 @@ const Profile = ({ navigation }) => {
 
         />
 
-        <CheckinBox
+        <CheckinBox onPress={() => props.navigation.navigate(routeName.EMPLOYEE_PROFILE,ProfileData)}
           subTitle="Emoplyee card"
           tintColor={colors.blue1}
-          disabled={true}
+          disabled={false}
           source={globalPath.report}
+          
 
         />
       </View>
