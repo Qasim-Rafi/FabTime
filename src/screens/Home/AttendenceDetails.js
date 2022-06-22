@@ -6,16 +6,21 @@ import { AttendenceCard } from "../../components/cardView";
 import { CheckinBox } from "../../components/CheckinBox";
 import TabIcon from "../../components/TabIcon";
 import { colors } from "../../constants/colorsPallet";
+import { routeName } from "../../constants/routeName";
 
 const AttendenceDetails = (props) => {
+    const data=props.route.params;
+    
+    
     return (
-        <Layout username={props.route.params}  title={"Employess Detail"} profile titleSize={5}>
+        <Layout username={data.fullName} title={"Employess Detail"} profile titleSize={5}>
             <View style={{ flexDirection: 'row', marginVertical: 10, }}>
-                <CheckinBox
+                <CheckinBox onPress={() => props.navigation.navigate(routeName.EMPLOYEE_PROFILE,props.route.params)}
                     title='Check-In'
                     subTitle='10:30 AM'
                     titleColor={colors.black}
                     subTitlecolor={colors.green}
+                    disabled={false}
                 />
 
                 <CheckinBox
@@ -62,7 +67,7 @@ const AttendenceDetails = (props) => {
                     CircleColor={colors.yellow3}
                 />
             </View>
-            <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2,shadowRadius:10 }}>
+            <View style={{ backgroundColor: colors.white, borderRadius: 10, elevation: 10, shadowOpacity: 0.2, shadowRadius: 10 }}>
                 <AttendenceCard />
             </View>
         </Layout>

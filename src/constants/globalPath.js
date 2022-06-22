@@ -32,9 +32,13 @@ const latebutton = require("../assets/icons/late-button.png");
 const lateicon = require("../assets/icons/late-icon.png");
 const leavebutton = require("../assets/icons/leave-button.png");
 const leaveicon = require("../assets/icons/leave-icon.png");
+const EmployeProfile = require("../assets/icons/background.png");
+const EmployePic = require("../assets/icons/picture.png");
 
 export const globalPath = {
   logo,
+  EmployePic,
+  EmployeProfile,
   background,
   checkin,
   comp,

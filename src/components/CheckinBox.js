@@ -15,7 +15,7 @@ const CheckinBox = (props) => {
         size={3.8}
       
       > 
-       {moment(new Date(props.title)).format(" MMMM Do YYYY") }
+       {/* {moment(new Date(props.title)).format(" MMMM Do YYYY") } */}
         
       </ResponsiveText>
 
