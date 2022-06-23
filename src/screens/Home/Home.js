@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
+  PermissionsAndroid,
+  Platform,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -18,6 +20,8 @@ import { _toast } from "../../constants/Index";
 import { formatAMPM, getpresentTeam } from "../../redux/actions/user.actions";
 import { useDispatch, useSelector } from "react-redux";
 import AsyncStorage from "@react-native-community/async-storage";
+import WifiManager from "react-native-wifi-reborn";
+
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
@@ -27,11 +31,14 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     (async () => {
       var id = await AsyncStorage.getItem("@userId");
-      console.log("id", id);
+      // console.log("id", id);
       setUserid(Number(id));
     })();
     setCheckinTime(formatAMPM(new Date()));
     dispatch(getpresentTeam());
+    if (Platform.OS == "android") {
+      getSSDid();
+    }
   }, []);
 
   useEffect(() => {
@@ -61,6 +68,42 @@ const Home = ({ navigation }) => {
       dispatch(getpresentTeam());
       _toast("Checked Out");
     } else {
+    }
+  };
+  const getSSDid = async () => {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: "Location permission is required for WiFi connections",
+        message:
+          "This app needs location permission as this is required  " +
+          "to scan for wifi networks.",
+        buttonNegative: "DENY",
+        buttonPositive: "ALLOW",
+      }
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      // You can now use react-native-wifi-reborn
+
+      // WifiManager.connectToProtectedSSID(ssid, password, isWep).then(
+      //   () => {
+      //     console.log("Connected successfully!");
+      //   },
+      //   () => {
+      //     console.log("Connection failed!");
+      //   }
+      // );
+
+      WifiManager.getCurrentWifiSSID().then(
+        (ssid) => {
+          console.log("Your current connected wifi SSID is " + ssid);
+        },
+        () => {
+          console.log("Cannot get current SSID!");
+        }
+      );
+    } else {
+      // Permission denied
     }
   };
   return (
