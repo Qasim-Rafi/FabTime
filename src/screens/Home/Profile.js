@@ -9,20 +9,22 @@ import { globalPath } from "../../constants/globalPath";
 import { colors } from "../../constants/colorsPallet";
 import Responsiveness, { hp, wp } from "../../helpers/Responsiveness";
 import { useDispatch, useSelector } from "react-redux";
+import { routeName } from "../../constants/routeName";
 import {
   getUserAttendanceRecord,
   getUserProfile,
 } from "../../redux/actions/user.actions";
 import Loader from "../../components/loader";
-
+import {PreView} from '../../constants/Index'
 import { _toast } from "../../constants/Index";
 import AsyncStorage from "@react-native-community/async-storage";
 import { StackActions } from "@react-navigation/native";
 import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
-
-const Profile = ({ navigation }) => {
+import { useState } from "react";
+const Profile = (props,{navigation}) => {
+  const [isLoading, setisLoading] = useState(false);
   const dispatch = useDispatch();
   const ProfileData = useSelector(
     (state) => state.userReducers.getProfileData.data
@@ -62,6 +64,8 @@ const Profile = ({ navigation }) => {
   return (
     <>
     <Layout
+    navigation={navigation}
+    backbutton
       userimg={ProfileData.fullPath}
       Field={"React native developer"}
       username={ProfileData.username}
@@ -74,23 +78,27 @@ const Profile = ({ navigation }) => {
     >
       <View style={{ flexDirection: "row", margin: 10 }}>
         <CheckinBox
-          title={ProfileData.createdDateTime}
-          subTitle="Join Date"
-          titleColor={colors.blue}
-          disabled={true}
+          subTitle="Resume"
+          ti
+          onPress={()=>PreView(setisLoading)}
+          disabled={false}
+          tintColor={colors.yellow1}
+          source={globalPath.report}
+
         />
 
-        <CheckinBox
-          title={ProfileData.createdDateTime}
-          subTitle="Net Salary"
-          titleColor={colors.blue}
-          disabled={true}
+        <CheckinBox onPress={() => props.navigation.navigate(routeName.EMPLOYEE_PROFILE,ProfileData)}
+          subTitle="Emoplyee card"
+          tintColor={colors.blue1}
+          disabled={false}
+          source={globalPath.report}
+          
+
         />
       </View>
       <View>
         <ResponsiveText
           margin={[0, 0, 0, 8]}
-          // fontFamily={Fonts.LightItalic}
           size={5}
           color={colors.blue1}
         >
@@ -139,7 +147,7 @@ const Profile = ({ navigation }) => {
         </ScrollView>
       </Card>
     </Layout>
-     {Loading?
+     {isLoading||Loading?
       <Loader/>
         :
         undefined

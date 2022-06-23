@@ -28,7 +28,7 @@ const initialState = {
   },
   getAttendenceCount: {
     refreshing: false,
-    data: [],
+    data: {},
   },
   getProfileData:{
     refreshing: false,

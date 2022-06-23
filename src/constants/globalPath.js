@@ -9,6 +9,7 @@ const Email = require("../assets/icons/email.png");
 const arrow = require("../assets/icons/arrow-dropdown.png");
 const user = require("../assets/icons/userlogo.png");
 const RecordNotFound = require("../assets/icons/rnf.png");
+const backArrow = require("../assets/icons/back1.png");
 
 
 
@@ -32,9 +33,13 @@ const latebutton = require("../assets/icons/late-button.png");
 const lateicon = require("../assets/icons/late-icon.png");
 const leavebutton = require("../assets/icons/leave-button.png");
 const leaveicon = require("../assets/icons/leave-icon.png");
+const EmployeProfile = require("../assets/icons/background.png");
+const EmployePic = require("../assets/icons/picture.png");
 
 export const globalPath = {
   logo,
+  EmployePic,
+  EmployeProfile,
   background,
   checkin,
   comp,
@@ -61,6 +66,6 @@ export const globalPath = {
   lateicon,
   leavebutton,
   leaveicon,
- RecordNotFound
-
+ RecordNotFound,
+ backArrow
 };

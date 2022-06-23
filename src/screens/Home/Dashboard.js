@@ -104,7 +104,7 @@ const Dashboard = ({ navigation }) => {
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>
             <View style={styles.container1}>
-              <Graph />
+              <Graph data={DashCount}  />
             </View>
             <Card flexDirection={"row"}>
               <TabIcon
