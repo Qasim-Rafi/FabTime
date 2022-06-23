@@ -10,6 +10,7 @@ const arrow = require("../assets/icons/arrow-dropdown.png");
 const user = require("../assets/icons/userlogo.png");
 const RecordNotFound = require("../assets/icons/rnf.png");
 const backArrow = require("../assets/icons/back1.png");
+const Camera = require("../assets/icons/Cameraa.png");
 
 
 
@@ -60,6 +61,7 @@ export const globalPath = {
   requests,
   payslip,
   checkinbtn,
+  Camera,
   checkoutbtn,
   defaultcheckin,
   latebutton,
