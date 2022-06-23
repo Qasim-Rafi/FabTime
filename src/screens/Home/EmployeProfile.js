@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Layout from '../../components/Layout'
 import { globalPath } from '../../constants/globalPath'
@@ -8,16 +8,22 @@ import { TextProfile } from '../../components/TextProfile'
 import { colors } from '../../constants/colorsPallet'
 
 const EmployeProfile = (props) => {
-    const data=props.route.params;
+    const data = props.route.params;
     console.log('datasssssssss', data)
     return (
         // <Layout title={'Profile'}></Layout>
         <ImageBackground
+
             source={globalPath.EmployeProfile}
             resizeMode="cover"
             style={styles.image}
         >
-
+           
+            <TouchableOpacity style={{marginTop: '8%',marginRight:'80%'}}
+             onPress={() => props.navigation.goBack()}>
+                <Icon size={20} margin={[10, 0, 0, 0]} source={globalPath.backArrow}/>
+            </TouchableOpacity>
+            
             <Icon
                 source={globalPath.EmployePic}
                 resizeMode='contain'
@@ -25,6 +31,7 @@ const EmployeProfile = (props) => {
             >
 
             </Icon>
+            
             <View style={{
                 backgroundColor: colors.blue1,
                 width: wp(60),
@@ -47,7 +54,7 @@ const EmployeProfile = (props) => {
                 size={4}
                 weight={'bold'}
             />
-            <View style={{ flexDirection: 'row',marginTop:10}}>
+            <View style={{ flexDirection: 'row', marginTop: 10 }}>
                 <View style={styles.Text}>
                     <TextProfile
 
@@ -140,7 +147,7 @@ const EmployeProfile = (props) => {
                 <View style={styles.Text2}>
                     <TextProfile
                         // margin={[14, 0, 0, 60]}
-                        Title={data.gender?data.gender:'Male'}
+                        Title={data.gender ? data.gender : 'Male'}
                         color={colors.white}
                         size={3.2}
                     />
@@ -159,7 +166,7 @@ const EmployeProfile = (props) => {
                 <View style={styles.Text2}>
                     <TextProfile
                         // margin={[14, 0, 0, 60]}
-                        Title={data.dateofBirth?dateofBirth:'01-02-2000'}
+                        Title={data.dateofBirth ? dateofBirth : '01-02-2000'}
                         color={colors.white}
                         size={3.2}
                     />
@@ -203,7 +210,7 @@ const EmployeProfile = (props) => {
                     />
                 </View>
             </View>
-            <View style={{justifyContent:'center',height:hp(10)}}>
+            <View style={{ justifyContent: 'center', height: hp(10) }}>
                 <TextProfile
                     // margin={[14, 0, 0, 60]}
                     Title='www.fabintel.com'
@@ -225,17 +232,17 @@ const styles = StyleSheet.create({
     EmployePic: {
         height: hp(32),
         width: wp(60),
-        marginTop: hp(10)
+        marginTop: hp(1)
     },
     Text: {
         flex: 1,
         justifyContent: "center",
-        paddingLeft:'15%'
+        paddingLeft: '15%'
     },
     Text2:
     {
         flex: 1,
-        justifyContent: "center",  
+        justifyContent: "center",
         padding: 5
     }
 })
