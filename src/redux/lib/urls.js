@@ -20,7 +20,7 @@ export default urls = {
   ADD_APPLY_LEAVE: "/api/Leave/AddLeave",
   GET_USER_PROFILE: "/api/Users/GetUsersById/",
   GET_ALL_USERS: "/api/Users/GetUsers",
-  GET_MONTHLY_ATTENDANCE_OF_USER:"/api/Attendence/GetMonthlyAttendenceById?Monthid=6",
+  GET_MONTHLY_ATTENDANCE_OF_USER:"/api/Attendence/GetMonthlyAttendenceById/id/userid?Monthid=6",
   GET_REQUESTS:'/api/RequestItems/GetRequestItemsAll',
   ADD_REQUEST:'/api/RequestItems/AddRequestItems'
 };

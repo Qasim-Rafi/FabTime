@@ -23,7 +23,7 @@ import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
 import { useState } from "react";
-const Profile = (props,{navigation}) => {
+const Profile = (props) => {
   const [isLoading, setisLoading] = useState(false);
   const dispatch = useDispatch();
   const ProfileData = useSelector(
@@ -56,7 +56,7 @@ const Profile = (props,{navigation}) => {
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
 
-          navigation.dispatch(StackActions.replace("Auth"));
+          props.navigation.dispatch(StackActions.replace("Auth"));
         },
       },
     ]);
@@ -64,7 +64,7 @@ const Profile = (props,{navigation}) => {
   return (
     <>
     <Layout
-    navigation={navigation}
+    navigation={props.navigation}
     backbutton
       userimg={ProfileData.fullPath}
       Field={"React native developer"}
