@@ -23,7 +23,7 @@ import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
 import { useState } from "react";
-const Profile = (props) => {
+const Profile = (props,{navigation}) => {
   const [isLoading, setisLoading] = useState(false);
   const dispatch = useDispatch();
   const ProfileData = useSelector(
@@ -56,7 +56,7 @@ const Profile = (props) => {
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
 
-          props.navigation.dispatch(StackActions.replace("Auth"));
+          navigation.dispatch(StackActions.replace("Auth"));
         },
       },
     ]);
@@ -64,7 +64,7 @@ const Profile = (props) => {
   return (
     <>
     <Layout
-    navigation={props.navigation}
+    navigation={navigation}
     backbutton
       userimg={ProfileData.fullPath}
       Field={"React native developer"}
@@ -79,7 +79,6 @@ const Profile = (props) => {
       <View style={{ flexDirection: "row", margin: 10 }}>
         <CheckinBox
           subTitle="Resume"
-          ti
           onPress={()=>PreView(setisLoading)}
           disabled={false}
           tintColor={colors.yellow1}

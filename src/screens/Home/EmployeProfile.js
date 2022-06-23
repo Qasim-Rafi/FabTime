@@ -6,7 +6,7 @@ import Icon from '../../components/Icon'
 import { hp, wp } from '../../helpers/Responsiveness'
 import { TextProfile } from '../../components/TextProfile'
 import { colors } from '../../constants/colorsPallet'
-
+ import { isImage } from "../../constants/Index";
 const EmployeProfile = (props) => {
     const data = props.route.params;
     console.log('datasssssssss', data)
@@ -18,20 +18,21 @@ const EmployeProfile = (props) => {
             resizeMode="cover"
             style={styles.image}
         >
-           
-            <TouchableOpacity style={{marginTop: '8%',marginRight:'80%'}}
-             onPress={() => props.navigation.goBack()}>
-                <Icon size={20} margin={[10, 0, 0, 0]} source={globalPath.backArrow}/>
+
+            <TouchableOpacity style={{ marginTop: '8%', marginRight: '80%' }}
+                onPress={() => props.navigation.goBack()}>
+                <Icon size={20} margin={[10, 0, 0, 0]} source={globalPath.backArrow} />
             </TouchableOpacity>
-            
+
             <Icon
-                source={globalPath.EmployePic}
+                source={isImage(props.userimg)? { uri: props.userimg }
+                : globalPath.user}
                 resizeMode='contain'
                 style={styles.EmployePic}
             >
 
             </Icon>
-            
+
             <View style={{
                 backgroundColor: colors.blue1,
                 width: wp(60),
@@ -88,7 +89,7 @@ const EmployeProfile = (props) => {
                 </View>
                 <View style={styles.Text2}>
                     <TextProfile
-                        // margin={[14, 0, 0, 60]}
+                        
                         Title='000-0000-0000'
                         color={colors.white}
                         size={3.2}
@@ -98,7 +99,7 @@ const EmployeProfile = (props) => {
             <View style={{ flexDirection: 'row' }}>
                 <View style={styles.Text}>
                     <TextProfile
-                        // margin={[10, 0, 0, 0]}
+                        
                         Title='Email'
                         color={colors.white}
                         size={4}
@@ -108,7 +109,7 @@ const EmployeProfile = (props) => {
                 </View>
                 <View style={styles.Text2}>
                     <TextProfile
-                        // margin={[14, 0, 0, 60]}
+                        
                         Title={data.email}
                         color={colors.white}
                         size={3.2}
@@ -118,7 +119,7 @@ const EmployeProfile = (props) => {
             <View style={{ flexDirection: 'row', }}>
                 <View style={styles.Text}>
                     <TextProfile
-                        // margin={[10, 0, 0, 0]}
+                       
                         Title='Contact'
                         color={colors.white}
                         size={4}
@@ -127,7 +128,7 @@ const EmployeProfile = (props) => {
                 </View>
                 <View style={styles.Text2}>
                     <TextProfile
-                        // margin={[14, 0, 0, 60]}
+                        
                         Title={data.contactNumber}
                         color={colors.white}
                         size={3.2}
@@ -137,7 +138,7 @@ const EmployeProfile = (props) => {
             <View style={{ flexDirection: 'row', }}>
                 <View style={styles.Text}>
                     <TextProfile
-                        // margin={[10, 0, 0, 0]}
+                       
                         Title='Gender'
                         color={colors.white}
                         size={4}
@@ -146,7 +147,7 @@ const EmployeProfile = (props) => {
                 </View>
                 <View style={styles.Text2}>
                     <TextProfile
-                        // margin={[14, 0, 0, 60]}
+                        
                         Title={data.gender ? data.gender : 'Male'}
                         color={colors.white}
                         size={3.2}
@@ -156,7 +157,7 @@ const EmployeProfile = (props) => {
             <View style={{ flexDirection: 'row', }}>
                 <View style={styles.Text}>
                     <TextProfile
-                        // margin={[10, 0, 0, 0]}
+                        
                         Title='DOB'
                         color={colors.white}
                         size={4}
@@ -165,7 +166,7 @@ const EmployeProfile = (props) => {
                 </View>
                 <View style={styles.Text2}>
                     <TextProfile
-                        // margin={[14, 0, 0, 60]}
+                       
                         Title={data.dateofBirth ? dateofBirth : '01-02-2000'}
                         color={colors.white}
                         size={3.2}
@@ -175,7 +176,7 @@ const EmployeProfile = (props) => {
             <View style={{ flexDirection: 'row', }}>
                 <View style={styles.Text}>
                     <TextProfile
-                        // margin={[10, 0, 0, 0]}
+                      
                         Title='State Name'
                         color={colors.white}
                         size={4}
@@ -184,7 +185,7 @@ const EmployeProfile = (props) => {
                 </View>
                 <View style={styles.Text2}>
                     <TextProfile
-                        // margin={[14, 0, 0, 60]}
+                      
                         Title='Punjab'
                         color={colors.white}
                         size={3.2}
@@ -194,7 +195,7 @@ const EmployeProfile = (props) => {
             <View style={{ flexDirection: 'row', }}>
                 <View style={styles.Text}>
                     <TextProfile
-                        // margin={[10, 0, 0, 0]}
+                        
                         Title='Country'
                         color={colors.white}
                         size={4}
@@ -203,7 +204,7 @@ const EmployeProfile = (props) => {
                 </View>
                 <View style={styles.Text2}>
                     <TextProfile
-                        // margin={[14, 0, 0, 60]}
+                        
                         Title='Pakistan'
                         color={colors.white}
                         size={3.2}
@@ -212,7 +213,7 @@ const EmployeProfile = (props) => {
             </View>
             <View style={{ justifyContent: 'center', height: hp(10) }}>
                 <TextProfile
-                    // margin={[14, 0, 0, 60]}
+                   
                     Title='www.fabintel.com'
                     color={colors.white}
                     size={5}
@@ -232,7 +233,8 @@ const styles = StyleSheet.create({
     EmployePic: {
         height: hp(32),
         width: wp(60),
-        marginTop: hp(1)
+        marginTop: hp(1),
+        backgroundColor:colors.grey
     },
     Text: {
         flex: 1,
