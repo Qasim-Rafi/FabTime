@@ -21,6 +21,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Grid } from "react-native-animated-spinkit";
 import Loader from "../../components/loader";
 import RecordNotFound from "../../components/RecordnotFound";
+import { isImage } from "../../constants/Index";
 
 const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ const Dashboard = ({ navigation }) => {
   const Loading = useSelector((state) => state.userReducers.presentTeam.refreshing);
   const DashCount = useSelector(
     (state) => state.userReducers.getAttendenceCount.data
+  );
+  const ProfileData = useSelector(
+    (state) => state.userReducers.getProfileData.data
   );
   console.log("DashCount", data);
   const [loader, setLoader] = React.useState(true);
@@ -65,7 +69,8 @@ const Dashboard = ({ navigation }) => {
                 style={{ backgroundColor: colors.white }}
                 borderRadius={20}
                 size={35}
-                source={globalPath.user}
+                              source={isImage(ProfileData.fullPath)?{uri:ProfileData.fullPath}:globalPath.user}
+
               />
               <View
                 style={{

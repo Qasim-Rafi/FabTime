@@ -32,6 +32,7 @@ const Layout = (props) => {
               disabled={!props.disabled ? props.disabled : true}
               onPress={props.onPress}
             >
+              
               <Image
                 source={props.source}
                 style={{
