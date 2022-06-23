@@ -34,6 +34,7 @@ const Dashboard = ({ navigation }) => {
     (state) => state.userReducers.getProfileData.data
   );
   console.log("DashCount", data);
+  console.log("DashCount", DashCount);
   const [loader, setLoader] = React.useState(true);
 
   useEffect(() => {
