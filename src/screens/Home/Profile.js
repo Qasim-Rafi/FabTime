@@ -23,7 +23,8 @@ import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
 import { useState } from "react";
-const Profile = (props,{navigation}) => {
+const Profile = (props) => {
+  
   const [isLoading, setisLoading] = useState(false);
   const dispatch = useDispatch();
   const ProfileData = useSelector(
@@ -67,6 +68,7 @@ const Profile = (props,{navigation}) => {
     navigation={navigation}
     backbutton
       userimg={ProfileData.fullPath}
+      camera={globalPath.Camera}
       Field={"React native developer"}
       username={ProfileData.username}
       title={"Profile"}
