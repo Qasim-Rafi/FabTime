@@ -119,11 +119,11 @@ const Layout = (props) => {
             </TouchableOpacity>
           </View>
           <View style={{flexDirection:'row'}}>
-          {props.source?
+          {props.location?
           <Icon
               size={20}
               margin={[5, 4, 0, 25]}
-              source={props.source}
+              source={props.location}
             />
           :null}
           {props.address ? (

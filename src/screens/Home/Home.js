@@ -117,7 +117,7 @@ const Home = ({ navigation }) => {
     }
   };
   return (
-    <Layout title={"FabIntel Team"} address  source={globalPath.location} >
+    <Layout title={"FabIntel Team"} address  location={globalPath.location} >
       <View style={{ marginTop: "20%" }}>
         <Checkin
           time={CheckinTime}

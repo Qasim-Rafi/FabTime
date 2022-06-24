@@ -70,7 +70,7 @@ const Dashboard = ({ navigation }) => {
                 style={{ backgroundColor: colors.white }}
                 borderRadius={20}
                 size={35}
-                              source={isImage(ProfileData.fullPath)?{uri:ProfileData.fullPath}:globalPath.user}
+                 source={isImage(ProfileData.fullPath)?{uri:ProfileData.fullPath}:globalPath.user}
 
               />
               <View
