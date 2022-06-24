@@ -19,6 +19,7 @@ import RnText from "../../../components/RnText";
 
 // import Icon from "../../../components/Icon";
 import { useDispatch } from "react-redux";
+import ResponsiveText from "../../../components/RnText";
 // import { getBfaPartners } from "../../../redux/actions/user.actions";
 
 const Splash = ({ navigation }) => {
@@ -66,7 +67,13 @@ const Splash = ({ navigation }) => {
     <View style={styles.container}>
       <ImageBackground source={globalPath.splashBackgroung} resizeMode={'cover'} style={styles.image}>
         <Image style={styles.logo} source={globalPath.logo} />
+        <View style={styles.footerContainer}>
+          <RnText color={colors.black} fontFamily={Fonts.LightItalic}
+          >Powered by  </RnText>
+          <Image style={styles.poweredLogo} source={globalPath.CompanyLogo} />
+        </View>
       </ImageBackground>
+     
     </View>
   );
 };
