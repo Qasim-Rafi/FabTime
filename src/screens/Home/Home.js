@@ -77,7 +77,7 @@ const Home = ({ navigation }) => {
     }
   };
   const getSSDid = async () => {
-    // WifiManager.connectToProtectedSSID(ssid, password, isWep).then(
+    // WifiManager.connectToProtectedSSID('FabIntel', 'Fab1nt3l', false).then(
     //   () => {
     //     console.log("Connected successfully!");
     //   },
