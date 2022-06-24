@@ -11,6 +11,7 @@ const user = require("../assets/icons/userlogo.png");
 const RecordNotFound = require("../assets/icons/rnf.png");
 const backArrow = require("../assets/icons/back1.png");
 const Camera = require("../assets/icons/Cameraa.png");
+const CompanyLogo = require("../assets/icons/poweredbyogo.png");
 
 
 
@@ -38,7 +39,7 @@ const EmployeProfile = require("../assets/icons/background.png");
 const EmployePic = require("../assets/icons/picture.png");
 
 export const globalPath = {
-  logo,
+  logo,CompanyLogo,
   EmployePic,
   EmployeProfile,
   background,
