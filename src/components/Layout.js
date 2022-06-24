@@ -3,41 +3,78 @@ import { StyleSheet, View, Image, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Fonts from "../helpers/Fonts";
 import { colors } from "../constants/colorsPallet";
+import { _toast } from "../constants/Index";
+
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 import { globalPath } from "../constants/globalPath";
 import { isImage } from "../constants/Index";
 import Icon from "./Icon";
-import ImagePicker  from 'react-native-image-crop-picker'
+import ImagePicker from "react-native-image-crop-picker";
+import urls from "../redux/lib/urls";
+import Api from "../redux/lib/api";
+import { useSelector } from "react-redux";
+import { getUserProfile } from "../redux/actions/user.actions";
 const Layout = (props) => {
-  const toggel=()=>{
-    Alert.alert(
-      "Profile Image",
-      "change profile Image",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        {
-          text: "Select from gallary", onPress: async () => {
-            takephotofromgallary()
+  const [Loading, setLoading] = useState(false);
+
+  const ProfileData = useSelector(
+    (state) => state.userReducers.getProfileData.data
+  );
+  const [image, setImage] = useState(null);
+  const addPhoto = async (image) => {
+    var formData = new FormData();
+    formData.append(
+      "ImageData",
+      image == null
+        ? null
+        : {
+            uri: image.path,
+            type: "image/jpeg",
+            name: "photo.jpg",
           }
-        }
-      ]
     );
-  }
+    console.log("found data", formData);
+
+    // setLoading(true);
+    const res = await Api.put(urls.ADD_PROFILE_PIC + ProfileData.id, formData);
+    console.log("res", res);
+    if (res && res.success == true) {
+      dispatch(getUserProfile());
+      _toast("profile update successfully");
+      // setLoading(false);
+    } else {
+      _toast("Something went wrong");
+
+      // setLoading(false);
+    }
+  };
+  const toggel = () => {
+    Alert.alert("Profile Image", "change profile Image", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      {
+        text: "Select from gallary",
+        onPress: async () => {
+          takephotofromgallary();
+        },
+      },
+    ]);
+  };
   const takephotofromgallary = () => {
-    
     ImagePicker.openPicker({
       width: 300,
       height: 400,
-      cropping: true
-    }).then(image => {
-      console.log(image);
+      cropping: true,
+    }).then((image) => {
+      addPhoto(image);
+      setImage(image);
+      console.log(image, "image working");
     });
-  }
+  };
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
@@ -45,17 +82,20 @@ const Layout = (props) => {
           <View
             style={{
               flexDirection: "row",
-              justifyContent: 'space-between',
+              justifyContent: "space-between",
               marginTop: 10,
               marginLeft: 30,
             }}
           >
-            {
-              props.backbutton ?
-                <TouchableOpacity onPress={() => props.navigation.goBack()}>
-                  <Icon size={18} margin={[5, 0, 0, 0]} source={globalPath.backArrow} />
-                </TouchableOpacity>
-                : null}
+            {props.backbutton ? (
+              <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                <Icon
+                  size={18}
+                  margin={[5, 0, 0, 0]}
+                  source={globalPath.backArrow}
+                />
+              </TouchableOpacity>
+            ) : null}
             <ResponsiveText
               fontFamily={Fonts.Bold}
               margin={[0, 0, 0, 10]}
@@ -64,21 +104,19 @@ const Layout = (props) => {
             >
               {props.title}
             </ResponsiveText>
-            {/* <TouchableOpacity
+            <TouchableOpacity
               disabled={!props.disabled ? props.disabled : true}
               onPress={props.onPress}
             >
-            </TouchableOpacity> */}
-
-            <Image
-              source={props.source}
-              style={{
-                height: wp(7),
-                width: wp(18),
-                resizeMode: "contain",
-              }}
-            />
-           
+              <Image
+                source={props.source}
+                style={{
+                  height: wp(7),
+                  width: wp(18),
+                  resizeMode: "contain",
+                }}
+              />
+            </TouchableOpacity>
           </View>
 
           {props.address ? (
@@ -101,24 +139,32 @@ const Layout = (props) => {
                   marginTop: 10,
                 }}
               >
-             {props.camera ?
-              <TouchableOpacity style={{zIndex:1,position:'absolute', borderRadius: 30 }} onPress={()=>toggel()}>
-                <Icon size={30} 
-                  source={props.camera} />
-              </TouchableOpacity>
-              : null}
+                {props.camera ? (
+                  <TouchableOpacity
+                    style={{
+                      zIndex: 1,
+                      position: "absolute",
+                      borderRadius: 30,
+                    }}
+                    onPress={() => toggel()}
+                  >
+                    <Icon size={30} source={props.camera} />
+                  </TouchableOpacity>
+                ) : null}
                 <Image
                   source={
-                    isImage(props.userimg)
-                      ? { uri: props.userimg }
-                      : globalPath.user
+                    image == null
+                      ? props.userimg
+                        ? { uri: props.userimg }
+                        : globalPath.user
+                      : { uri: image.path }
                   }
                   style={{
                     borderRadius: 70,
                     height: wp(30),
                     width: wp(30),
-                    resizeMode: "contain",
-                    backgroundColor: colors.white
+                    // resizeMode: "contain",
+                    backgroundColor: colors.white,
                   }}
                 />
                 {/* <View style={styles.Onlinebadge}></View> */}
@@ -194,6 +240,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 10,
     bottom: 20,
-    right: 10
+    right: 10,
   },
 });

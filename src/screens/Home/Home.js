@@ -37,6 +37,8 @@ const Home = ({ navigation }) => {
     setCheckinTime(formatAMPM(new Date()));
     dispatch(getpresentTeam());
     if (Platform.OS == "android") {
+      permissons();
+    } else {
       getSSDid();
     }
   }, []);
@@ -71,6 +73,25 @@ const Home = ({ navigation }) => {
     }
   };
   const getSSDid = async () => {
+    // WifiManager.connectToProtectedSSID(ssid, password, isWep).then(
+    //   () => {
+    //     console.log("Connected successfully!");
+    //   },
+    //   () => {
+    //     console.log("Connection failed!");
+    //   }
+    // );
+
+    WifiManager.getCurrentWifiSSID().then(
+      (ssid) => {
+        console.log("Your current connected wifi SSID is " + ssid);
+      },
+      () => {
+        console.log("Cannot get current SSID!");
+      }
+    );
+  };
+  const permissons = async () => {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       {
@@ -84,25 +105,9 @@ const Home = ({ navigation }) => {
     );
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       // You can now use react-native-wifi-reborn
-
-      // WifiManager.connectToProtectedSSID(ssid, password, isWep).then(
-      //   () => {
-      //     console.log("Connected successfully!");
-      //   },
-      //   () => {
-      //     console.log("Connection failed!");
-      //   }
-      // );
-
-      WifiManager.getCurrentWifiSSID().then(
-        (ssid) => {
-          console.log("Your current connected wifi SSID is " + ssid);
-        },
-        () => {
-          console.log("Cannot get current SSID!");
-        }
-      );
+      getSSDid();
     } else {
+      _toast('Premission denied')
       // Permission denied
     }
   };

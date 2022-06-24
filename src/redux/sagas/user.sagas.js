@@ -118,7 +118,7 @@ function* getUserAttendanceRecordApi(data) {
   const profileId= yield AsyncStorage.getItem("@userId");
 
   try {
-    const response = yield Api.get(urls.GET_MONTHLY_ATTENDANCE_OF_USER+'&userid='+profileId);
+    const response = yield Api.get(urls.GET_MONTHLY_ATTENDANCE_OF_USER+'/'+profileId);
     if (response && response.data != null) {
       yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_SUCCESS, payload: response.data });
     } else {

@@ -9,7 +9,6 @@ import { _toast } from "../../constants/Index";
 import ResponsiveText from "../../components/RnText";
 import urls from "../../redux/lib/urls";
 import Api from "../../redux/lib/api";
-import { Grid } from "react-native-animated-spinkit";
 import Loader from "../../components/loader";
 const ApplyLate = ({navigation}) => {
   const [text, setText] = useState("");
@@ -25,7 +24,7 @@ const ApplyLate = ({navigation}) => {
     }
     setLoading(true);
 
-    const res = await Api.post(urls.ADD_REASON_OF_LATE, obj);
+    const res = await Api.put(urls.ADD_REASON_OF_LATE, obj);
     console.log("res", res);
     if (res && res.success == true) {
       setText("");
@@ -90,7 +89,7 @@ const ApplyLate = ({navigation}) => {
         </View>
        
       </View>
-      {Loading?
+      {false?
    <Loader/>
      :
      undefined

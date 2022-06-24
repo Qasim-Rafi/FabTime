@@ -42,6 +42,7 @@ const Profile = (props) => {
     dispatch(getUserProfile());
     dispatch(getUserAttendanceRecord());
   }, []);
+  
   const logout = () => {
     Alert.alert("Logout", "Confirm Logout", [
       {
@@ -57,7 +58,7 @@ const Profile = (props) => {
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
 
-          navigation.dispatch(StackActions.replace("Auth"));
+          props.navigation.dispatch(StackActions.replace("Auth"));
         },
       },
     ]);
@@ -65,7 +66,7 @@ const Profile = (props) => {
   return (
     <>
     <Layout
-    navigation={navigation}
+    navigation={props.navigation}
     backbutton
       userimg={ProfileData.fullPath}
       camera={globalPath.Camera}
