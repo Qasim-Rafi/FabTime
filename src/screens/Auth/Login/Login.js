@@ -64,8 +64,9 @@ const Login = ({ navigation }) => {
   const getCompanies = async () => {
     try {
       const res = await Api.get(urls.GET_ALL_COMPANIES);
-      // console.log("get compsnies", res);
+      console.log("get compsnies", res);
       if (res && res.success == true) {
+        setData(res.data)
       } else {
       }
     } catch (error) {}
@@ -129,7 +130,7 @@ const Login = ({ navigation }) => {
                 Enter your phone number or Email address for sign in.
               </ResponsiveText>
               <View style={{ marginTop: hp(5), marginHorizontal: wp(5) }}>
-                <DropDown
+                {/* <DropDown
                   data={data.map((v)=>v.name)}
                   defaultButtonText={"Select Your company"}
                   leftIcon={globalPath.arrow}
@@ -138,7 +139,7 @@ const Login = ({ navigation }) => {
                   // onSelect={(item) => {
                   //   console.log("school", item);
                   //   setSchool(item);
-                />
+                /> */}
 
                 <Input
                   placeholder={"Email or phone number"}

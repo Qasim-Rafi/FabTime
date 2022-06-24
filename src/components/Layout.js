@@ -98,8 +98,8 @@ const Layout = (props) => {
             ) : null}
             <ResponsiveText
               fontFamily={Fonts.Bold}
-              margin={[0, 0, 0, 10]}
-              size={props.titleSize ? props.titleSize : 6}
+              margin={[0, 0, 0,0]}
+              size={props.titleSize ? props.titleSize : 8}
               color={colors.white}
             >
               {props.title}
@@ -118,18 +118,27 @@ const Layout = (props) => {
               />
             </TouchableOpacity>
           </View>
-
+          <View style={{flexDirection:'row'}}>
+          {props.location?
+          <Icon
+              size={20}
+              margin={[5, 4, 0, 25]}
+              source={props.location}
+            />
+          :null}
           {props.address ? (
             <ResponsiveText
-              margin={[0, 0, 0, 30]}
+              margin={[5, 0, 0,0]}
               fontFamily={Fonts.Bold}
               size={3.5}
               color={colors.white}
             >
               {/* {props.address} */}
-              fabintel international lahore, pakistan
+              FabIntel international lahore, pakistan
             </ResponsiveText>
           ) : null}
+          </View>
+          
           {props.profile ? (
             <View>
               <View

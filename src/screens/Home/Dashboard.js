@@ -56,12 +56,12 @@ const Dashboard = ({ navigation }) => {
             }}
           >
             <ResponsiveText
-              // margin={[20, 0, 0, 30]}
+              margin={[0, 0, 0, wp(3)]}
               fontFamily={Fonts.Bold}
               size={8}
               color={colors.white}
             >
-              Fabintel
+              FabIntel
             </ResponsiveText>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.PROFILE)}
@@ -70,7 +70,7 @@ const Dashboard = ({ navigation }) => {
                 style={{ backgroundColor: colors.white }}
                 borderRadius={20}
                 size={35}
-                              source={isImage(ProfileData.fullPath)?{uri:ProfileData.fullPath}:globalPath.user}
+                 source={isImage(ProfileData.fullPath)?{uri:ProfileData.fullPath}:globalPath.user}
 
               />
               <View
@@ -98,7 +98,7 @@ const Dashboard = ({ navigation }) => {
               size={3.5}
               color={colors.white}
             >
-              fabintel international lahore, pakistan
+              FabIntel international lahore, pakistan
             </ResponsiveText>
           </View>
         </View>
