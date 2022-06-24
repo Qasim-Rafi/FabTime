@@ -58,7 +58,7 @@ const Profile = (props) => {
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
 
-          navigation.dispatch(StackActions.replace("Auth"));
+          props.navigation.dispatch(StackActions.replace("Auth"));
         },
       },
     ]);
