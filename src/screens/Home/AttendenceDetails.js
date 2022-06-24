@@ -27,7 +27,7 @@ const AttendenceDetails = (props) => {
   const getAttendancyById = async () => {
     setisLoading(true);
     const res = await Api.get(
-      urls.GET_MONTHLY_ATTENDANCE_OF_USER + "&userid=" + data.id
+      urls.GET_MONTHLY_ATTENDANCE_OF_USER + "/" + data.id
     );
     if (res && res.success == true) {
       setisLoading(false);
