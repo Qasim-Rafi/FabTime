@@ -34,7 +34,7 @@ const Users = ({ navigation }) => {
   };
   return (
     <>
-    <Layout  title={"Users"}>
+    <Layout backbutton title={"Users"} navigation={navigation}>
       <Card>
         {user.length > 0
           ? user.map((item, index) =>

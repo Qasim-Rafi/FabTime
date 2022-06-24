@@ -42,6 +42,7 @@ const Profile = (props) => {
     dispatch(getUserProfile());
     dispatch(getUserAttendanceRecord());
   }, []);
+  
   const logout = () => {
     Alert.alert("Logout", "Confirm Logout", [
       {
@@ -57,7 +58,7 @@ const Profile = (props) => {
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
 
-          props.navigation.dispatch(StackActions.replace("Auth"));
+          navigation.dispatch(StackActions.replace("Auth"));
         },
       },
     ]);
@@ -81,7 +82,6 @@ const Profile = (props) => {
       <View style={{ flexDirection: "row", margin: 10 }}>
         <CheckinBox
           subTitle="Resume"
-          ti
           onPress={()=>PreView(setisLoading)}
           disabled={false}
           tintColor={colors.yellow1}

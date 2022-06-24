@@ -3,13 +3,52 @@ import { StyleSheet, View, Image, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Fonts from "../helpers/Fonts";
 import { colors } from "../constants/colorsPallet";
+import { _toast } from "../constants/Index";
+
 import { hp, wp } from "../helpers/Responsiveness";
 import ResponsiveText from "./RnText";
 import { globalPath } from "../constants/globalPath";
 import { isImage } from "../constants/Index";
 import Icon from "./Icon";
 import ImagePicker  from 'react-native-image-crop-picker'
+import urls from "../redux/lib/urls";
+import Api from "../redux/lib/api";
+import { useSelector } from "react-redux";
+import { getUserProfile } from "../redux/actions/user.actions";
 const Layout = (props) => {
+  const [Loading, setLoading] = useState(false);
+
+  const ProfileData = useSelector(
+    (state) => state.userReducers.getProfileData.data
+  );
+  const [image, setImage] = useState(null);
+  const addPhoto = async image => {
+    var formData = new FormData();
+    formData.append(
+      'ImageData',
+      image == null
+        ? null
+        : {
+            uri: image.path,
+            type: 'image/jpeg',
+            name: 'photo.jpg',
+          },
+    );
+    console.log("found data",formData)
+
+    // setLoading(true);
+      const res = await Api.put(
+        urls.ADD_PROFILE_PIC + ProfileData.id,
+        formData,
+      );
+      console.log("res",res)
+      if (res && res.success == true) {
+        dispatch(getUserProfile());
+        // setLoading(false);
+      } else {
+        // setLoading(false);
+      }
+  }
   const toggel=()=>{
     Alert.alert(
       "Profile Image",
@@ -35,7 +74,11 @@ const Layout = (props) => {
       height: 400,
       cropping: true
     }).then(image => {
-      console.log(image);
+      addPhoto(image)
+      setImage(image)
+      _toast("profile update successfully");
+      console.log(image,"image working");
+      
     });
   }
   return (
@@ -64,13 +107,11 @@ const Layout = (props) => {
             >
               {props.title}
             </ResponsiveText>
-            {/* <TouchableOpacity
+            <TouchableOpacity
               disabled={!props.disabled ? props.disabled : true}
               onPress={props.onPress}
             >
-            </TouchableOpacity> */}
-
-            <Image
+               <Image
               source={props.source}
               style={{
                 height: wp(7),
@@ -78,6 +119,9 @@ const Layout = (props) => {
                 resizeMode: "contain",
               }}
             />
+            </TouchableOpacity>
+
+           
            
           </View>
 
@@ -109,15 +153,17 @@ const Layout = (props) => {
               : null}
                 <Image
                   source={
-                    isImage(props.userimg)
-                      ? { uri: props.userimg }
+                    image == null
+                    ? props.userimg
+                      ? {uri: props.userimg }
                       : globalPath.user
+                    : {uri: image.path}
                   }
                   style={{
                     borderRadius: 70,
                     height: wp(30),
                     width: wp(30),
-                    resizeMode: "contain",
+                    // resizeMode: "contain",
                     backgroundColor: colors.white
                   }}
                 />

@@ -19,6 +19,7 @@ import urls from "../../../redux/lib/urls";
 import Fonts from "../../../helpers/Fonts";
 import { routeName } from "../../../constants/routeName";
 import { Grid } from "react-native-animated-spinkit";
+import Loader from "../../../components/loader";
 const Login = ({ navigation }) => {
   const loading = useSelector(
     (state) => state.userReducers.loginScreen.refreshing
@@ -172,19 +173,7 @@ const Login = ({ navigation }) => {
          
         </View>
         {loading?
-                  <View style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    alignItems:"center",
-                    justifyContent:'center',
-                    right: 0,
-                    backgroundColor: 'rgba(65, 65, 65, 0.5)',
-                    flex: 1,
-                  }}>
-                   <  Grid count={5} color={colors.blue1} size={40} />
-                 </View>
+                 <Loader/>
                    :
                    undefined
                 }
