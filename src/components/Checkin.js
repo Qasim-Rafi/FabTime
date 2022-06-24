@@ -35,7 +35,7 @@ const Checkin = (props) => {
   }
   function checkinTime() {
     if (props.data?.find((v) => v.userId == props.userid)?.createdDateTime) {
-      console.log('props.data', props.data)
+      // console.log('props.data', props.data)
       return formatAMPM(props.data?.find((v) => v.userId == props.userid)?.createdDateTime);
     } else {
       return props.time;

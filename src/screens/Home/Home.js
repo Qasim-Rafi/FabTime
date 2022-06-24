@@ -27,6 +27,7 @@ const Home = ({ navigation }) => {
   const data = useSelector((state) => state.userReducers.presentTeam.data);
   const [CheckinTime, setCheckinTime] = useState("");
   const [userid, setUserid] = useState("");
+  const [SSID, setSSID] = useState('')
 
   useEffect(() => {
     (async () => {
@@ -53,7 +54,10 @@ const Home = ({ navigation }) => {
   }, []);
 
   const CheckedIn = async () => {
-    const res = await Api.post(urls.ADD_ATTENDENCE);
+    var obj={
+      CompanySSID:SSID
+    }
+    const res = await Api.post(urls.ADD_ATTENDENCE,obj);
     console.log("res", res);
     if (res && res.success == true) {
       // setData(res.data);
@@ -85,6 +89,7 @@ const Home = ({ navigation }) => {
     WifiManager.getCurrentWifiSSID().then(
       (ssid) => {
         console.log("Your current connected wifi SSID is " + ssid);
+        setSSID(ssid)
       },
       () => {
         console.log("Cannot get current SSID!");

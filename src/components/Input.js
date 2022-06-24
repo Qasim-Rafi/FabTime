@@ -93,7 +93,7 @@ const Input = ({
         )}
 
         <TextInput
-          // value={value && value}
+          value={value && value}
           {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
           editable={props.editable}
 
