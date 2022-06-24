@@ -48,7 +48,13 @@ export const getAttendenceCount = (data) => {
     data: data,
   };
 };
-
+//get late user
+export const getLateUser = (data) => {
+  return {
+    type: types.GET_LATE_USER_REQUEST,
+    data: data,
+  };
+};
 export const formatAMPM = (date1) => {
   var date = new Date(date1);
   var hours = date.getHours();

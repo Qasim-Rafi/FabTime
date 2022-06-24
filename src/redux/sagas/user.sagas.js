@@ -146,3 +146,21 @@ function* getAttendenceCountApi(data) {
     yield put({ type: types.GET_ATDNCE_COUNTSALL_FAILURE, error: error });
   }
 }
+ //get late user'
+export function* getLateUser() {
+  yield takeLatest(types.GET_LATE_USER_REQUEST, getLateUserApi);
+}
+function* getLateUserApi(data) {
+  // const userid= yield AsyncStorage.getItem("@userId");
+  try {
+    const response = yield Api.get(urls.LATE_USERS);
+    console.log(response, "GET_ATDNCE_COUNTSALL");
+    if (response && response.data != null) {
+      yield put({ type: types.GET_LATE_USER_SUCCESS, payload: response.data });
+    } else {
+      yield put({ type: types.GET_LATE_USER_FAILURE, payload: response.data });
+    }
+  } catch (error) {
+    yield put({ type: types.GET_LATE_USER_FAILURE, error: error });
+  }
+}

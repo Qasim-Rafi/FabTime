@@ -10,6 +10,7 @@ import Leaves from "../screens/Home/Leaves";
 import Request from "../screens/Home/Request";
 import AddRequests from "../screens/Home/AddRequest";
 import EmployeProfile from "../screens/Home/EmployeProfile";
+import LateComer from "../screens/Home/LateComer";
 const Stack = createNativeStackNavigator();
 
 function HomeStack() {
@@ -29,6 +30,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.ADDREQUEST} component={AddRequests} />
       <Stack.Screen name={routeName.EMPLOYEE_PROFILE}component={EmployeProfile}/>
       <Stack.Screen name={routeName.PROFILE} component={Profile} />
+      <Stack.Screen name={routeName.LATECOMER} component={LateComer} />
     </Stack.Navigator>
   );
 }

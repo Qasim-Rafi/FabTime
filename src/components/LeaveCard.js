@@ -21,6 +21,7 @@ const LeavesCard = (props) => {
         <View
           style={[
             styles.Boxstyle,
+            
             {
               backgroundColor:
                 props.status == false
@@ -39,6 +40,7 @@ const LeavesCard = (props) => {
             },
           ]}
         >
+          
           <ResponsiveText size={3} color={colors.white}>
             {props.status == true
               ? "Accept"

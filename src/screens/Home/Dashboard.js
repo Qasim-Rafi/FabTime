@@ -116,10 +116,11 @@ const Dashboard = ({ navigation }) => {
                 onPress={() => navigation.navigate(routeName.LEAVES)}
               />
               <TabIcon
-                title="Payslip"
+                title="LateReasons"
                 titleColor="#5958DA"
                 backgroundColor="#F1F5FF"
                 source={globalPath.payslip}
+                onPress={() => navigation.navigate(routeName.LATECOMER)}
               />
               <TabIcon
                 title="Requests"

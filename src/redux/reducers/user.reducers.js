@@ -38,6 +38,10 @@ const initialState = {
     refreshing: false,
     data: [],
   },
+  getLateUser:{
+    refreshing: false,
+    data: [],
+  },
 };
 
 export const userReducers = (state = initialState, action) => {
@@ -239,6 +243,35 @@ case types.GET_ATDNCE_COUNTSALL_FAILURE:
     ...state,
     getAttendenceCount: {
       ...state.getAttendenceCount,
+      refreshing: false,
+      // data: action.payload,
+      errorMsg: action.error,
+    },
+  };
+ //get late user
+case types.GET_LATE_USER_REQUEST:
+  return {
+    ...state,
+    getLateUser: {
+      ...state.getLateUser,
+      refreshing: true,
+    },
+  };
+
+case types.GET_LATE_USER_SUCCESS:
+  return {
+    ...state,
+    getLateUser: {
+      ...state.getLateUser,
+      data: action.payload,
+      refreshing: false,
+    },
+  };
+case types.GET_LATE_USER_FAILURE:
+  return {
+    ...state,
+    getLateUser: {
+      ...state.getLateUser,
       refreshing: false,
       // data: action.payload,
       errorMsg: action.error,
