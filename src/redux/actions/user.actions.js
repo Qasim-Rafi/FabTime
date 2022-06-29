@@ -1,3 +1,4 @@
+import moment from 'moment';
 import types from "./types";
 //LOGIN
 export const loginUser = (data) => {
@@ -56,6 +57,7 @@ export const getLateUser = (data) => {
   };
 };
 export const formatAMPM = (date1) => {
+  // console.log('date1', date1)
   var date = new Date(date1);
   var hours = date.getHours();
   var minutes = date.getMinutes();
@@ -63,6 +65,8 @@ export const formatAMPM = (date1) => {
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? "0" + minutes : minutes;
-  var strTime = hours + ":" + minutes + " " + ampm;
+  // var strTime = hours + ":" + minutes + " " + ampm;
+  var strTime = moment(date1,'DD-MM-YYYY hh:mm:ss A').format('LT');
+
   return strTime;
 };

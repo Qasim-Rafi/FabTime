@@ -131,6 +131,7 @@ case types.GET_USER_PROFILE_FAILURE:
           ...state.presentTeam,
           refreshing: false,
           errorMsg: action.error,
+          data: action.payload,
         },
       };
       //Get attendance record

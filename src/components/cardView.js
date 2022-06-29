@@ -135,7 +135,7 @@ const AttendenceCard = (props) => {
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            06:30 PM
+            {formatAMPM(props.checkoutTime)}
           </ResponsiveText>
         </View>
       </View>
@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
     // width: wp(22),
     borderWidth: 1.5,
     borderColor: colors.green11,
+    marginTop:5
   },
   container: {
     // elevation: 9,

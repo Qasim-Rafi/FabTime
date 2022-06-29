@@ -8,7 +8,7 @@ export default urls = {
   LOGIN: "/api/Auth/Login",
   REGISTER: "/api/Auth/Register",
   ADD_ATTENDENCE: "/api/Attendence/AddAttendence",
-  CHECKOUT:'/api/Attendence/Checkout',
+  CHECKOUT:'/api/Attendence/Checkout/',
   UPDATE_ATTENDENCE: "/api/Attendence/UpdateAttendence/9",
   GET_ALL_ATTENDENCE: "/api/Attendence/GetAttendenceAll",
   ADD_COMPANY: "/api/Company/AddCompany",

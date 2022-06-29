@@ -13,8 +13,9 @@ import urls from "../../redux/lib/urls";
 import { useEffect } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
-import { hp } from "../../helpers/Responsiveness";
+import {PreView} from '../../constants/Index'
 import Loader from "../../components/loader";
+import { globalPath } from "../../constants/globalPath";
 
 const AttendenceDetails = (props) => {
   const data = props.route.params;
@@ -29,6 +30,7 @@ const AttendenceDetails = (props) => {
     const res = await Api.get(
       urls.GET_MONTHLY_ATTENDANCE_OF_USER + "/" + data.id
     );
+    console.log('res', res)
     if (res && res.success == true) {
       setisLoading(false);
 
@@ -47,7 +49,7 @@ const AttendenceDetails = (props) => {
       titleSize={5}
     >
       <View style={{ flexDirection: "row", marginVertical: 10 }}>
-        <CheckinBox
+        {/* <CheckinBox
           onPress={() =>
             props.navigation.navigate(
               routeName.EMPLOYEE_PROFILE,
@@ -66,6 +68,29 @@ const AttendenceDetails = (props) => {
           subTitle="06:30 PM"
           titleColor={colors.black}
           subTitlecolor={colors.red}
+        /> */}
+         <CheckinBox
+          subTitle="Resume"
+          onPress={()=>PreView(setisLoading)}
+          disabled={false}
+          tintColor={colors.yellow1}
+          source={globalPath.report}
+
+        />
+
+        <CheckinBox 
+        onPress={() =>
+          props.navigation.navigate(
+            routeName.EMPLOYEE_PROFILE,
+            props.route.params
+          )
+        }
+          subTitle="Emoplyee card"
+          tintColor={colors.blue1}
+          disabled={false}
+          source={globalPath.report}
+          
+
         />
       </View>
       <View>

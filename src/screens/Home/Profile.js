@@ -141,6 +141,7 @@ const Profile = (props) => {
                 <AttendenceCard
                   userimg={item.fullPath}
                   checkTime={item.createdDateTime}
+                  checkoutTime={item.checkoutDateTime}
                 />
               ))
             : <RecordNotFound/>}

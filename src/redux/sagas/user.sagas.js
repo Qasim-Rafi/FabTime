@@ -47,14 +47,14 @@ function* presentTeamApi(data) {
   // let { params, navigation } = data.data;
   try {
     const response = yield Api.get(urls.GET_ALL_ATTENDENCE);
-    console.log(response, "response");
-    if (response && response.data != null) {
+    console.log(response, "online res");
+    if (response && response.success == true) {
       yield put({ type: types.PRESENT_TEAM_SUCCESS, payload: response.data });
     } else {
-      yield put({ type: types.PRESENT_TEAM_FAILURE, payload: response.data });
+      yield put({ type: types.PRESENT_TEAM_FAILURE, payload: [] });
     }
   } catch (error) {
-    yield put({ type: types.PRESENT_TEAM_FAILURE, error: error });
+    yield put({ type: types.PRESENT_TEAM_FAILURE,payload:[], error: error });
   }
 }
 //Get leaves
