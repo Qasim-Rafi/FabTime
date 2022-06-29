@@ -159,6 +159,7 @@ case types.GET_USER_PROFILE_FAILURE:
           getAttendanceRecord: {
             ...state.getAttendanceRecord,
             refreshing: false,
+            data: action.payload,
             errorMsg: action.error,
           },
         };

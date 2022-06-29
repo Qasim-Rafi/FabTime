@@ -13,30 +13,32 @@ import urls from "../../redux/lib/urls";
 import { useEffect } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
-import {PreView} from '../../constants/Index'
+import { PreView } from "../../constants/Index";
 import Loader from "../../components/loader";
 import { globalPath } from "../../constants/globalPath";
+import MonthCard from "../../components/MonthCard";
 
 const AttendenceDetails = (props) => {
   const data = props.route.params;
   const [isLoading, setisLoading] = useState(false);
   const [attendacedata, setData] = useState([]);
   useEffect(() => {
-    getAttendancyById();
+    var mon = new Date().getMonth() + 1;
+    getAttendancyById(mon);
   }, []);
 
-  const getAttendancyById = async () => {
+  const getAttendancyById = async (month) => {
     setisLoading(true);
     const res = await Api.get(
-      urls.GET_MONTHLY_ATTENDANCE_OF_USER + "/" + data.id
+      urls.GET_MONTHLY_ATTENDANCE_OF_USER + month + "/" + data.id
     );
-    console.log('res', res)
+    console.log("res", res);
     if (res && res.success == true) {
       setisLoading(false);
-
       setData(res.data);
     } else {
       setisLoading(false);
+      setData([]);
     }
   };
   return (
@@ -69,40 +71,28 @@ const AttendenceDetails = (props) => {
           titleColor={colors.black}
           subTitlecolor={colors.red}
         /> */}
-         <CheckinBox
+        <CheckinBox
           subTitle="Resume"
-          onPress={()=>PreView(setisLoading)}
+          onPress={() => PreView(setisLoading)}
           disabled={false}
           tintColor={colors.yellow1}
           source={globalPath.report}
-
         />
 
-        <CheckinBox 
-        onPress={() =>
-          props.navigation.navigate(
-            routeName.EMPLOYEE_PROFILE,
-            props.route.params
-          )
-        }
+        <CheckinBox
+          onPress={() =>
+            props.navigation.navigate(
+              routeName.EMPLOYEE_PROFILE,
+              props.route.params
+            )
+          }
           subTitle="Emoplyee card"
           tintColor={colors.blue1}
           disabled={false}
           source={globalPath.report}
-          
-
         />
       </View>
-      <View>
-        <ResponsiveText
-          margin={[0, 0, 0, 8]}
-          // fontFamily={Fonts.Bold}
-          size={5}
-          color={colors.blue1}
-        >
-          May Attendence
-        </ResponsiveText>
-      </View>
+      <MonthCard action={getAttendancyById} />
 
       <View style={styles.tabContainer}>
         <TabIcon

@@ -23,6 +23,7 @@ import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
 import { useState } from "react";
+import MonthCard from "../../components/MonthCard";
 const Profile = (props) => {
   
   const [isLoading, setisLoading] = useState(false);
@@ -39,10 +40,15 @@ const Profile = (props) => {
   console.log("profile", ProfileData);
   console.log("AttendanceRecord", AttendanceRecord);
   useEffect(() => {
+    var month = new Date().getMonth() + 1;
+
     dispatch(getUserProfile());
-    dispatch(getUserAttendanceRecord());
+    getmonthData(month)
   }, []);
-  
+  const getmonthData=(month)=>{
+    dispatch(getUserAttendanceRecord(month));
+
+  }
   const logout = () => {
     Alert.alert("Logout", "Confirm Logout", [
       {
@@ -98,15 +104,7 @@ const Profile = (props) => {
 
         />
       </View>
-      <View>
-        <ResponsiveText
-          margin={[0, 0, 0, 8]}
-          size={5}
-          color={colors.blue1}
-        >
-          May Attendence
-        </ResponsiveText>
-      </View>
+      <MonthCard action={getmonthData} />
 
       <Card flexDirection={'row'}>
         <TabIcon

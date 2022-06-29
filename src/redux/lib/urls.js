@@ -21,7 +21,7 @@ export default urls = {
   GET_USER_PROFILE: "/api/Users/GetUsersById/",
   GET_ALL_USERS: "/api/Users/GetUsers",
   ADD_PROFILE_PIC:"/api/Auth/EditUserImagebyApp/",
-  GET_MONTHLY_ATTENDANCE_OF_USER:"/api/Attendence/GetMonthlyAttendenceById/6",
+  GET_MONTHLY_ATTENDANCE_OF_USER:"/api/Attendence/GetMonthlyAttendenceById/",
   GET_REQUESTS:'/api/RequestItems/GetRequestItemsAll',
   ADD_REQUEST:'/api/RequestItems/AddRequestItems',
   LATE_USERS:'/api/Attendence/GetLateUserById',
