@@ -37,7 +37,7 @@ const Layout = (props) => {
     console.log("found data", formData);
 
     // setLoading(true);
-    const res = await Api.put(urls.ADD_PROFILE_PIC + ProfileData.id, formData);
+    const res = await Api.post(urls.ADD_PROFILE_PIC + ProfileData.id, formData);
     console.log("res", res);
     if (res && res.success == true) {
       dispatch(getUserProfile());
