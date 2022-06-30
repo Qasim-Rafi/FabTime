@@ -15,40 +15,40 @@ const LeavesCard = (props) => {
           marginHorizontal: 10,
         }}
       >
-        <ResponsiveText size={4} color={colors.blue1}>
-          {props.title}
-        </ResponsiveText>
-        <View
-          style={[
-            styles.Boxstyle,
-            
-            {
-              backgroundColor:
-                props.status == false
-                  ? colors.red4
-                  : props.status == true
-                  ? colors.red
-                  : colors.green,
-            },
-            {
-              borderColor:
-                props.status == false
-                  ? colors.red4
-                  : props.status == true
-                  ? colors.green10
-                  : colors.yellow1,
-            },
-          ]}
-        >
-          
-          <ResponsiveText size={3} color={colors.white}>
-            {props.status == true
-              ? "Accept"
-              : props.status == false
-              ? "Reject"
-              : "pending"}
+        {props.title ? (
+          <ResponsiveText size={4} color={colors.blue1}>
+            {props.title}
           </ResponsiveText>
-        </View>
+        ) : null}
+
+        {props.status ? (
+          <View
+            style={[
+              styles.Boxstyle,
+
+              {
+                backgroundColor:
+                  props.status == "Approve"
+                    ? colors.lightgreen
+                    : props.status == "Reject"
+                    ? colors.red
+                    : colors.light_blue,
+              },
+              // {
+              //   borderColor:
+              //     props.status == false
+              //       ? colors.red4
+              //       : props.status == true
+              //       ? colors.green10
+              //       : colors.yellow1,
+              // },
+            ]}
+          >
+            <ResponsiveText size={3} color={colors.white}>
+              {props.status}
+            </ResponsiveText>
+          </View>
+        ) : null}
       </View>
       <View style={{ marginHorizontal: 5 }}>
         {props.startDate ? (
@@ -61,11 +61,13 @@ const LeavesCard = (props) => {
         <ResponsiveText margin={[5, 5, 5, 5]} size={2.5} color={colors.black}>
           {props.description}
         </ResponsiveText>
-        <View style={{ alignItems: "flex-end" }}>
-          <ResponsiveText size={2.5} color={colors.grey1}>
-            {moment(new Date(props.date)).format(" MMMM Do YYYY")}
-          </ResponsiveText>
-        </View>
+        {props.date ? (
+          <View style={{ alignItems: "flex-end" }}>
+            <ResponsiveText size={2.5} color={colors.grey1}>
+              {moment(new Date(props.date)).format(" MMMM Do YYYY")}
+            </ResponsiveText>
+          </View>
+        ) : null}
       </View>
     </Card>
   );
