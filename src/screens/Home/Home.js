@@ -54,7 +54,8 @@ const Home = ({ navigation }) => {
 
   const CheckedIn = async () => {
     var obj = {
-      CompanySSID: 'FabIntel-5GHz',
+      // CompanySSID: 'FabIntel-5GHz',
+      CompanySSID:SSID
     };
     const res = await Api.post(urls.ADD_ATTENDENCE, obj);
     console.log("res", res);
@@ -90,6 +91,7 @@ const Home = ({ navigation }) => {
     WifiManager.getCurrentWifiSSID().then(
       (ssid) => {
         console.log("Your current connected wifi SSID is " + ssid);
+        _toast("Your current connected wifi SSID is " + ssid)
         setSSID(ssid);
       },
       () => {
