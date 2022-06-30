@@ -56,7 +56,7 @@ export const getLateUser = (data) => {
     data: data,
   };
 };
-export const formatAMPM = (date1) => {
+export const formatAMPM = (date1,type) => {
   // console.log('date1', date1)
   var date = new Date(date1);
   var hours = date.getHours();
@@ -66,7 +66,9 @@ export const formatAMPM = (date1) => {
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? "0" + minutes : minutes;
   // var strTime = hours + ":" + minutes + " " + ampm;
-  var strTime = moment(date1,'DD-MM-YYYY hh:mm:ss A').format('LT');
+  //Wed 29-Jun-2022 15:44
+  var strTime =date1==''?'':  moment(date1,'DD-MM-YYYY HH:mm:ss A').format('LT');
+  var endTime =date1==''?'': moment(date1,'ddd DD-MMM-YYYY hh:mm').format('LT');
 
-  return strTime;
+  return type=='type2'?endTime: strTime;
 };

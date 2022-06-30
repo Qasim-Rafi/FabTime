@@ -29,7 +29,7 @@ const Layout = (props) => {
       image == null
         ? null
         : {
-            uri: image.path,
+            uri: image.sourceURL,
             type: "image/jpeg",
             name: "photo.jpg",
           }

@@ -97,26 +97,26 @@ const AttendenceDetails = (props) => {
       <View style={styles.tabContainer}>
         <TabIcon
           title="Present"
-          CircleText={"10"}
+          CircleText={attendacedata.presentCount}
           CircleColor={colors.green}
           titleSize={3.4}
         />
         <TabIcon
           title="Absent"
           titleSize={3.4}
-          CircleText={"30"}
+          CircleText={attendacedata.absentCount}
           CircleColor={colors.red}
         />
         <TabIcon
           title="Late"
           titleSize={3.4}
-          CircleText={"27"}
+          CircleText={attendacedata.lateCount}
           CircleColor={colors.blue1}
         />
         <TabIcon
           title="Leave"
           titleSize={3.4}
-          CircleText={"9"}
+          CircleText={attendacedata.leaveCount}
           CircleColor={colors.yellow3}
         />
       </View>
@@ -131,13 +131,14 @@ const AttendenceDetails = (props) => {
         }}
       >
         <ScrollView>
-          {attendacedata.length > 0 ? (
-            attendacedata.map((item, index) => {
+          { Object.keys(attendacedata).length > 0 ? (
+            attendacedata.countDetail.map((item, index) => {
               return (
                 <AttendenceCard
                   data={item}
                   userimg={item.fullPath}
                   checkTime={item.createdDateTime}
+                  status={item.checkIn}
                 />
               );
             })

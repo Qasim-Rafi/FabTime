@@ -107,39 +107,40 @@ const Profile = (props) => {
       <MonthCard action={getmonthData} />
 
       <Card flexDirection={'row'}>
-        <TabIcon
+      <TabIcon
           title="Present"
-          CircleText={"19"}
+          CircleText={AttendanceRecord.presentCount}
           CircleColor={colors.green}
-          titleSize={3.2}
+          titleSize={3.4}
         />
         <TabIcon
           title="Absent"
-          titleSize={3.2}
-          CircleText={"1"}
+          titleSize={3.4}
+          CircleText={AttendanceRecord.absentCount}
           CircleColor={colors.red}
         />
         <TabIcon
           title="Late"
-          titleSize={3.2}
-          CircleText={"4"}
+          titleSize={3.4}
+          CircleText={AttendanceRecord.lateCount}
           CircleColor={colors.blue1}
         />
         <TabIcon
           title="Leave"
-          titleSize={3.2}
-          CircleText={"1"}
+          titleSize={3.4}
+          CircleText={AttendanceRecord.leaveCount}
           CircleColor={colors.yellow3}
         />
       </Card>
       <Card>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {AttendanceRecord.length > 0
-            ? AttendanceRecord.map((item, index) => (
+          {Object.keys(AttendanceRecord).length > 0
+            ? AttendanceRecord.countDetail.map((item, index) => (
                 <AttendenceCard
                   userimg={item.fullPath}
                   checkTime={item.createdDateTime}
                   checkoutTime={item.checkoutDateTime}
+                  status={item.checkIn}
                 />
               ))
             : <RecordNotFound/>}

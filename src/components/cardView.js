@@ -135,7 +135,7 @@ const AttendenceCard = (props) => {
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            {formatAMPM(props.checkoutTime)}
+            {formatAMPM(props.checkoutTime,'type2')}
           </ResponsiveText>
         </View>
       </View>
@@ -143,9 +143,9 @@ const AttendenceCard = (props) => {
         <ResponsiveText color={colors.grey1} size={2.5}>
           01 May,2022
         </ResponsiveText>
-        <View style={styles.timestyle}>
+        <View style={[styles.timestyle,{backgroundColor:props.status=='Late'?colors.light_blue:colors.lightgreen}]}>
           <ResponsiveText color={colors.black} size={2.8}>
-            Present
+            {props.status}
           </ResponsiveText>
         </View>
       </View>
