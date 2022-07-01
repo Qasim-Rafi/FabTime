@@ -138,7 +138,7 @@ const AttendenceDetails = (props) => {
                   data={item}
                   userimg={item.fullPath}
                   checkTime={item.createdDateTime}
-                  status={item.checkIn}
+                  status={item.status}
                 />
               );
             })

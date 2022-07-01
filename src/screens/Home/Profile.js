@@ -140,7 +140,7 @@ const Profile = (props) => {
                   userimg={item.fullPath}
                   checkTime={item.createdDateTime}
                   checkoutTime={item.checkoutDateTime}
-                  status={item.checkIn}
+                  status={item.status}
                 />
               ))
             : <RecordNotFound/>}
