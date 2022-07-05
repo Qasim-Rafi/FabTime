@@ -134,7 +134,7 @@ const Layout = (props) => {
               color={colors.white}
             >
               {/* {props.address} */}
-              FabIntel international lahore, pakistan
+              FabIntel International lahore, pakistan
             </ResponsiveText>
           ) : null}
           </View>
