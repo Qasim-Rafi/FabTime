@@ -24,7 +24,7 @@ const ApplyLate = ({navigation}) => {
     }
     setLoading(true);
 
-    const res = await Api.put(urls.ADD_REASON_OF_LATE, obj);
+    const res = await Api.post(urls.ADD_REASON_OF_LATE, obj);
     console.log("res", res);
     if (res && res.success == true) {
       setText("");

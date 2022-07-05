@@ -11,6 +11,7 @@ import { routeName } from "../../constants/routeName";
 import { ScrollView } from "react-native-gesture-handler";
 import { Grid } from "react-native-animated-spinkit";
 import Loader from "../../components/loader";
+import RecordNotFound from "../../components/RecordnotFound";
 const Leaves = ({ navigation ,route}) => {
   const [data, setData] = useState([]);
   const [Loading, setLoading] = useState(false);
@@ -43,7 +44,7 @@ const Leaves = ({ navigation ,route}) => {
                 description={item.description}
               />
             ))
-          : null}
+          : Loading ?null: <RecordNotFound/>}
            
       </ScrollView>
 

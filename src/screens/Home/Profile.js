@@ -15,7 +15,7 @@ import {
   getUserProfile,
 } from "../../redux/actions/user.actions";
 import Loader from "../../components/loader";
-import {PreView} from '../../constants/Index'
+import { PreView } from "../../constants/Index";
 import { _toast } from "../../constants/Index";
 import AsyncStorage from "@react-native-community/async-storage";
 import { StackActions } from "@react-navigation/native";
@@ -25,7 +25,6 @@ import RecordNotFound from "../../components/RecordnotFound";
 import { useState } from "react";
 import MonthCard from "../../components/MonthCard";
 const Profile = (props) => {
-  
   const [isLoading, setisLoading] = useState(false);
   const dispatch = useDispatch();
   const ProfileData = useSelector(
@@ -43,12 +42,11 @@ const Profile = (props) => {
     var month = new Date().getMonth() + 1;
 
     dispatch(getUserProfile());
-    getmonthData(month)
+    getmonthData(month);
   }, []);
-  const getmonthData=(month)=>{
+  const getmonthData = (month) => {
     dispatch(getUserAttendanceRecord(month));
-
-  }
+  };
   const logout = () => {
     Alert.alert("Logout", "Confirm Logout", [
       {
@@ -71,71 +69,71 @@ const Profile = (props) => {
   };
   return (
     <>
-    <Layout
-    navigation={props.navigation}
-    backbutton
-      userimg={ProfileData.fullPath}
-      camera={globalPath.Camera}
-      Field={"React native developer"}
-      username={ProfileData.username}
-      title={"Profile"}
-      profile
-      titleSize={5}
-      source={globalPath.checkin}
-      disabled={false}
-      onPress={logout}
-    >
-      <View style={{ flexDirection: "row", margin: 10 }}>
-        <CheckinBox
-          subTitle="Resume"
-          onPress={()=>PreView(setisLoading)}
-          disabled={false}
-          tintColor={colors.yellow1}
-          source={globalPath.report}
+      <Layout
+        navigation={props.navigation}
+        backbutton
+        userimg={ProfileData.fullPath}
+        camera={globalPath.Camera}
+        Field={ProfileData.userDesignation}
+        username={ProfileData.username}
+        title={"Profile"}
+        profile
+        titleSize={5}
+        source={globalPath.checkin}
+        disabled={false}
+        onPress={logout}
+      >
+        <View style={{ flexDirection: "row", margin: 10 }}>
+          <CheckinBox
+            subTitle="Resume"
+            onPress={() => PreView(setisLoading)}
+            disabled={false}
+            tintColor={colors.yellow1}
+            source={globalPath.report}
+          />
 
-        />
+          <CheckinBox
+            onPress={() =>
+              props.navigation.navigate(routeName.EMPLOYEE_PROFILE, ProfileData)
+            }
+            subTitle="Emoplyee card"
+            tintColor={colors.blue1}
+            disabled={false}
+            source={globalPath.report}
+          />
+        </View>
+        <MonthCard action={getmonthData} />
 
-        <CheckinBox onPress={() => props.navigation.navigate(routeName.EMPLOYEE_PROFILE,ProfileData)}
-          subTitle="Emoplyee card"
-          tintColor={colors.blue1}
-          disabled={false}
-          source={globalPath.report}
-          
-
-        />
-      </View>
-      <MonthCard action={getmonthData} />
-
-      <Card flexDirection={'row'}>
-      <TabIcon
-          title="Present"
-          CircleText={AttendanceRecord.presentCount}
-          CircleColor={colors.green}
-          titleSize={3.4}
-        />
-        <TabIcon
-          title="Absent"
-          titleSize={3.4}
-          CircleText={AttendanceRecord.absentCount}
-          CircleColor={colors.red}
-        />
-        <TabIcon
-          title="Late"
-          titleSize={3.4}
-          CircleText={AttendanceRecord.lateCount}
-          CircleColor={colors.blue1}
-        />
-        <TabIcon
-          title="Leave"
-          titleSize={3.4}
-          CircleText={AttendanceRecord.leaveCount}
-          CircleColor={colors.yellow3}
-        />
-      </Card>
-      <Card>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {Object.keys(AttendanceRecord).length > 0
-            ? AttendanceRecord.countDetail.map((item, index) => (
+        <Card flexDirection={"row"}>
+          <TabIcon
+            title="Present"
+            CircleText={AttendanceRecord.presentCount}
+            CircleColor={colors.green}
+            titleSize={3.4}
+          />
+          <TabIcon
+            title="Absent"
+            titleSize={3.4}
+            CircleText={AttendanceRecord.absentCount}
+            CircleColor={colors.red}
+          />
+          <TabIcon
+            title="Late"
+            titleSize={3.4}
+            CircleText={AttendanceRecord.lateCount}
+            CircleColor={colors.blue1}
+          />
+          <TabIcon
+            title="Leave"
+            titleSize={3.4}
+            CircleText={AttendanceRecord.leaveCount}
+            CircleColor={colors.yellow3}
+          />
+        </Card>
+        <Card>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {Object.keys(AttendanceRecord).length > 0 ? (
+              AttendanceRecord.countDetail.map((item, index) => (
                 <AttendenceCard
                   userimg={item.fullPath}
                   checkTime={item.createdDateTime}
@@ -143,18 +141,15 @@ const Profile = (props) => {
                   status={item.status}
                 />
               ))
-            : <RecordNotFound/>}
-            <View style={{height:hp(60)}}>
-                </View>
-        </ScrollView>
-      </Card>
-    </Layout>
-     {isLoading||Loading?
-      <Loader/>
-        :
-        undefined
-     }
-     </>
+            ) : (
+              <RecordNotFound />
+            )}
+            <View style={{ height: hp(60) }}></View>
+          </ScrollView>
+        </Card>
+      </Layout>
+      {isLoading || Loading ? <Loader /> : undefined}
+    </>
   );
 };
 export default Profile;

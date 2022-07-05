@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { hp, wp } from "../../helpers/Responsiveness";
 import {  getLateUser } from "../../redux/actions/user.actions";
 import Loader from '../../components/loader';
+import RecordNotFound from '../../components/RecordnotFound';
 // import { getLateUser } from '../../redux/sagas/user.sagas';
 const LateComer = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const LateComer = ({ navigation }) => {
                                 description={item.lateReason}
                             />
                         ))
-                        : null}
+                        :Loading ?null: <RecordNotFound/>}
                     <View style={{ height: hp(10) }} />
                 </ScrollView>
             </Layout>

@@ -83,7 +83,7 @@ const Checkin = (props) => {
           alignItems: "center",
         }}
       >
-        <ResponsiveText size={5}>{checkinTime()}</ResponsiveText>
+        <ResponsiveText size={5} color={colors.black}>{checkinTime()}</ResponsiveText>
       </ImageBackground>
     </TouchableOpacity>
   );

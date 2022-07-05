@@ -46,7 +46,9 @@ const AttendenceDetails = (props) => {
       navigation={props.navigation}
       backbutton
       username={data.fullName}
+      userimg={data.fullPath}
       title={"Employess Detail"}
+      Field={data.userDesignation}
       profile
       titleSize={5}
     >
@@ -131,7 +133,7 @@ const AttendenceDetails = (props) => {
         }}
       >
         <ScrollView>
-          { Object.keys(attendacedata).length > 0 ? (
+          {Object.keys(attendacedata).length > 0 ? (
             attendacedata.countDetail.map((item, index) => {
               return (
                 <AttendenceCard
