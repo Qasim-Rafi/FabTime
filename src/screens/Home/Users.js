@@ -7,6 +7,8 @@ import Api from "../../redux/lib/api";
 import urls from "../../redux/lib/urls";
 import { _toast } from "../../constants/Index";
 import Loader from "../../components/loader";
+import { ScrollView } from "react-native-gesture-handler";
+import { hp } from "../../helpers/Responsiveness";
 const Users = ({ navigation }) => {
   const [user, setuser] = useState([]);
   const [Loading, setLoading] = useState(false);
@@ -36,6 +38,7 @@ const Users = ({ navigation }) => {
     <>
     <Layout backbutton title={"Users"} navigation={navigation}>
       <Card>
+        <ScrollView>
         {user.length > 0
           ? user.map((item, index) =>
               item.userTypeId == 2 ? (
@@ -49,7 +52,10 @@ const Users = ({ navigation }) => {
               ) : null
             )
           : null}
+          <View style={{height:hp(10)}}/>
+          </ScrollView>
       </Card>
+      
     </Layout>
        {Loading?
         <Loader/>

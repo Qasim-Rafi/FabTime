@@ -27,7 +27,7 @@ const Home = ({ navigation }) => {
   const data = useSelector((state) => state.userReducers.presentTeam.data);
   const [CheckinTime, setCheckinTime] = useState("");
   const [userid, setUserid] = useState("");
-  const [SSID, setSSID] = useState('')
+  const [SSID, setSSID] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -46,7 +46,6 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // console.log("Logs every minute");
       setCheckinTime(formatAMPM(new Date()));
     }, 60000);
 
@@ -54,20 +53,22 @@ const Home = ({ navigation }) => {
   }, []);
 
   const CheckedIn = async () => {
-    var obj={
-      CompanySSID:SSID
-    }
-    const res = await Api.post(urls.ADD_ATTENDENCE,obj);
+    var obj = {
+      CompanySSID: 'FabIntel-5GHz',
+    };
+    const res = await Api.post(urls.ADD_ATTENDENCE, obj);
     console.log("res", res);
     if (res && res.success == true) {
       // setData(res.data);
       dispatch(getpresentTeam());
       _toast("Checked In");
     } else {
+      _toast(res.message);
     }
   };
   const CheckedOut = async () => {
-    const res = await Api.post(urls.CHECKOUT);
+    var id=data?.find((v) => v.userId == userid)?.id;
+    const res = await Api.get(urls.CHECKOUT+id);
     console.log("res", res);
     if (res && res.success == true) {
       // setData(res.data);
@@ -89,7 +90,7 @@ const Home = ({ navigation }) => {
     WifiManager.getCurrentWifiSSID().then(
       (ssid) => {
         console.log("Your current connected wifi SSID is " + ssid);
-        setSSID(ssid)
+        setSSID(ssid);
       },
       () => {
         console.log("Cannot get current SSID!");
@@ -112,13 +113,21 @@ const Home = ({ navigation }) => {
       // You can now use react-native-wifi-reborn
       getSSDid();
     } else {
-      _toast('Premission denied')
+      _toast("Premission denied");
       // Permission denied
     }
   };
+  const late = () => {};
   return (
-    <Layout title={"FabIntel Team"} address  location={globalPath.location} >
-      <View style={{ marginTop: "20%" }}>
+    <Layout title={"FabIntel Team"} address location={globalPath.location}>
+      <View style={{ marginTop: "10%" }}>
+        {data.some((v) => v.userId == userid) ? (
+          <ResponsiveText textAlign={'center'}>
+            You have checked in at{" "}
+            {formatAMPM(data?.find((v) => v.userId == userid)?.createdDateTime)}
+          </ResponsiveText>
+        ) : null}
+        <View style={{height:wp(5)}}/>
         <Checkin
           time={CheckinTime}
           onPress={() =>
@@ -136,6 +145,7 @@ const Home = ({ navigation }) => {
           }}
         >
           <TouchableOpacity
+            disabled={data.some((v) => v.userId == userid)}
             onPress={() => navigation.navigate(routeName.APPLY_LATE)}
           >
             <ImageBackground source={globalPath.latebutton} style={styles.btn}>

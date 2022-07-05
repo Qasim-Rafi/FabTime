@@ -23,6 +23,7 @@ import Card from "../../components/Card";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
 import { useState } from "react";
+import MonthCard from "../../components/MonthCard";
 const Profile = (props) => {
   
   const [isLoading, setisLoading] = useState(false);
@@ -39,10 +40,15 @@ const Profile = (props) => {
   console.log("profile", ProfileData);
   console.log("AttendanceRecord", AttendanceRecord);
   useEffect(() => {
+    var month = new Date().getMonth() + 1;
+
     dispatch(getUserProfile());
-    dispatch(getUserAttendanceRecord());
+    getmonthData(month)
   }, []);
-  
+  const getmonthData=(month)=>{
+    dispatch(getUserAttendanceRecord(month));
+
+  }
   const logout = () => {
     Alert.alert("Logout", "Confirm Logout", [
       {
@@ -98,49 +104,43 @@ const Profile = (props) => {
 
         />
       </View>
-      <View>
-        <ResponsiveText
-          margin={[0, 0, 0, 8]}
-          size={5}
-          color={colors.blue1}
-        >
-          May Attendence
-        </ResponsiveText>
-      </View>
+      <MonthCard action={getmonthData} />
 
       <Card flexDirection={'row'}>
-        <TabIcon
+      <TabIcon
           title="Present"
-          CircleText={"19"}
+          CircleText={AttendanceRecord.presentCount}
           CircleColor={colors.green}
-          titleSize={3.2}
+          titleSize={3.4}
         />
         <TabIcon
           title="Absent"
-          titleSize={3.2}
-          CircleText={"1"}
+          titleSize={3.4}
+          CircleText={AttendanceRecord.absentCount}
           CircleColor={colors.red}
         />
         <TabIcon
           title="Late"
-          titleSize={3.2}
-          CircleText={"4"}
+          titleSize={3.4}
+          CircleText={AttendanceRecord.lateCount}
           CircleColor={colors.blue1}
         />
         <TabIcon
           title="Leave"
-          titleSize={3.2}
-          CircleText={"1"}
+          titleSize={3.4}
+          CircleText={AttendanceRecord.leaveCount}
           CircleColor={colors.yellow3}
         />
       </Card>
       <Card>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {AttendanceRecord.length > 0
-            ? AttendanceRecord.map((item, index) => (
+          {Object.keys(AttendanceRecord).length > 0
+            ? AttendanceRecord.countDetail.map((item, index) => (
                 <AttendenceCard
                   userimg={item.fullPath}
                   checkTime={item.createdDateTime}
+                  checkoutTime={item.checkoutDateTime}
+                  status={item.checkIn}
                 />
               ))
             : <RecordNotFound/>}

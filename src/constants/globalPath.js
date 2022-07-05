@@ -13,8 +13,6 @@ const backArrow = require("../assets/icons/back1.png");
 const Camera = require("../assets/icons/Cameraa.png");
 const CompanyLogo = require("../assets/icons/poweredbyogo.png");
 
-
-
 const location = require("../assets/icons/Fablocation.png");
 const home = require("../assets/icons/home.png");
 const history = require("../assets/icons/history.png");
@@ -37,9 +35,11 @@ const leavebutton = require("../assets/icons/leave-button.png");
 const leaveicon = require("../assets/icons/leave-icon.png");
 const EmployeProfile = require("../assets/icons/background.png");
 const EmployePic = require("../assets/icons/picture.png");
+const filter = require("../assets/icons/filter.png");
 
 export const globalPath = {
-  logo,CompanyLogo,
+  logo,
+  CompanyLogo,
   EmployePic,
   EmployeProfile,
   background,
@@ -69,6 +69,7 @@ export const globalPath = {
   lateicon,
   leavebutton,
   leaveicon,
- RecordNotFound,
- backArrow
+  RecordNotFound,
+  backArrow,
+  filter,
 };

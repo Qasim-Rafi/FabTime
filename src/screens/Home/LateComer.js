@@ -22,11 +22,7 @@ const LateComer = ({ navigation }) => {
                     {LateData.length > 0
                         ? LateData.map((item, index) => (
                             <LeavesCard
-                                title={item.name}
-                                // status={item.lateReason}
-                                startDate={item.lateDateTime}
-                                endDate={item.endDate}
-                                date={item.createdDatetime}
+                                date={item.lateDateTime}
                                 description={item.lateReason}
                             />
                         ))

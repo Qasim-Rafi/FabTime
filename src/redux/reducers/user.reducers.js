@@ -131,6 +131,7 @@ case types.GET_USER_PROFILE_FAILURE:
           ...state.presentTeam,
           refreshing: false,
           errorMsg: action.error,
+          data: action.payload,
         },
       };
       //Get attendance record
@@ -158,6 +159,7 @@ case types.GET_USER_PROFILE_FAILURE:
           getAttendanceRecord: {
             ...state.getAttendanceRecord,
             refreshing: false,
+            data: action.payload,
             errorMsg: action.error,
           },
         };

@@ -47,14 +47,14 @@ function* presentTeamApi(data) {
   // let { params, navigation } = data.data;
   try {
     const response = yield Api.get(urls.GET_ALL_ATTENDENCE);
-    console.log(response, "response");
-    if (response && response.data != null) {
+    console.log(response, "online res");
+    if (response && response.success == true) {
       yield put({ type: types.PRESENT_TEAM_SUCCESS, payload: response.data });
     } else {
-      yield put({ type: types.PRESENT_TEAM_FAILURE, payload: response.data });
+      yield put({ type: types.PRESENT_TEAM_FAILURE, payload: [] });
     }
   } catch (error) {
-    yield put({ type: types.PRESENT_TEAM_FAILURE, error: error });
+    yield put({ type: types.PRESENT_TEAM_FAILURE,payload:[], error: error });
   }
 }
 //Get leaves
@@ -115,17 +115,18 @@ export function* getUserAttendanceRecord() {
   yield takeLatest(types.GET_MOTHLY_ATTENDANCE_OF_USER_REQUEST, getUserAttendanceRecordApi);
 }
 function* getUserAttendanceRecordApi(data) {
+  console.log('data', data)
   const profileId= yield AsyncStorage.getItem("@userId");
 
   try {
-    const response = yield Api.get(urls.GET_MONTHLY_ATTENDANCE_OF_USER+'/'+profileId);
+    const response = yield Api.get(urls.GET_MONTHLY_ATTENDANCE_OF_USER+data.data+'/'+profileId);
     if (response && response.data != null) {
       yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_SUCCESS, payload: response.data });
     } else {
-      yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_FAILURE, payload: response.data });
+      yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_FAILURE, payload: [] });
     }
   } catch (error) {
-    yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_FAILURE, error: error });
+    yield put({ type: types.GET_MOTHLY_ATTENDANCE_OF_USER_FAILURE,payload: [], error: error });
   }
 }
 //GetAttendenceCountsAll

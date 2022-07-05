@@ -34,6 +34,7 @@ const Leaves = ({ navigation }) => {
                 endDate={item.endDate}
                 date={item.createdDatetime}
                 description={item.description}
+                status={item.status}
               />
             ))
           : null}

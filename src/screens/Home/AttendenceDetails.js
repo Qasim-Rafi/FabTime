@@ -13,28 +13,32 @@ import urls from "../../redux/lib/urls";
 import { useEffect } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import RecordNotFound from "../../components/RecordnotFound";
-import { hp } from "../../helpers/Responsiveness";
+import { PreView } from "../../constants/Index";
 import Loader from "../../components/loader";
+import { globalPath } from "../../constants/globalPath";
+import MonthCard from "../../components/MonthCard";
 
 const AttendenceDetails = (props) => {
   const data = props.route.params;
   const [isLoading, setisLoading] = useState(false);
   const [attendacedata, setData] = useState([]);
   useEffect(() => {
-    getAttendancyById();
+    var mon = new Date().getMonth() + 1;
+    getAttendancyById(mon);
   }, []);
 
-  const getAttendancyById = async () => {
+  const getAttendancyById = async (month) => {
     setisLoading(true);
     const res = await Api.get(
-      urls.GET_MONTHLY_ATTENDANCE_OF_USER + "/" + data.id
+      urls.GET_MONTHLY_ATTENDANCE_OF_USER + month + "/" + data.id
     );
+    console.log("res", res);
     if (res && res.success == true) {
       setisLoading(false);
-
       setData(res.data);
     } else {
       setisLoading(false);
+      setData([]);
     }
   };
   return (
@@ -47,7 +51,7 @@ const AttendenceDetails = (props) => {
       titleSize={5}
     >
       <View style={{ flexDirection: "row", marginVertical: 10 }}>
-        <CheckinBox
+        {/* <CheckinBox
           onPress={() =>
             props.navigation.navigate(
               routeName.EMPLOYEE_PROFILE,
@@ -66,42 +70,53 @@ const AttendenceDetails = (props) => {
           subTitle="06:30 PM"
           titleColor={colors.black}
           subTitlecolor={colors.red}
+        /> */}
+        <CheckinBox
+          subTitle="Resume"
+          onPress={() => PreView(setisLoading)}
+          disabled={false}
+          tintColor={colors.yellow1}
+          source={globalPath.report}
+        />
+
+        <CheckinBox
+          onPress={() =>
+            props.navigation.navigate(
+              routeName.EMPLOYEE_PROFILE,
+              props.route.params
+            )
+          }
+          subTitle="Emoplyee card"
+          tintColor={colors.blue1}
+          disabled={false}
+          source={globalPath.report}
         />
       </View>
-      <View>
-        <ResponsiveText
-          margin={[0, 0, 0, 8]}
-          // fontFamily={Fonts.Bold}
-          size={5}
-          color={colors.blue1}
-        >
-          May Attendence
-        </ResponsiveText>
-      </View>
+      <MonthCard action={getAttendancyById} />
 
       <View style={styles.tabContainer}>
         <TabIcon
           title="Present"
-          CircleText={"10"}
+          CircleText={attendacedata.presentCount}
           CircleColor={colors.green}
           titleSize={3.4}
         />
         <TabIcon
           title="Absent"
           titleSize={3.4}
-          CircleText={"30"}
+          CircleText={attendacedata.absentCount}
           CircleColor={colors.red}
         />
         <TabIcon
           title="Late"
           titleSize={3.4}
-          CircleText={"27"}
+          CircleText={attendacedata.lateCount}
           CircleColor={colors.blue1}
         />
         <TabIcon
           title="Leave"
           titleSize={3.4}
-          CircleText={"9"}
+          CircleText={attendacedata.leaveCount}
           CircleColor={colors.yellow3}
         />
       </View>
@@ -116,13 +131,14 @@ const AttendenceDetails = (props) => {
         }}
       >
         <ScrollView>
-          {attendacedata.length > 0 ? (
-            attendacedata.map((item, index) => {
+          { Object.keys(attendacedata).length > 0 ? (
+            attendacedata.countDetail.map((item, index) => {
               return (
                 <AttendenceCard
                   data={item}
                   userimg={item.fullPath}
                   checkTime={item.createdDateTime}
+                  status={item.checkIn}
                 />
               );
             })
