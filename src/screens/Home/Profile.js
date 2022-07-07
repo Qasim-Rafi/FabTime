@@ -13,6 +13,7 @@ import { routeName } from "../../constants/routeName";
 import {
   getUserAttendanceRecord,
   getUserProfile,
+  logoutUser,
 } from "../../redux/actions/user.actions";
 import Loader from "../../components/loader";
 import { PreView } from "../../constants/Index";
@@ -61,6 +62,7 @@ const Profile = (props) => {
           // await AsyncStorage.removeItem('cartData');
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
+          dispatch(logoutUser())
 
           props.navigation.dispatch(StackActions.replace("Auth"));
         },

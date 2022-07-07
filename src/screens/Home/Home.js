@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   NativeModule,
+  Alert,
 } from "react-native";
 import { colors } from "../../constants/colorsPallet";
 import Checkin from "../../components/Checkin";
@@ -32,16 +33,6 @@ const Home = ({ navigation }) => {
   const [CheckinTime, setCheckinTime] = useState("");
   const [userid, setUserid] = useState("");
   const [SSID, setSSID] = useState("");
-  const netInfo = useNetInfo({
-    reachabilityUrl: "https://clients3.google.com/generate_204",
-    reachabilityTest: async (response) => response.status === 204,
-    reachabilityLongTimeout: 60 * 1000, // 60s
-    reachabilityShortTimeout: 5 * 1000, // 5s
-    reachabilityRequestTimeout: 15 * 1000, // 15s
-    reachabilityShouldRun: () => true,
-    shouldFetchWiFiSSID: true, // met iOS requirements to get SSID
-    useNativeReachability: false,
-  });
   useEffect(() => {
     (async () => {
       var id = await AsyncStorage.getItem("@userId");
@@ -50,10 +41,10 @@ const Home = ({ navigation }) => {
     })();
     setCheckinTime(formatAMPM(new Date()));
     dispatch(getpresentTeam());
-    // if (Platform.OS == "android") {
-    //   permissons();
+    // if (Platform.OS == "ios") {
+    //   // permissons();
     // } else {
-    getSSDid();
+    // getSSDid();
     // }
   }, []);
 
@@ -65,10 +56,24 @@ const Home = ({ navigation }) => {
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
   }, []);
 
-  const CheckedIn = async () => {
+
+  const verifytocheckout=()=>{
+    Alert.alert("Check", "Confirm checkout", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      {
+        text: "OK",
+        onPress:()=>  CheckedOut()
+      },
+    ]);
+  }
+  const CheckedIn = async (ssid) => {
     var obj = {
       // CompanySSID: 'FabIntel',
-      CompanySSID: SSID,
+      CompanySSID: ssid,
     };
     const res = await Api.post(urls.ADD_ATTENDENCE, obj);
     console.log("res", res);
@@ -92,22 +97,12 @@ const Home = ({ navigation }) => {
     }
   };
   const getSSDid = async () => {
-    // WifiManager.connectToProtectedSSID(ssid, password, isWep).then(
-    //   () => {
-    //     console.log("Connected successfully!");
-    //   },
-    //   () => {
-    //     console.log("Connection failed!");
-    //   }
-    // );
-    // NetInfo.fetch("wifi").then(state => {
 
-    //   // console.log("Connection type", NetInfo.NetInfoCellularGeneration());
-    //   console.log("Is connected?", netInfo);
-    // });
-    // console.log('click')
-    WifiManager.setEnabled(true);
-    WifiManager.disconnect();
+
+    // WifiManager.setEnabled(true);
+    // WifiManager.disconnect();
+
+
     //WifiManager.forceWifiUsage(true);
     PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -141,7 +136,8 @@ const Home = ({ navigation }) => {
             WifiManager.getCurrentWifiSSID().then(
               (ssid) => {
                 setSSID(ssid);
-                _toast("Your current connected wifi SSID is " + ssid);
+                CheckedIn(ssid)
+                // _toast("Your current connected wifi SSID is " + ssid);
                 // console.log("Your current connected wifi SSID is " + ssid);
               },
               () => {
@@ -154,67 +150,10 @@ const Home = ({ navigation }) => {
           });
       } else {
         _toast("Permission denied");
-        //console.log("not granted");
-        // Permission denied
       }
-      // expected output: "Success!"
     });
-    // try {
-    //   const ssid=await WifiManager.loadWifiList()
-    //   console.log("Your current connected wifi SSID is " + ssid);
-    // } catch (error) {
-    //   console.log('error', error)
-    // }
-    // const enabled = await WifiManager.getBSSID();
-    // console.log('enabled', enabled)
-    // WifiManager.getCurrentWifiSSID().then(
-    //   ssid => {
-    //     console.log("Your current connected wifi SSID is " + ssid);
-    //   },
-    //   () => {
-    //     console.log("Cannot get current SSID!");
-    //   }
-    // );
-
-    // NetInfo.fetch("wifi").then(state => {
-    //   console.log("SSID", state.details.ssid);
-    //   console.log("BSSID", state.details.bssid);
-    //   console.log("Is connected?", state.details);
-    // });
-    // WifiManager.loadWifiList().then(
-    //   (ssid) => {
-    //     console.log("Your current connected wifi SSID is " + ssid);
-    //     _toast("Your current connected wifi SSID is " + ssid);
-    //     setSSID(ssid);
-    //   },
-    //   () => {
-    //     console.log("Cannot get current SSID!");
-    //     _toast("Cannot get current SSID!");
-
-    //   }
-    // );
+  
   };
-  const permissons = async () => {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: "Location permission is required for WiFi connections",
-        message:
-          "This app needs location permission as this is required  " +
-          "to scan for wifi networks.",
-        buttonNegative: "DENY",
-        buttonPositive: "ALLOW",
-      }
-    );
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      // You can now use react-native-wifi-reborn
-      getSSDid();
-    } else {
-      _toast("Premission denied");
-      // Permission denied
-    }
-  };
-  const late = () => {};
   return (
     <Layout title={"FabIntel Team"} address location={globalPath.location}>
       <View style={{ marginTop: "10%" }}>
@@ -228,7 +167,7 @@ const Home = ({ navigation }) => {
         <Checkin
           time={CheckinTime}
           onPress={() =>
-            data.some((v) => v.userId == userid) ? CheckedOut() : CheckedIn()
+            data.some((v) => v.userId == userid) ? verifytocheckout() : getSSDid()
           }
           data={data}
           userid={userid}

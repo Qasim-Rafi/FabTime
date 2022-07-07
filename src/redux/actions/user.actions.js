@@ -7,6 +7,13 @@ export const loginUser = (data) => {
     data: data,
   };
 };
+//LOGOUT
+export const logoutUser = (data) => {
+  return {
+    type: types.LOGIN_LOGOUT_REQUEST,
+    data: data,
+  };
+};
 //get present team
 export const getpresentTeam = (data) => {
   return {

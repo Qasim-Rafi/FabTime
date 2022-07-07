@@ -64,7 +64,8 @@ const LeavesCard = (props) => {
         {props.date ? (
           <View style={{ alignItems: "flex-end" }}>
             <ResponsiveText size={2.5} color={colors.grey1}>
-              {moment(new Date(props.date)).format(" MMMM Do YYYY")}
+              {/* {moment(new Date(props.date)).format(" MMMM Do YYYY")} */}
+              {props.date}
             </ResponsiveText>
           </View>
         ) : null}

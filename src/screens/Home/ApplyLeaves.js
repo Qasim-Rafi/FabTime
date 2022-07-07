@@ -14,8 +14,8 @@ import { Grid } from "react-native-animated-spinkit";
 import Loader from "../../components/loader";
 
 const ApplyLeaves = (props) => {
-  const [date, setDate] = useState(null);
-  const [date2, setDate2] = useState(null);
+  const [date, setDate] = useState(new Date());
+  const [date2, setDate2] = useState(new Date());
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const [Title, setTitle] = useState("");
@@ -115,7 +115,7 @@ const ApplyLeaves = (props) => {
               onChange={onChange}
               format={"YYYY-MM-DD"}
               displayFormat={"DD MMM YYYY"}
-              maximumDate={new Date()}
+              minimumDate={new Date()}
             />
           )}
           {show1 && (
@@ -139,7 +139,7 @@ const ApplyLeaves = (props) => {
               onChange={onChange1}
               format={"YYYY-MM-DD"}
               displayFormat={"DD MMM YYYY"}
-              maximumDate={new Date()}
+              minimumDate={new Date()}
             />
           )}
           <CheckinBox
@@ -152,7 +152,7 @@ const ApplyLeaves = (props) => {
           />
         </View>
 
-        <View style={{ marginTop: hp(0) }}>
+        <View style={{ marginTop: hp(0) ,alignItems:'center'}}>
           <View
             style={{
               shadowColor: "#000",
@@ -165,8 +165,6 @@ const ApplyLeaves = (props) => {
               elevation: 3,
               borderRadius: 20,
               marginTop: 10,
-              marginRight: 7,
-              marginLeft: 5,
             }}
           >
             <Input
@@ -174,7 +172,7 @@ const ApplyLeaves = (props) => {
               width={wp(90)}
               height={hp(6.5)}
               padding={[0, 0, 0, 25]}
-              margin={[0, 0, 0, 5]}
+              // margin={[0, 0, 0, 5]}
               onChnageText={(text) => setTitle(text)}
               value={Title}
               //   leftIcon={globalPath.Email}
@@ -195,8 +193,6 @@ const ApplyLeaves = (props) => {
               elevation: 3,
               borderRadius: 20,
               marginTop: 10,
-              marginRight: 10,
-              marginLeft: 5,
             }}
           >
             <Input
@@ -205,7 +201,7 @@ const ApplyLeaves = (props) => {
               height={hp(18)}
               inputHeight={hp(15)}
               padding={[0, 0, 0, 25]}
-              margin={[0, 0, 0, 0]}
+              // margin={[0, 0, 0, 0]}
               // backgroundColor={colors.red}
               multiline={true}
               // secureTextEntry
@@ -215,7 +211,6 @@ const ApplyLeaves = (props) => {
             />
           </View>
           {/* <ResponsiveText color={colors.red} margin={[20, 0, 0, 10]}>{errorString}</ResponsiveText> */}
-          <View style={{ marginHorizontal: 20 }}>
             <RnButton
               onPress={() => Submit()}
               backgroundColor={colors.blue}
@@ -223,7 +218,6 @@ const ApplyLeaves = (props) => {
               title={"Submit"}
               //   onPress={() => Validation()}
             />
-          </View>
         </View>
       </Layout>
       {Loading ? <Loader /> : undefined}

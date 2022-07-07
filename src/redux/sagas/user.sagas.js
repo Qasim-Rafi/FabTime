@@ -38,7 +38,15 @@ function* loginUserApi(data, response) {
     yield put({ type: types.LOGIN_USER_FAILURE, error: error });
   }
 }
+export function* logoutUserSaga() {
+  yield takeLatest(types.LOGIN_LOGOUT_REQUEST, logoutUserApi);
+}
+function* logoutUserApi(data, response) {
+  // let { params, navigation } = data.data;
+  yield put({ type: types.LOGIN_LOGOUT_SUCCESS});
 
+  
+}
 //present team
 export function* presentTeamSaga() {
   yield takeLatest(types.PRESENT_TEAM_REQUEST, presentTeamApi);

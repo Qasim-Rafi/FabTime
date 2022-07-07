@@ -37,7 +37,7 @@ const Graph = (props) => {
   const activityupdateData = [
     {
       label: "Present",
-      value: data.checkInCount / workingDays,
+      value: data.checkInCount / workingDays <1?data.checkInCount / workingDays:1,
 
       color: colors.green,
     },
@@ -48,7 +48,7 @@ const Graph = (props) => {
     },
     {
       label: "Late",
-      value: data.lateCount / workingDays,
+      value: data.lateCount / workingDays<1?data.lateCount / workingDays:1,
       color: colors.blue1,
       backgroundColor: "#cccccc",
     },
