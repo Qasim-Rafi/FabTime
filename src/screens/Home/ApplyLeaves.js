@@ -30,7 +30,7 @@ const ApplyLeaves = (props) => {
   const dateFormat = (incomingdate) => {
     var date = new Date(incomingdate);
     if (date != null) {
-      return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+      return `${date.getFullYear()}-${date.getMonth() + 1<10?'0':null}${date.getMonth() + 1}-${date.getDate()<10?'0':null}${date.getDate()}`;
     }
   };
   const onChange1 = (event, selectedDate) => {

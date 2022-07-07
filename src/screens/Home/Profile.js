@@ -76,7 +76,7 @@ const Profile = (props) => {
         backbutton
         userimg={ProfileData.fullPath}
         camera={globalPath.Camera}
-        Field={ProfileData.userDesignation}
+        Field={ProfileData.designation}
         username={ProfileData.username}
         title={"Profile"}
         profile
