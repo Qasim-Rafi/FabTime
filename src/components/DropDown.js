@@ -18,7 +18,8 @@ export default function DropDown(props) {
       width: props.width ? props.width : wp(85),
       alignSelf: 'center',
       justifyContent: 'center',
-      borderRadius: 20,
+      borderRadius:props.borderRadius?props.borderRadius: 20,
+      borderColor:props.bordercolor
     }}>
       <SelectDropdown
         statusBarTranslucent={false}
@@ -35,9 +36,10 @@ export default function DropDown(props) {
           height: props.height ? props.height : hp(6.5),
           width: props.width ? props.width : wp(90),
           alignSelf: 'center',
-          borderRadius: 40,
+          borderRadius:props.borderRadius?props.borderRadius: 40,
+          borderColor:props.bordercolor
         }}
-        buttonTextStyle={{ color: props.color ? props.color : colors.gray, fontSize: 14, textAlign: 'left', }}
+        buttonTextStyle={{ color: props.color ? props.color : colors.black, fontSize: 14, textAlign: 'left', }}
         renderDropdownIcon={() => {
           return (
             <Icon source={globalPath.arrow} tintColor={colors.gray} size={15} margin={[0, 10, 0, 0]} />

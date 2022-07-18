@@ -25,4 +25,5 @@ export default urls = {
   GET_REQUESTS:'/api/RequestItems/GetRequestItemsAll',
   ADD_REQUEST:'/api/RequestItems/AddRequestItems',
   LATE_USERS:'/api/Attendence/GetLateUserById',
+  GetAttendenceAllADminsideApp:'/api/Attendence/GetAttendenceAllADminsideApp/'
 };

@@ -2,19 +2,16 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import { CardView } from "../../components/cardView";
-import TabIcon from "../../components/TabIcon";
 import { colors } from "../../constants/colorsPallet";
 import { ScrollView } from "react-native-gesture-handler";
-import { formatAMPM } from "../../redux/actions/user.actions";
 import { hp } from "../../helpers/Responsiveness";
 import RecordNotFound from "../../components/RecordnotFound";
 
 const PresentTeam = ({ navigation, route }) => {
   const [data, setData] = useState(route.params);
-  console.log(formatAMPM("Thu 16-Jun-2022 16:00"));
 
   return (
-    <Layout title={"Fabintel Team"}>
+    <Layout title={"Present Members"} titleSize={6} backbutton navigation={navigation}>
       <ScrollView>
         {data?.length > 0
           ? data.map((item, index) => (

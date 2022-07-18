@@ -141,10 +141,10 @@ const AttendenceCard = (props) => {
       </View>
       <View>
         <ResponsiveText color={colors.grey1} size={2.5}>
-          01 May,2022
+          {formatAMPM(props.datetime,'type3')}
         </ResponsiveText>
-        <View style={[styles.timestyle,{backgroundColor:props.status=='Late'?colors.light_blue:colors.lightgreen}]}>
-          <ResponsiveText color={colors.black} size={2.8}>
+        <View style={[styles.timestyle,{backgroundColor:props.status=='Late'?colors.light_blue:props.status=='Absent'?colors.red: colors.green2}]}>
+          <ResponsiveText color={colors.white} size={2.8}>
             {props.status}
           </ResponsiveText>
         </View>

@@ -74,8 +74,11 @@ export const formatAMPM = (date1,type) => {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   // var strTime = hours + ":" + minutes + " " + ampm;
   //Wed 29-Jun-2022 15:44
+
+  //04-07-2022 10:12:53 PM type3
   var strTime =date1==''?'':  moment(date1,'DD-MM-YYYY HH:mm:ss A').format('LT');
   var endTime =date1==''?'': moment(date1,'ddd DD-MMM-YYYY hh:mm').format('LT');
+  var type3Date =date1==''?'': moment(date1,'DD-MM-YYYY hh:mm').format('DD-MM-YYYY');
 
-  return type=='type2'?endTime: strTime;
+  return type=='type2'?endTime:type=='type3'?type3Date: strTime;
 };

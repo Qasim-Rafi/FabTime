@@ -13,10 +13,13 @@ import Icon from "./Icon";
 import ImagePicker from "react-native-image-crop-picker";
 import urls from "../redux/lib/urls";
 import Api from "../redux/lib/api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../redux/actions/user.actions";
+import ImageDisplay from "./ImageDisplay";
 const Layout = (props) => {
   const [Loading, setLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
 
   const ProfileData = useSelector(
     (state) => state.userReducers.getProfileData.data
@@ -29,7 +32,7 @@ const Layout = (props) => {
       image == null
         ? null
         : {
-            uri: image.sourceURL,
+            uri: image.path,
             type: "image/jpeg",
             name: "photo.jpg",
           }
@@ -37,11 +40,11 @@ const Layout = (props) => {
     console.log("found data", formData);
 
     // setLoading(true);
-    const res = await Api.post(urls.ADD_PROFILE_PIC + ProfileData.id, formData);
-    console.log("res", res);
+    const res = await Api.put(urls.ADD_PROFILE_PIC + ProfileData.id, formData);
+    console.log("profile", res);
     if (res && res.success == true) {
       dispatch(getUserProfile());
-      _toast("profile update successfully");
+      // _toast("Profile update successfully");
       // setLoading(false);
     } else {
       _toast("Something went wrong");
@@ -98,7 +101,7 @@ const Layout = (props) => {
             ) : null}
             <ResponsiveText
               fontFamily={Fonts.Bold}
-              margin={[0, 0, 0,0]}
+              margin={[0, 0, 0, 0]}
               size={props.titleSize ? props.titleSize : 8}
               color={colors.white}
             >
@@ -118,27 +121,23 @@ const Layout = (props) => {
               />
             </TouchableOpacity>
           </View>
-          <View style={{flexDirection:'row'}}>
-          {props.location?
-          <Icon
-              size={20}
-              margin={[5, 4, 0, 25]}
-              source={props.location}
-            />
-          :null}
-          {props.address ? (
-            <ResponsiveText
-              margin={[5, 0, 0,0]}
-              fontFamily={Fonts.Bold}
-              size={3.5}
-              color={colors.white}
-            >
-              {/* {props.address} */}
-              FabIntel international lahore, pakistan
-            </ResponsiveText>
-          ) : null}
+          <View style={{ flexDirection: "row" }}>
+            {props.location ? (
+              <Icon size={20} margin={[5, 4, 0, 25]} source={props.location} />
+            ) : null}
+            {props.address ? (
+              <ResponsiveText
+                margin={[5, 0, 0, 0]}
+                fontFamily={Fonts.Bold}
+                size={3.5}
+                color={colors.white}
+              >
+                {/* {props.address} */}
+                FabIntel international lahore, pakistan
+              </ResponsiveText>
+            ) : null}
           </View>
-          
+
           {props.profile ? (
             <View>
               <View
@@ -160,7 +159,9 @@ const Layout = (props) => {
                     <Icon size={30} source={props.camera} />
                   </TouchableOpacity>
                 ) : null}
-                <Image
+                <ImageDisplay
+                  setModalVisible={setModalVisible}
+                  modalVisible={modalVisible}
                   source={
                     image == null
                       ? props.userimg
@@ -168,14 +169,27 @@ const Layout = (props) => {
                         : globalPath.user
                       : { uri: image.path }
                   }
-                  style={{
-                    borderRadius: 70,
-                    height: wp(30),
-                    width: wp(30),
-                    // resizeMode: "contain",
-                    backgroundColor: colors.white,
-                  }}
                 />
+                <TouchableOpacity
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Image
+                    source={
+                      image == null
+                        ? props.userimg
+                          ? { uri: props.userimg }
+                          : globalPath.user
+                        : { uri: image.path }
+                    }
+                    style={{
+                      borderRadius: 70,
+                      height: wp(30),
+                      width: wp(30),
+                      // resizeMode: "contain",
+                      backgroundColor: colors.white,
+                    }}
+                  />
+                </TouchableOpacity>
                 {/* <View style={styles.Onlinebadge}></View> */}
               </View>
               <ResponsiveText

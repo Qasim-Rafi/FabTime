@@ -70,10 +70,11 @@ const Home = ({ navigation }) => {
       },
     ]);
   }
-  const CheckedIn = async (ssid) => {
+  const CheckedIn = async (ssid,IpAddress) => {
     var obj = {
       // CompanySSID: 'FabIntel',
       CompanySSID: ssid,
+      IpAddress:IpAddress
     };
     const res = await Api.post(urls.ADD_ATTENDENCE, obj);
     console.log("res", res);
@@ -131,19 +132,36 @@ const Home = ({ navigation }) => {
             //     //console.log(reason);
             // }
             // );
-            //console.log("location enabled");
+            console.log("location enabled");
+            NetInfo.fetch().then(state => {
+              console.log("Connection type", state.type);
+              console.log("Is connected?", state);
             //WifiManager.connectToProtectedSSID("", "", false)
-            WifiManager.getCurrentWifiSSID().then(
-              (ssid) => {
-                setSSID(ssid);
-                CheckedIn(ssid)
-                // _toast("Your current connected wifi SSID is " + ssid);
-                // console.log("Your current connected wifi SSID is " + ssid);
-              },
-              () => {
-                //console.log("Cannot get current SSID!");
-              }
-            );
+            //   1c:5f:2b:05:9d:f0
+            if (state.isWifiEnabled==true) {
+              
+              WifiManager.getCurrentWifiSSID().then(
+                (ssid) => {
+                  NetInfo.fetch().then(state => {
+                    // console.log("Connection type", state.type);
+                    // console.log("Is connected?", state);
+                  });
+                  setSSID(ssid);
+                  CheckedIn(ssid,state.details.ipAddress)
+                  // _toast("Your current connected wifi SSID is " + ssid);
+                  // console.log("Your current connected wifi SSID is " + ssid);
+                },
+                () => {
+                  //console.log("Cannot get current SSID!");
+                }
+              );
+            }else{
+              // _toast("You are currently connected with "+state.details.carrier +' '+state.details.cellularGeneration);
+              _toast("Not Allowed To CheckIn OutSide of the Paremeter");
+
+            }
+          });
+
           })
           .catch((err) => {
             console.log("not permitted to enable location");

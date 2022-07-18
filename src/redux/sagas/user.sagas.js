@@ -27,9 +27,11 @@ function* loginUserApi(data, response) {
       yield AsyncStorage.setItem("@companyId", response.data.companyId);
       yield AsyncStorage.setItem("@userName", response.data.loggedInUserName);
       yield put({ type: types.LOGIN_USER_SUCCESS, payload: response });
-      // if (response.data.role == "Admin") {
+       if (response.data.loggedInUserTypeId == 2) {
       navigation.replace(routeName.BOTTOM_TABS);
-      // }
+       }else{
+        navigation.navigate(routeName.ALL_EMP_DATA);
+       }
     } else {
       yield put({ type: types.LOGIN_USER_FAILURE, payload: response });
     }

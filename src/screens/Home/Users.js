@@ -36,7 +36,7 @@ const Users = ({ navigation }) => {
   };
   return (
     <>
-    <Layout backbutton title={"Users"} navigation={navigation}>
+    <Layout backbutton title={"Users"} navigation={navigation} titleSize={6}>
       <Card>
         <ScrollView>
         {user.length > 0

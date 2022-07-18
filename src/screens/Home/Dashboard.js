@@ -145,7 +145,7 @@ const Dashboard = ({ navigation }) => {
                 titleColor="#00AEEF"
                 backgroundColor="#E9F9FF"
                 source={globalPath.notification}
-                onPress={() => navigation.navigate(routeName.NOTIFICATION)}
+                onPress={() => navigation.navigate(routeName.ALL_EMP_DATA)}
               />
             </Card>
             <Card>
