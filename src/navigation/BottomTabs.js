@@ -18,6 +18,7 @@ import { wp } from "../helpers/Responsiveness";
 import HomeStack from "./HomeStack";
 import CheckStack from "./CheckStack";
 import ReportStack from "./ReportStack";
+import AllEmpData from "../screens/Admin/AllEmpData";
 const Tab = createBottomTabNavigator();
 
 // Hiding Tab Names...
@@ -128,7 +129,7 @@ export default function BottomTabs() {
           }}
         ></Tab.Screen>
         <Tab.Screen
-          name={"REPORT"}
+          name={"ReportStack"}
           component={ReportStack}
           options={{
             tabBarIcon: ({ focused }) => (
@@ -149,15 +150,15 @@ export default function BottomTabs() {
           }}
         ></Tab.Screen>
 
-        {/* <Tab.Screen
-          name={"History"}
-          component={History}
+         <Tab.Screen
+          name={"Report"}
+          component={AllEmpData}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.TouchableTab : {}}>
                 <View style={focused ? styles.ActiveTab : styles.inActiveTab}>
                   <Image
-                    source={globalPath.history}
+                    source={globalPath.payslip}
                     resizeMode={"contain"}
                     style={{
                       width: 22,
@@ -169,7 +170,7 @@ export default function BottomTabs() {
               </View>
             ),
           }}
-        ></Tab.Screen> */}
+        ></Tab.Screen> 
 
         {/* <Tab.Screen
           name={"Notifications"}

@@ -145,7 +145,7 @@ const Dashboard = ({ navigation }) => {
                 titleColor="#00AEEF"
                 backgroundColor="#E9F9FF"
                 source={globalPath.notification}
-                onPress={() => navigation.navigate(routeName.ALL_EMP_DATA)}
+                onPress={() => navigation.navigate(routeName.NOTIFICATION)}
               />
             </Card>
             <Card>
@@ -157,7 +157,7 @@ const Dashboard = ({ navigation }) => {
                 }}
               >
                 <ResponsiveText color={colors.blue1}>
-                  Fabintel Team
+                  Present Members
                 </ResponsiveText>
                 <TouchableOpacity
                   onPress={() =>
