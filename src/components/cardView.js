@@ -112,11 +112,11 @@ const AttendenceCard = (props) => {
           <ResponsiveText
             color={colors.green1}
             // weight={"bold"}
-            flex={1.5}
+            flex={1}
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            {props.status=='Absent'?null:formatAMPM(props.checkTime)}
+            {props.status=='Absent'||props.status=='Leave'?null:formatAMPM(props.checkTime)}
           </ResponsiveText>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -132,11 +132,11 @@ const AttendenceCard = (props) => {
           <ResponsiveText
             color={colors.red}
             // weight={"bold"}
-            flex={1.5}
+            flex={1}
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            {props.status=='Absent'?null:formatAMPM(props.checkoutTime,'type2')}
+            {props.status=='Absent'||props.status=='Leave'?null:formatAMPM(props.checkoutTime,'type2')}
           </ResponsiveText>
         </View>
       </View>
@@ -144,7 +144,7 @@ const AttendenceCard = (props) => {
         <ResponsiveText color={colors.grey1} size={2.5}>
           {formatAMPM(props.datetime,'type3')}
         </ResponsiveText>
-        <View style={[styles.timestyle,{backgroundColor:props.status=='Late'?colors.light_blue:props.status=='Absent'?colors.red: colors.green2}]}>
+        <View style={[styles.timestyle,{backgroundColor:props.status=='Late Present'?colors.blue1:props.status=='Absent'?colors.red:props.status=='Present'? colors.green2:colors.yellow3}]}>
           <ResponsiveText color={colors.white} size={2.8}>
             {props.status}
           </ResponsiveText>
