@@ -30,7 +30,7 @@ const ApplyLeaves = (props) => {
   const dateFormat = (incomingdate) => {
     var date = new Date(incomingdate);
     if (date != null) {
-      return `${date.getFullYear()}-${date.getMonth() + 1<10?'0':null}${date.getMonth() + 1}-${date.getDate()<10?'0':null}${date.getDate()}`;
+      return `${date.getFullYear()}-${date.getMonth() + 1<10?'0':''}${date.getMonth() + 1}-${date.getDate()<10?'0':''}${date.getDate()}`;
     }
   };
   const onChange1 = (event, selectedDate) => {
@@ -84,7 +84,7 @@ const ApplyLeaves = (props) => {
   };
   return (
     <>
-      <Layout navigation={props.navigation} backbutton title={"Apply Leaves"}>
+      <Layout titleSize={6} navigation={props.navigation} backbutton title={"Apply Leaves"}>
         <View style={{ flexDirection: "row", margin: 10 }}>
           <CheckinBox
             onPress={showDAtepicker}

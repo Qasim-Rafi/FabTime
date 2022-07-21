@@ -13,6 +13,52 @@ import DropDown from "../../components/DropDown";
 import CustomizeDropdown from "../../components/CustomizeDropdown";
 
 const AllEmpData = ({ navigation }) => {
+  const dateArr=[{
+    name:'',
+    attendenceOfMonth:[{
+      present:'1',
+      day:'Mon'
+    },
+    {
+      present:'2',
+      day:'Tue'
+    },
+    {
+      present:'3',
+      day:'Wed'
+    },
+    {
+      present:'4',
+      day:'Thu'
+    },
+    {
+      present:'5',
+      day:'Fri'
+    },
+    {
+      present:'8',
+      day:'Mon'
+    },
+    {
+      present:'9',
+      day:'Tue'
+    },
+    {
+      present:'10',
+      day:'Wed'
+    },
+    {
+      present:'11',
+      day:'Thu'
+    },
+    {
+      present:'12',
+      day:'Fri'
+    }
+  
+  ]
+
+  }]
   const [data, setData] = useState([]);
   const [selectedmonth, setSelectedmonth] = useState(new Date().getMonth() + 1);
   const [selectedyear, setSelectedyear] = useState(new Date().getFullYear());
@@ -29,7 +75,7 @@ const AllEmpData = ({ navigation }) => {
     );
     console.log("monthyl rep", res);
     if (res && res.success == true) {
-      setData(res.data);
+      setData(dateArr.concat(res.data));
       // _toast("Checked In");
     } else {
       setData([]);
@@ -47,7 +93,7 @@ const AllEmpData = ({ navigation }) => {
           //   alignSelf: "stretch",
           flexDirection: "row",
           height: hp(8),
-          borderBottomWidth: 0.4,
+          // borderBottomWidth: 0.4,
           backgroundColor: index % 2 == 0 ? colors.grey : colors.white,
           borderRightWidth:0.3,
           paddingHorizontal:5
@@ -168,9 +214,11 @@ const AllEmpData = ({ navigation }) => {
                       }}
                     >
                       <ResponsiveText>{a.present}</ResponsiveText>
+                      {item.name!=''?null:
                       <ResponsiveText size={2.5} color={colors.black1}>
                         {a.day}
                       </ResponsiveText>
+                      }
                     </View>
                   ))}
                 </View>

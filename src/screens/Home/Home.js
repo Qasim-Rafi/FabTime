@@ -72,8 +72,8 @@ const Home = ({ navigation }) => {
   }
   const CheckedIn = async (ssid,IpAddress) => {
     var obj = {
-      // CompanySSID: 'FabIntel',
-      CompanySSID: ssid,
+      CompanySSID: 'FabIntel',
+      // CompanySSID: ssid,
       IpAddress:IpAddress
     };
     const res = await Api.post(urls.ADD_ATTENDENCE, obj);
@@ -185,7 +185,7 @@ const Home = ({ navigation }) => {
         <Checkin
           time={CheckinTime}
           onPress={() =>
-            data.some((v) => v.userId == userid) ? verifytocheckout() : getSSDid()
+            data.some((v) => v.userId == userid) ? verifytocheckout() : CheckedIn()
           }
           data={data}
           userid={userid}

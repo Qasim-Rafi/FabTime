@@ -142,6 +142,8 @@ const AttendenceDetails = (props) => {
                   checkTime={item.createdDateTime}
                   checkoutTime={item.checkoutDateTime}
                   status={item.status}
+                  datetime={item.createdDateTime}
+
                 />
               );
             })

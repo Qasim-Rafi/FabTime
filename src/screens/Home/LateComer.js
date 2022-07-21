@@ -18,7 +18,7 @@ const LateComer = ({ navigation }) => {
     }, []);
     return (
         <>
-            <Layout backbutton navigation={navigation} title={'Late Reasons'}>
+            <Layout titleSize={6} backbutton navigation={navigation} title={'Late Reasons'}>
                 <ScrollView>
                     {LateData.length > 0
                         ? LateData.map((item, index) => (

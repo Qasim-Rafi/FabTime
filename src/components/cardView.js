@@ -98,6 +98,7 @@ const AttendenceCard = (props) => {
         {/* <View style={styles.Onlinebadge}></View> */}
       </View>
       <View style={{ flex: 1, paddingHorizontal: 10 }}>
+      
         <View style={{ flexDirection: "row" }}>
           <ResponsiveText
             color={colors.black}
@@ -115,7 +116,7 @@ const AttendenceCard = (props) => {
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            {formatAMPM(props.checkTime)}
+            {props.status=='Absent'?null:formatAMPM(props.checkTime)}
           </ResponsiveText>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -135,7 +136,7 @@ const AttendenceCard = (props) => {
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            {formatAMPM(props.checkoutTime,'type2')}
+            {props.status=='Absent'?null:formatAMPM(props.checkoutTime,'type2')}
           </ResponsiveText>
         </View>
       </View>
