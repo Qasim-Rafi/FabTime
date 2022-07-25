@@ -10,10 +10,11 @@ import { isImage } from "../constants/Index";
 import { formatAMPM } from "../redux/actions/user.actions";
 const CardView = (props) => {
   return (
+    <Card margin={5}>
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
       onPress={() =>
-        props.checkInTime ?null: props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.data)
+        props.checkInTime ?props.navigation.navigate(routeName.SEND_NOTIFICATIONS, props.data): props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.data)
       }
     >
       <View style={{ alignItems: "flex-end" }}>
@@ -51,6 +52,7 @@ const CardView = (props) => {
         </View>
       ) : null}
     </TouchableOpacity>
+    </Card>
   );
 };
 const NotifationCard = (props) => {
@@ -136,7 +138,7 @@ const AttendenceCard = (props) => {
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            {props.status=='Absent'||props.status=='Leave'?null:formatAMPM(props.checkoutTime,'type2')}
+            {props.status=='Absent'||props.status=='Leave'?null:formatAMPM(props.checkoutTime)}
           </ResponsiveText>
         </View>
       </View>

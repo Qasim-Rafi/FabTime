@@ -39,7 +39,7 @@ const Users = ({ navigation }) => {
           {user.length > 0
             ? user.map((item, index) =>
                 item.userTypeId == 2 ? (
-                  <Card>
+                  // <Card>
                     <CardView
                       title={item.fullName}
                       data={item}
@@ -47,7 +47,7 @@ const Users = ({ navigation }) => {
                       source={item.fullPath}
                       navigation={navigation}
                     />
-                  </Card>
+                  // </Card>
                 ) : null
               )
             : null}

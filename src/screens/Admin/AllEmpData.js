@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import DropDown from "../../components/DropDown";
 import CustomizeDropdown from "../../components/CustomizeDropdown";
+import { formatAMPM } from "../../redux/actions/user.actions";
 
 const AllEmpData = ({ navigation }) => {
   const dateArr=[{
@@ -75,7 +76,9 @@ const AllEmpData = ({ navigation }) => {
     );
     console.log("monthyl rep", res);
     if (res && res.success == true) {
-      setData(dateArr.concat(res.data));
+      setData(res.data);
+      // setData(dateArr.concat(res.data));
+
       // _toast("Checked In");
     } else {
       setData([]);
@@ -214,11 +217,15 @@ const AllEmpData = ({ navigation }) => {
                       }}
                     >
                       <ResponsiveText>{a.present}</ResponsiveText>
-                      {item.name!=''?null:
+                      {
+                      //item.name!=''?null:
                       <ResponsiveText size={2.5} color={colors.black1}>
                         {a.day}
                       </ResponsiveText>
                       }
+                      <ResponsiveText size={2.5} color={colors.black1}>
+                        {formatAMPM( a.createdDateTime,'type6')}
+                      </ResponsiveText>
                     </View>
                   ))}
                 </View>

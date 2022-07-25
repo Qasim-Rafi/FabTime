@@ -69,6 +69,13 @@ const Profile = (props) => {
       },
     ]);
   };
+const  openResume=()=>{
+    if (ProfileData.resumeFilePath!=null) {
+      PreView(setisLoading)
+    } else {
+      _toast('Resume not found')
+    }
+  }
   return (
     <>
       <Layout
@@ -88,7 +95,7 @@ const Profile = (props) => {
         <View style={{ flexDirection: "row", margin: 10 }}>
           <CheckinBox
             subTitle="Resume"
-            onPress={() => PreView(setisLoading)}
+            onPress={() => openResume()}
             disabled={false}
             tintColor={colors.yellow1}
             source={globalPath.report}
@@ -137,7 +144,7 @@ const Profile = (props) => {
             {Object.keys(AttendanceRecord).length > 0 ? (
               AttendanceRecord.countDetail.map((item, index) => (
                 <AttendenceCard
-                  userimg={item.fullPath}
+                  userimg={ProfileData.fullPath}
                   checkTime={item.createdDateTime}
                   checkoutTime={item.checkoutDateTime}
                   status={item.status}

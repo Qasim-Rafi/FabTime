@@ -12,6 +12,7 @@ import AddRequests from "../screens/Home/AddRequest";
 import EmployeProfile from "../screens/Home/EmployeProfile";
 import LateComer from "../screens/Home/LateComer";
 import AllEmpData from "../screens/Admin/AllEmpData";
+import SendNotifications from "../screens/Home/SendNotifications";
 const Stack = createNativeStackNavigator();
 
 function HomeStack() {
@@ -33,6 +34,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.PROFILE} component={Profile} />
       <Stack.Screen name={routeName.LATECOMER} component={LateComer} />
       <Stack.Screen name={routeName.ALL_EMP_DATA} component={AllEmpData} />
+      <Stack.Screen name={routeName.SEND_NOTIFICATIONS} component={SendNotifications} />
 
     </Stack.Navigator>
   );

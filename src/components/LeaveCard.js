@@ -3,6 +3,8 @@ import { StyleSheet, View } from "react-native";
 import { colors } from "../constants/colorsPallet";
 import ResponsiveText from "../components/RnText";
 import { hp, wp } from "../helpers/Responsiveness";
+import { formatAMPM } from "../redux/actions/user.actions"
+
 import Card from "./Card";
 import moment from "moment";
 const LeavesCard = (props) => {
@@ -53,8 +55,8 @@ const LeavesCard = (props) => {
       <View style={{ marginHorizontal: 5 }}>
         {props.startDate ? (
           <ResponsiveText size={2.9} color={colors.grey1}>
-            {moment(new Date(props.startDate)).format(" MMMM Do YYYY")} to{" "}
-            {moment(new Date(props.endDate)).format(" MMMM Do YYYY")}
+            { formatAMPM(props.startDate,'type4')} to{" "}
+            {formatAMPM(props.startDate,'type4')}
           </ResponsiveText>
         ) : null}
 
@@ -65,7 +67,7 @@ const LeavesCard = (props) => {
           <View style={{ alignItems: "flex-end" }}>
             <ResponsiveText size={2.5} color={colors.grey1}>
               {/* {moment(new Date(props.date)).format(" MMMM Do YYYY")} */}
-              {props.date}
+              {formatAMPM(props.date,'type5')}
             </ResponsiveText>
           </View>
         ) : null}

@@ -4,7 +4,7 @@ import { colors } from "../constants/colorsPallet";
 
 const Card = (props) => {
   return (
-    <View style={[styles.container, { flexDirection: props.flexDirection }]}>
+    <View style={[styles.container, { flexDirection: props.flexDirection ,margin:props.margin?props.margin:10}]}>
       {props.children}
     </View>
   );

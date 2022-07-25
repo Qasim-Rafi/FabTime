@@ -173,7 +173,7 @@ const Home = ({ navigation }) => {
   
   };
   return (
-    <Layout title={"FabIntel Team"} address location={globalPath.location}>
+    <Layout title={"FabIntel"} address location={globalPath.location}>
       <View style={{ marginTop: "10%" }}>
         {data.some((v) => v.userId == userid) ? (
           <ResponsiveText textAlign={"center"}>

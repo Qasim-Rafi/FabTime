@@ -127,7 +127,7 @@ const Dashboard = ({ navigation }) => {
                 onPress={() => navigation.navigate(routeName.LEAVES)}
               />
               <TabIcon
-                title="LateReasons"
+                title="Late Reasons"
                 titleColor="#5958DA"
                 backgroundColor="#F1F5FF"
                 source={globalPath.payslip}
