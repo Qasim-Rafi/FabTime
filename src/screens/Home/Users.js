@@ -26,43 +26,36 @@ const Users = ({ navigation }) => {
     console.log("firstttt", res);
     if (res && res.success == true) {
       setuser(res.data);
-    setLoading(false);
-
+      setLoading(false);
     } else {
       _toast("something went wrong");
-    setLoading(false);
-
+      setLoading(false);
     }
   };
   return (
     <>
-    <Layout backbutton title={"Users"} navigation={navigation}>
-      <Card>
+      <Layout title={"Members"} navigation={navigation} titleSize={6}>
         <ScrollView>
-        {user.length > 0
-          ? user.map((item, index) =>
-              item.userTypeId == 2 ? (
-                <CardView
-                  title={item.fullName}
-                  data={item}
-                  userDesignation={item.userDesignation}
-                  source={item.fullPath}
-                  navigation={navigation}
-                />
-              ) : null
-            )
-          : null}
-          <View style={{height:hp(10)}}/>
-          </ScrollView>
-      </Card>
-      
-    </Layout>
-       {Loading?
-        <Loader/>
-          :
-          undefined
-       }
-       </>
+          {user.length > 0
+            ? user.map((item, index) =>
+                item.userTypeId == 2 ? (
+                  // <Card>
+                    <CardView
+                      title={item.fullName}
+                      data={item}
+                      userDesignation={item.userDesignation}
+                      source={item.fullPath}
+                      navigation={navigation}
+                    />
+                  // </Card>
+                ) : null
+              )
+            : null}
+          <View style={{ height: hp(10) }} />
+        </ScrollView>
+      </Layout>
+      {Loading ? <Loader /> : undefined}
+    </>
   );
 };
 

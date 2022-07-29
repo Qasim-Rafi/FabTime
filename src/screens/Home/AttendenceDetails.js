@@ -17,6 +17,7 @@ import { PreView } from "../../constants/Index";
 import Loader from "../../components/loader";
 import { globalPath } from "../../constants/globalPath";
 import MonthCard from "../../components/MonthCard";
+import { _toast } from "../../constants/Index";
 
 const AttendenceDetails = (props) => {
   const data = props.route.params;
@@ -41,12 +42,21 @@ const AttendenceDetails = (props) => {
       setData([]);
     }
   };
+  const  openResume=()=>{
+    if (data.resumeFilePath!=null) {
+      PreView(setisLoading)
+    } else {
+      _toast('Resume not found')
+    }
+  }
   return (
     <Layout
       navigation={props.navigation}
       backbutton
       username={data.fullName}
+      userimg={data.fullPath}
       title={"Employess Detail"}
+      Field={data.userDesignation}
       profile
       titleSize={5}
     >
@@ -73,7 +83,7 @@ const AttendenceDetails = (props) => {
         /> */}
         <CheckinBox
           subTitle="Resume"
-          onPress={() => PreView(setisLoading)}
+          onPress={() => openResume()}
           disabled={false}
           tintColor={colors.yellow1}
           source={globalPath.report}
@@ -131,14 +141,17 @@ const AttendenceDetails = (props) => {
         }}
       >
         <ScrollView>
-          { Object.keys(attendacedata).length > 0 ? (
+          {Object.keys(attendacedata).length > 0 ? (
             attendacedata.countDetail.map((item, index) => {
               return (
                 <AttendenceCard
                   data={item}
-                  userimg={item.fullPath}
+                  userimg={data.fullPath}
                   checkTime={item.createdDateTime}
-                  status={item.checkIn}
+                  checkoutTime={item.checkoutDateTime}
+                  status={item.status}
+                  datetime={item.createdDateTime}
+
                 />
               );
             })

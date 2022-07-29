@@ -53,11 +53,11 @@ const MonthCard = (props) => {
       name: "October",
     },
     {
-      id: 12,
+      id: 11,
       name: "November",
     },
     {
-      id: 6,
+      id: 12,
       name: "December",
     },
   ];
@@ -68,6 +68,7 @@ const MonthCard = (props) => {
     var mon = new Date().getMonth() + 1;
     var name = month.find((v) => v.id == mon).name;
     if (SelectedMonth == "") {
+      setSelectedMonth(name)
       return name;
     } else {
       return SelectedMonth;

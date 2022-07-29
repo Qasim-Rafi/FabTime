@@ -10,10 +10,11 @@ import { isImage } from "../constants/Index";
 import { formatAMPM } from "../redux/actions/user.actions";
 const CardView = (props) => {
   return (
+    <Card margin={5}>
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
       onPress={() =>
-        props.checkInTime ?null: props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.data)
+        props.checkInTime ?props.navigation.navigate(routeName.SEND_NOTIFICATIONS, props.data): props.navigation.navigate(routeName.ATTENDENCE_DETAIL, props.data)
       }
     >
       <View style={{ alignItems: "flex-end" }}>
@@ -51,6 +52,7 @@ const CardView = (props) => {
         </View>
       ) : null}
     </TouchableOpacity>
+    </Card>
   );
 };
 const NotifationCard = (props) => {
@@ -98,6 +100,7 @@ const AttendenceCard = (props) => {
         {/* <View style={styles.Onlinebadge}></View> */}
       </View>
       <View style={{ flex: 1, paddingHorizontal: 10 }}>
+      
         <View style={{ flexDirection: "row" }}>
           <ResponsiveText
             color={colors.black}
@@ -111,11 +114,11 @@ const AttendenceCard = (props) => {
           <ResponsiveText
             color={colors.green1}
             // weight={"bold"}
-            flex={1.5}
+            flex={1}
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            {formatAMPM(props.checkTime)}
+            {props.status=='Absent'||props.status=='Leave'?null:formatAMPM(props.checkTime)}
           </ResponsiveText>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -131,20 +134,20 @@ const AttendenceCard = (props) => {
           <ResponsiveText
             color={colors.red}
             // weight={"bold"}
-            flex={1.5}
+            flex={1}
             size={3.2}
             // margin={[0, 0, 0, 5]}
           >
-            {formatAMPM(props.checkoutTime,'type2')}
+            {props.status=='Absent'||props.status=='Leave'?null:formatAMPM(props.checkoutTime)}
           </ResponsiveText>
         </View>
       </View>
       <View>
         <ResponsiveText color={colors.grey1} size={2.5}>
-          01 May,2022
+          {formatAMPM(props.datetime,'type3')}
         </ResponsiveText>
-        <View style={[styles.timestyle,{backgroundColor:props.status=='Late'?colors.light_blue:colors.lightgreen}]}>
-          <ResponsiveText color={colors.black} size={2.8}>
+        <View style={[styles.timestyle,{backgroundColor:props.status=='Late Present'?colors.blue1:props.status=='Absent'?colors.red:props.status=='Present'? colors.green2:colors.yellow3}]}>
+          <ResponsiveText color={colors.white} size={2.8}>
             {props.status}
           </ResponsiveText>
         </View>

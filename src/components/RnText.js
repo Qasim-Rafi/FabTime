@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
+import { colors } from '../constants/colorsPallet';
 import { handleMargin, handlePadding } from '../constants/theme';
 import Fonts from '../helpers/Fonts';
 import { wp } from '../helpers/Responsiveness';
@@ -49,7 +50,7 @@ const ResponsiveText = ({
         {flexShrink:flexShrink},
         {fontWeight:weight},
         {flex:flex},
-        { color: color },
+        { color: color?color:colors.black },
         { backgroundColor: backgroundColor },
         { fontFamily: fontFamily ? Fonts[fontFamily] : Fonts.Medium },
         {borderWidth: borderWidth},

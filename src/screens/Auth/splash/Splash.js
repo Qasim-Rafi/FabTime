@@ -32,7 +32,7 @@ const Splash = ({ navigation }) => {
   const fetchAndSetUser = async () => {
     const token = await AsyncStorage.getItem("@token");
     const id = await AsyncStorage.getItem("@userId");
-    const role = await AsyncStorage.getItem("@role");
+    const role = await AsyncStorage.getItem("@loggedInUserTypeId");
     console.log("user Id: ", id);
     console.log(token, "token");
     setToken(token);
@@ -54,7 +54,7 @@ const Splash = ({ navigation }) => {
       }, 0);
     } else {
       // navigation.dispatch(StackActions.replace(routeName.LANDING_SCREEN));
-      navigation.replace(routeName.BOTTOM_TABS);
+      navigation.replace(routeName.BOTTOM_TABS,role);
       
     }
   };

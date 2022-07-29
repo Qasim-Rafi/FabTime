@@ -77,6 +77,12 @@ export const userReducers = (state = initialState, action) => {
           errorMsg: action.error,
         },
       };
+      case types.LOGIN_LOGOUT_REQUEST:
+      // console.log(action, "action in reducer");
+      return state;
+      case types.LOGIN_LOGOUT_SUCCESS:
+      // console.log(action, "action in reducer");
+      return initialState;
 //get profile data
 case types.GET_USER_PROFILE_REQUEST:
   return {

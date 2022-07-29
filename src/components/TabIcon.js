@@ -51,6 +51,7 @@ const TabIcon = (props) => {
         </View>
       )}
       <ResponsiveText
+      margin={[5, 0, 0, 0]}
         weight={"bold"}
         size={props.titleSize ? props.titleSize : 2.5}
         color={props.titleColor ? props.titleColor : colors.black}

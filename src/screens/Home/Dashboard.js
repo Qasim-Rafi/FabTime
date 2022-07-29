@@ -18,7 +18,6 @@ import {
   getAttendenceCount,
 } from "../../redux/actions/user.actions";
 import { ScrollView } from "react-native-gesture-handler";
-import { Grid } from "react-native-animated-spinkit";
 import Loader from "../../components/loader";
 import RecordNotFound from "../../components/RecordnotFound";
 import { isImage } from "../../constants/Index";
@@ -26,7 +25,9 @@ import { isImage } from "../../constants/Index";
 const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
-  const Loading = useSelector((state) => state.userReducers.presentTeam.refreshing);
+  const Loading = useSelector(
+    (state) => state.userReducers.presentTeam.refreshing
+  );
   const DashCount = useSelector(
     (state) => state.userReducers.getAttendenceCount.data
   );
@@ -42,9 +43,16 @@ const Dashboard = ({ navigation }) => {
     dispatch(getAttendenceCount());
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(getpresentTeam());
+    }, 60000);
+
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  }, []);
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
-      <View style={{ backgroundColor: colors.white, flex: 1 }}>
+      <ScrollView style={{ backgroundColor: colors.white, flex: 1 }}>
         <View style={styles.screeninfo}>
           <View
             style={{
@@ -70,8 +78,11 @@ const Dashboard = ({ navigation }) => {
                 style={{ backgroundColor: colors.white }}
                 borderRadius={20}
                 size={35}
-                 source={isImage(ProfileData.fullPath)?{uri:ProfileData.fullPath}:globalPath.user}
-
+                source={
+                  isImage(ProfileData.fullPath)
+                    ? { uri: ProfileData.fullPath }
+                    : globalPath.user
+                }
               />
               <View
                 style={{
@@ -105,7 +116,7 @@ const Dashboard = ({ navigation }) => {
         <View style={{ backgroundColor: colors.blue1, flex: 1 }}>
           <View style={styles.footer}>
             <View style={styles.container1}>
-              <Graph data={DashCount}  />
+              <Graph data={DashCount} />
             </View>
             <Card flexDirection={"row"}>
               <TabIcon
@@ -116,7 +127,7 @@ const Dashboard = ({ navigation }) => {
                 onPress={() => navigation.navigate(routeName.LEAVES)}
               />
               <TabIcon
-                title="LateReasons"
+                title="Late Reasons"
                 titleColor="#5958DA"
                 backgroundColor="#F1F5FF"
                 source={globalPath.payslip}
@@ -138,7 +149,6 @@ const Dashboard = ({ navigation }) => {
               />
             </Card>
             <Card>
-              
               <View
                 style={{
                   flexDirection: "row",
@@ -147,7 +157,7 @@ const Dashboard = ({ navigation }) => {
                 }}
               >
                 <ResponsiveText color={colors.blue1}>
-                  Fabintel Team
+                  Present Members
                 </ResponsiveText>
                 <TouchableOpacity
                   onPress={() =>
@@ -158,32 +168,28 @@ const Dashboard = ({ navigation }) => {
                 </TouchableOpacity>
               </View>
               <ScrollView showsVerticalScrollIndicator={false}>
-              {data.length >0
-                ? data.map((item, index) =>
+                {data.length > 0 ? (
+                  data.map((item, index) =>
                     index < 4 ? (
                       <CardView
                         title={item.name}
                         userDesignation={item.userDesignation}
                         checkInTime={item.createdDateTime}
                         navigation={navigation}
-                        source={item.fullPath }
+                        source={item.fullPath}
                       />
                     ) : null
                   )
-                :<RecordNotFound/>}
-                  <View style={{height:hp(60)}}>
-                </View>
-                </ScrollView>
-              
+                ) : (
+                  <RecordNotFound />
+                )}
+                <View style={{ height: hp(20) }}></View>
+              </ScrollView>
             </Card>
           </View>
         </View>
-      </View>
-      {Loading?
-   <Loader/>
-     :
-     undefined
-  }
+      </ScrollView>
+      {Loading && data.length == 0 ? <Loader /> : undefined}
     </SafeAreaView>
   );
 };

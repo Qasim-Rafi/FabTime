@@ -5,7 +5,7 @@ import { CardView, NotifationCard } from "../../components/cardView";
 
 const Notification = ({navigation}) => {
   return (
-    <Layout  navigation={navigation} backbutton title={"Notification"}>
+    <Layout titleSize={6} navigation={navigation} backbutton title={"Notification"}>
       <NotifationCard />
     </Layout>
   );

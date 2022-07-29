@@ -27,9 +27,11 @@ function* loginUserApi(data, response) {
       yield AsyncStorage.setItem("@companyId", response.data.companyId);
       yield AsyncStorage.setItem("@userName", response.data.loggedInUserName);
       yield put({ type: types.LOGIN_USER_SUCCESS, payload: response });
-      // if (response.data.role == "Admin") {
-      navigation.replace(routeName.BOTTOM_TABS);
-      // }
+      //  if (response.data.loggedInUserTypeId == 2) {
+      navigation.replace(routeName.BOTTOM_TABS,response.data.loggedInUserTypeId);
+      //  }else{
+      //   navigation.navigate(routeName.ALL_EMP_DATA);
+      //  }
     } else {
       yield put({ type: types.LOGIN_USER_FAILURE, payload: response });
     }
@@ -38,7 +40,15 @@ function* loginUserApi(data, response) {
     yield put({ type: types.LOGIN_USER_FAILURE, error: error });
   }
 }
+export function* logoutUserSaga() {
+  yield takeLatest(types.LOGIN_LOGOUT_REQUEST, logoutUserApi);
+}
+function* logoutUserApi(data, response) {
+  // let { params, navigation } = data.data;
+  yield put({ type: types.LOGIN_LOGOUT_SUCCESS});
 
+  
+}
 //present team
 export function* presentTeamSaga() {
   yield takeLatest(types.PRESENT_TEAM_REQUEST, presentTeamApi);

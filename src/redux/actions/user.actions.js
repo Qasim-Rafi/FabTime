@@ -7,6 +7,13 @@ export const loginUser = (data) => {
     data: data,
   };
 };
+//LOGOUT
+export const logoutUser = (data) => {
+  return {
+    type: types.LOGIN_LOGOUT_REQUEST,
+    data: data,
+  };
+};
 //get present team
 export const getpresentTeam = (data) => {
   return {
@@ -67,8 +74,18 @@ export const formatAMPM = (date1,type) => {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   // var strTime = hours + ":" + minutes + " " + ampm;
   //Wed 29-Jun-2022 15:44
+
+  //04-07-2022 10:12:53 PM type3
   var strTime =date1==''?'':  moment(date1,'DD-MM-YYYY HH:mm:ss A').format('LT');
   var endTime =date1==''?'': moment(date1,'ddd DD-MMM-YYYY hh:mm').format('LT');
+  var type3Date =date1==''?'': moment(date1,'DD-MM-YYYY hh:mm').format('DD-MM-YYYY');
+  var type4Date =date1==''?'': moment(date1,'YYYY-MM-DD hh:mm').format('DD-MM-YYYY');
+  var type5Date =date1==''?'': moment(date1,'YYYY-MM-DD hh:mm').format('DD-MM-YYYY hh:mm A' );
+  var type6Date =date1==''?'': moment(date1,'ddd DD-MMM-YYYY hh:mm').format('D' ); //Mon 04-Jul-2022 22:12
 
-  return type=='type2'?endTime: strTime;
+
+if (date1 !=null) {
+  
+  return type=='type2'?endTime:type=='type3'?type3Date:type=='type4'?type4Date:type=='type5'?type5Date:type=='type6'?type6Date: strTime;
+}
 };

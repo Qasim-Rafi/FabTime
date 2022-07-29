@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLeavesRequest } from "../../redux/actions/user.actions";
 import { ScrollView } from "react-native-gesture-handler";
 import Loader from "../../components/loader";
+import RecordNotFound from "../../components/RecordnotFound";
 const Leaves = ({ navigation }) => {
   const dispatch = useDispatch();
   const LeavesData = useSelector((state) => state.userReducers.getLeaves.data);
@@ -23,7 +24,7 @@ const Leaves = ({ navigation }) => {
   }, []);
   return (
     <>
-    <Layout  navigation={navigation} backbutton title={"Leaves"}>
+    <Layout titleSize={6}  navigation={navigation} backbutton title={"Leaves"}>
       <ScrollView>
         {LeavesData.length > 0
           ? LeavesData.map((item, index) => (
@@ -37,7 +38,7 @@ const Leaves = ({ navigation }) => {
                 status={item.status}
               />
             ))
-          : null}
+          : Loading ?null: <RecordNotFound/>}
           <View style={{height:hp(10)}}/>
       </ScrollView>
     </Layout>

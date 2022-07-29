@@ -24,7 +24,7 @@ const ApplyLate = ({navigation}) => {
     }
     setLoading(true);
 
-    const res = await Api.put(urls.ADD_REASON_OF_LATE, obj);
+    const res = await Api.post(urls.ADD_REASON_OF_LATE, obj);
     console.log("res", res);
     if (res && res.success == true) {
       setText("");
@@ -41,7 +41,7 @@ const ApplyLate = ({navigation}) => {
   };
   return (
     <>
-    <Layout navigation={navigation} backbutton title={"Apply for Late"}>
+    <Layout titleSize={6} navigation={navigation} backbutton title={"Apply for Late"}>
       <View style={{ marginTop: wp(10), marginHorizontal: wp(4) }}>
         <ResponsiveText size={3}>
           write the reason why are you late today?
