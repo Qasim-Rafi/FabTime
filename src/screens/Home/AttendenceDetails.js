@@ -60,6 +60,7 @@ const AttendenceDetails = (props) => {
       profile
       titleSize={5}
     >
+      <ScrollView>
       <View style={{ flexDirection: "row", marginVertical: 10 }}>
         {/* <CheckinBox
           onPress={() =>
@@ -140,7 +141,6 @@ const AttendenceDetails = (props) => {
           flex: 1,
         }}
       >
-        <ScrollView>
           {Object.keys(attendacedata).length > 0 ? (
             attendacedata.countDetail.map((item, index) => {
               return (
@@ -151,16 +151,15 @@ const AttendenceDetails = (props) => {
                   checkoutTime={item.checkoutDateTime}
                   status={item.status}
                   datetime={item.createdDateTime}
-
                 />
               );
             })
           ) : isLoading ? null : (
             <RecordNotFound />
           )}
-        </ScrollView>
       </View>
       {isLoading ? <Loader /> : undefined}
+      </ScrollView>
     </Layout>
   );
 };

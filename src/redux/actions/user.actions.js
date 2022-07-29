@@ -78,7 +78,7 @@ export const formatAMPM = (date1,type) => {
   //04-07-2022 10:12:53 PM type3
   var strTime =date1==''?'':  moment(date1,'DD-MM-YYYY HH:mm:ss A').format('LT');
   var endTime =date1==''?'': moment(date1,'ddd DD-MMM-YYYY hh:mm').format('LT');
-  var type3Date =date1==''?'': moment(date1,'DD-MM-YYYY hh:mm').format('DD-MM-YYYY');
+  var type3Date =date1==''?'': moment(date1,'YYYY-MM-DD hh:mm').format('DD-MM-YYYY');
   var type4Date =date1==''?'': moment(date1,'YYYY-MM-DD hh:mm').format('DD-MM-YYYY');
   var type5Date =date1==''?'': moment(date1,'YYYY-MM-DD hh:mm').format('DD-MM-YYYY hh:mm A' );
   var type6Date =date1==''?'': moment(date1,'ddd DD-MMM-YYYY hh:mm').format('D' ); //Mon 04-Jul-2022 22:12

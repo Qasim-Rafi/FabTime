@@ -21,11 +21,11 @@ const LateComer = ({ navigation }) => {
             <Layout titleSize={6} backbutton navigation={navigation} title={'Late Reasons'}>
                 <ScrollView>
                     {LateData.length > 0
-                        ? LateData.map((item, index) => (
+                        ? LateData.map((item, index) => (item.lateReason?
                             <LeavesCard
                                 date={item.lateDateTime}
                                 description={item.lateReason}
-                            />
+                            />:null
                         ))
                         :Loading ?null: <RecordNotFound/>}
                     <View style={{ height: hp(10) }} />

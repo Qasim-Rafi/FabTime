@@ -132,10 +132,10 @@ const Home = ({ navigation }) => {
             //     //console.log(reason);
             // }
             // );
-            console.log("location enabled");
+            // console.log("location enabled");
             NetInfo.fetch().then(state => {
-              console.log("Connection type", state.type);
-              console.log("Is connected?", state);
+              // console.log("Connection type", state.type);
+              // console.log("Is connected?", state);
             //WifiManager.connectToProtectedSSID("", "", false)
             //   1c:5f:2b:05:9d:f0
             if (state.isWifiEnabled==true) {
@@ -185,7 +185,7 @@ const Home = ({ navigation }) => {
         <Checkin
           time={CheckinTime}
           onPress={() =>
-            data.some((v) => v.userId == userid) ? verifytocheckout() : CheckedIn()
+            data.some((v) => v.userId == userid) ? verifytocheckout() : getSSDid()
           }
           data={data}
           userid={userid}

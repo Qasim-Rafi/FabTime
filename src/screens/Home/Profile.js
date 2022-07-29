@@ -62,20 +62,20 @@ const Profile = (props) => {
           // await AsyncStorage.removeItem('cartData');
           // await AsyncStorage.removeItem('@userId');
           await AsyncStorage.clear();
-          dispatch(logoutUser())
+          dispatch(logoutUser());
 
           props.navigation.dispatch(StackActions.replace("Auth"));
         },
       },
     ]);
   };
-const  openResume=()=>{
-    if (ProfileData.resumeFilePath!=null) {
-      PreView(setisLoading)
+  const openResume = () => {
+    if (ProfileData.resumeFilePath != null) {
+      PreView(setisLoading);
     } else {
-      _toast('Resume not found')
+      _toast("Resume not found");
     }
-  }
+  };
   return (
     <>
       <Layout
@@ -92,55 +92,58 @@ const  openResume=()=>{
         disabled={false}
         onPress={logout}
       >
-        <View style={{ flexDirection: "row", margin: 10 }}>
-          <CheckinBox
-            subTitle="Resume"
-            onPress={() => openResume()}
-            disabled={false}
-            tintColor={colors.yellow1}
-            source={globalPath.report}
-          />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{ flexDirection: "row", margin: 10 }}>
+            <CheckinBox
+              subTitle="Resume"
+              onPress={() => openResume()}
+              disabled={false}
+              tintColor={colors.yellow1}
+              source={globalPath.report}
+            />
 
-          <CheckinBox
-            onPress={() =>
-              props.navigation.navigate(routeName.EMPLOYEE_PROFILE, ProfileData)
-            }
-            subTitle="Emoplyee card"
-            tintColor={colors.blue1}
-            disabled={false}
-            source={globalPath.report}
-          />
-        </View>
-        <MonthCard action={getmonthData} />
+            <CheckinBox
+              onPress={() =>
+                props.navigation.navigate(
+                  routeName.EMPLOYEE_PROFILE,
+                  ProfileData
+                )
+              }
+              subTitle="Emoplyee card"
+              tintColor={colors.blue1}
+              disabled={false}
+              source={globalPath.report}
+            />
+          </View>
+          <MonthCard action={getmonthData} />
 
-        <Card flexDirection={"row"}>
-          <TabIcon
-            title="Present"
-            CircleText={AttendanceRecord.presentCount}
-            CircleColor={colors.green}
-            titleSize={3.4}
-          />
-          <TabIcon
-            title="Absent"
-            titleSize={3.4}
-            CircleText={AttendanceRecord.absentCount}
-            CircleColor={colors.red}
-          />
-          <TabIcon
-            title="Late"
-            titleSize={3.4}
-            CircleText={AttendanceRecord.lateCount}
-            CircleColor={colors.blue1}
-          />
-          <TabIcon
-            title="Leave"
-            titleSize={3.4}
-            CircleText={AttendanceRecord.leaveCount}
-            CircleColor={colors.yellow3}
-          />
-        </Card>
-        <Card>
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <Card flexDirection={"row"}>
+            <TabIcon
+              title="Present"
+              CircleText={AttendanceRecord.presentCount}
+              CircleColor={colors.green}
+              titleSize={3.4}
+            />
+            <TabIcon
+              title="Absent"
+              titleSize={3.4}
+              CircleText={AttendanceRecord.absentCount}
+              CircleColor={colors.red}
+            />
+            <TabIcon
+              title="Late"
+              titleSize={3.4}
+              CircleText={AttendanceRecord.lateCount}
+              CircleColor={colors.blue1}
+            />
+            <TabIcon
+              title="Leave"
+              titleSize={3.4}
+              CircleText={AttendanceRecord.leaveCount}
+              CircleColor={colors.yellow3}
+            />
+          </Card>
+          <Card>
             {Object.keys(AttendanceRecord).length > 0 ? (
               AttendanceRecord.countDetail.map((item, index) => (
                 <AttendenceCard
@@ -155,8 +158,8 @@ const  openResume=()=>{
               <RecordNotFound />
             )}
             <View style={{ height: hp(60) }}></View>
-          </ScrollView>
-        </Card>
+          </Card>
+        </ScrollView>
       </Layout>
       {isLoading || Loading ? <Loader /> : undefined}
     </>

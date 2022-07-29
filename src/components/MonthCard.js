@@ -106,7 +106,7 @@ const MonthCard = (props) => {
               style={[styles.button, styles.buttonClose]}
               onPress={() => Save()}
             >
-              <Text style={styles.textStyle}>Save</Text>
+              <Text style={styles.textStyle}>Submit</Text>
             </TouchableOpacity>
           </View>
         </View>
