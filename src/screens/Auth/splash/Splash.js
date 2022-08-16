@@ -54,23 +54,26 @@ const Splash = ({ navigation }) => {
       }, 0);
     } else {
       // navigation.dispatch(StackActions.replace(routeName.LANDING_SCREEN));
-      const jwtPayload = JSON.parse(window.atob(token.split('.')[1]))
-      console.log('jwtPayload.exp', jwtPayload.exp * 1000 < new Date().getTime());
-      if (jwtPayload.exp * 1000 < new Date().getTime()) {
-       await AsyncStorage.clear()
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: routeName.LOGIN }],
-          }),
-        );
-      } else {  
+      // const jwtPayload = JSON.parse(window.atob(token.split('.')[1]))
+      // console.log('jwtPayload.exp', jwtPayload.exp * 1000 < new Date().getTime());
+      // if (jwtPayload.exp * 1000 < new Date().getTime()) {
+      //   clearStorage()
+      //   navigation.dispatch(
+      //     CommonActions.reset({
+      //       index: 0,
+      //       routes: [{ name: routeName.LOGIN }],
+      //     }),
+      //   );
+      // } else {  
         navigation.replace(routeName.BOTTOM_TABS,role);
-      }
+      // }
       
     }
   };
-
+const clearStorage=async ()=>{
+  await AsyncStorage.clear()
+   
+}
   React.useEffect(() => {
     fetchAndSetUser();
   }, []);

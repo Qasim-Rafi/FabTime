@@ -26,10 +26,14 @@ import WifiManager from "react-native-wifi-reborn";
 import RNAndroidLocationEnabler from "react-native-android-location-enabler";
 
 import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
+import Loader from "../../components/loader";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
+  const Loading = useSelector(
+    (state) => state.userReducers.presentTeam.refreshing
+  );
   const [CheckinTime, setCheckinTime] = useState("");
   const [userid, setUserid] = useState("");
   const [SSID, setSSID] = useState("");
@@ -216,6 +220,8 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+      {Loading && data.length == 0 ? <Loader /> : undefined}
+
     </Layout>
   );
 };

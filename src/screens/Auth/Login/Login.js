@@ -19,6 +19,7 @@ import Api from "../../../redux/lib/api";
 import urls from "../../../redux/lib/urls";
 import Fonts from "../../../helpers/Fonts";
 import Loader from "../../../components/loader";
+import AsyncStorage from "@react-native-community/async-storage";
 const Login = ({ navigation }) => {
   const loading = useSelector(
     (state) => state.userReducers.loginScreen.refreshing
@@ -36,14 +37,16 @@ const Login = ({ navigation }) => {
   const [data, setData] = React.useState([]);
   //Redux Action Called
   const dispatch = useDispatch();
-  const userLogin = () => {
+  const userLogin = async() => {
+var fcmToken=await AsyncStorage.getItem('@fcmToken')
     dispatch(
       loginUser({
         params: {
           username: userName,
           password: password,
           // schoolName1: data.find((item) => item.branchName == school)?.id,
-          userType:2
+          userType:2,
+          fcmToken:fcmToken
         },
         navigation: navigation,
       })
