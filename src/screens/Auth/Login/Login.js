@@ -5,6 +5,7 @@ import {
   ImageBackground,
   Image,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import { hp, wp } from "../../../helpers/Responsiveness";
 import { colors } from "../../../constants/colorsPallet";
@@ -20,6 +21,7 @@ import urls from "../../../redux/lib/urls";
 import Fonts from "../../../helpers/Fonts";
 import Loader from "../../../components/loader";
 import AsyncStorage from "@react-native-community/async-storage";
+import { routeName } from "../../../constants/routeName";
 const Login = ({ navigation }) => {
   const loading = useSelector(
     (state) => state.userReducers.loginScreen.refreshing
@@ -54,7 +56,7 @@ var fcmToken=await AsyncStorage.getItem('@fcmToken')
   };
 
   useEffect(() => {
-    getCompanies();
+    // getCompanies();
   }, []);
   useEffect(() => {
     loginResponse ? setErrorString(loginResponse.message) : null;
@@ -166,7 +168,17 @@ var fcmToken=await AsyncStorage.getItem('@fcmToken')
                   onChnageText={(text) => setPassword(text)}
                   leftIcon={globalPath.Lock}
                 />
+                <TouchableOpacity 
+                style={{alignItems:'flex-end',marginTop:20}}
+                onPress={()=>navigation.navigate(routeName.FORGOT_PASSWORD)}
+                >
+                  <ResponsiveText color={colors.blue1}>Forgot Password?</ResponsiveText>
+                </TouchableOpacity>
+                {errorString?
+                
                 <ResponsiveText color={colors.red} margin={[20, 0, 0, 10]}>{errorString}</ResponsiveText>
+                :null
+                }
                 <RnButton
                   backgroundColor={colors.blue1}
                   margin={[50, 0, 0, 0]}

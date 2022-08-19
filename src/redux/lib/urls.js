@@ -7,6 +7,9 @@ export default urls = {
   //Login
   LOGIN: "/api/Auth/Login",
   REGISTER: "/api/Auth/Register",
+  CHANGE_PASSWORD:'/api/Auth/ChangePassword/',
+  FORGOT_PASSWORD:'/api/Auth/ForgotPassword/',
+  VERIFICATION_CODE:'/api/Auth/VerifyVerification/',
   ADD_ATTENDENCE: "/api/Attendence/AddAttendence",
   CHECKOUT:'/api/Attendence/Checkout/',
   UPDATE_ATTENDENCE: "/api/Attendence/UpdateAttendence/9",

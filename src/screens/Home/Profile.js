@@ -85,6 +85,7 @@ const Profile = (props) => {
         camera={globalPath.Camera}
         Field={ProfileData.designation}
         username={ProfileData.username}
+        userId={ProfileData.id}
         title={"Profile"}
         profile
         titleSize={5}

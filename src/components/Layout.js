@@ -16,6 +16,7 @@ import Api from "../redux/lib/api";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../redux/actions/user.actions";
 import ImageDisplay from "./ImageDisplay";
+import { routeName } from "../constants/routeName";
 const Layout = (props) => {
   const [Loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -230,6 +231,10 @@ const Layout = (props) => {
               >
                 {props.Field}
               </ResponsiveText>
+              <TouchableOpacity onPress={()=>props.navigation.navigate(routeName.CHANGE_PASSWORD,ProfileData.id)}
+              style={{alignSelf:'center',backgroundColor:colors.black2,padding:5,borderRadius:15,paddingHorizontal:15}}>
+                <ResponsiveText color={colors.white}>Change Password</ResponsiveText>
+              </TouchableOpacity>
             </View>
           ) : null}
         </View>
