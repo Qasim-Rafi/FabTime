@@ -22,6 +22,7 @@ import Fonts from "../../../helpers/Fonts";
 import Loader from "../../../components/loader";
 import AsyncStorage from "@react-native-community/async-storage";
 import { routeName } from "../../../constants/routeName";
+import {_toast} from '../../../constants/Index'
 const Login = ({ navigation }) => {
   const loading = useSelector(
     (state) => state.userReducers.loginScreen.refreshing
@@ -44,7 +45,7 @@ var fcmToken=await AsyncStorage.getItem('@fcmToken')
     dispatch(
       loginUser({
         params: {
-          username: userName,
+          email: userName,
           password: password,
           // schoolName1: data.find((item) => item.branchName == school)?.id,
           userType:2,
@@ -80,15 +81,21 @@ var fcmToken=await AsyncStorage.getItem('@fcmToken')
   const Validation = (item) => {
     // setErrorString("Please Enter Username and
     // navigation.replace(routeName.BOTTOM_TABS);
-
+    const expressions =  /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
     // setErrorString("Please Enter Username and Password to proceed");
     setErrorString("");
+    
     if (userName === "" && password === "" ) {
-      setErrorString("All fields are required");
-    } else if (userName === "" || userName === null) {
-      setErrorString("Username is missing");
+      _toast("All fields are required")
+    } else 
+    if (!expressions.test(userName) || userName.includes(' ') ) {
+      _toast('Invalid Email')
+    } else
+    if (userName === "" || userName === null) {
+      _toast("Username / Email is missing")
     } else if (password === "") {
-      setErrorString("Password is missing");
+      _toast("Password is missing")
+
     }
     //  else if (company === "") {
     //   setErrorString("Please select school");
@@ -147,7 +154,7 @@ var fcmToken=await AsyncStorage.getItem('@fcmToken')
                 /> */}
 
                 <Input
-                  placeholder={"Email or phone number"}
+                  placeholder={"User Name / Email"}
                   width={wp(90)}
                   height={hp(6.5)}
                   padding={[0, 0, 0, 25]}
