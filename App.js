@@ -6,39 +6,39 @@ import Router from "./src/navigation/Router";
 import { persistor, store } from "./src/redux/store";
 import FlashMessage from "react-native-flash-message";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import PushNotification from "react-native-push-notification";
+// import PushNotification from "react-native-push-notification";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const App = () => {
-  useEffect(() => {
-    PushNotification.configure({
-      // (optional) Called when Token is generated (iOS and Android)
-      onRegister: function(token) {
-        console.log("TOKEN:", token.token);
-        AsyncStorage.setItem('@fcmToken',token.token)
-      },
+  // useEffect(() => {
+  //   PushNotification.configure({
+  //     // (optional) Called when Token is generated (iOS and Android)
+  //     onRegister: function(token) {
+  //       console.log("TOKEN:", token.token);
+  //       AsyncStorage.setItem('@fcmToken',token.token)
+  //     },
     
-      // (required) Called when a remote or local notification is opened or received
-      onNotification: function(notification) {
-        console.log("NOTIFICATION:", notification);
+  //     // (required) Called when a remote or local notification is opened or received
+  //     onNotification: function(notification) {
+  //       console.log("NOTIFICATION:", notification);
     
-        // process the notification here
+  //       // process the notification here
     
-        // required on iOS only 
-        // notification.finish(PushNotificationIOS.FetchResult.NoData);
-      },
-      // Android only
-      senderID: "781461991523",
-      // iOS only
-      permissions: {
-        alert: true,
-        badge: true,
-        sound: true
-      },
-      popInitialNotification: true,
-      requestPermissions: true
-    });
-  }, [])
+  //       // required on iOS only 
+  //       // notification.finish(PushNotificationIOS.FetchResult.NoData);
+  //     },
+  //     // Android only
+  //     senderID: "781461991523",
+  //     // iOS only
+  //     permissions: {
+  //       alert: true,
+  //       badge: true,
+  //       sound: true
+  //     },
+  //     popInitialNotification: true,
+  //     requestPermissions: true
+  //   });
+  // }, [])
   
   return (
     <SafeAreaProvider>
