@@ -26,10 +26,14 @@ import WifiManager from "react-native-wifi-reborn";
 import RNAndroidLocationEnabler from "react-native-android-location-enabler";
 
 import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
+import Loader from "../../components/loader";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userReducers.presentTeam.data);
+  const Loading = useSelector(
+    (state) => state.userReducers.presentTeam.refreshing
+  );
   const [CheckinTime, setCheckinTime] = useState("");
   const [userid, setUserid] = useState("");
   const [SSID, setSSID] = useState("");
@@ -140,10 +144,10 @@ const Home = ({ navigation }) => {
             //     //console.log(reason);
             // }
             // );
-            console.log("location enabled");
+            // console.log("location enabled");
             NetInfo.fetch().then(state => {
-              console.log("Connection type", state.type);
-              console.log("Is connected?", state);
+              // console.log("Connection type", state.type);
+              // console.log("Is connected?", state);
             //WifiManager.connectToProtectedSSID("", "", false)
             //   1c:5f:2b:05:9d:f0
             if (state.isWifiEnabled==true) {
@@ -193,7 +197,7 @@ const Home = ({ navigation }) => {
         <Checkin
           time={CheckinTime}
           onPress={() =>
-            data.some((v) => v.userId == userid) ? verifytocheckout() : CheckedIn()
+            data.some((v) => v.userId == userid) ? verifytocheckout() : getSSDid()
           }
           data={data}
           userid={userid}
@@ -224,6 +228,8 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+      {Loading && data.length == 0 ? <Loader /> : undefined}
+
     </Layout>
   );
 };

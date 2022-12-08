@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getpresentTeam,
   getAttendenceCount,
+  getUserProfile,
 } from "../../redux/actions/user.actions";
 import { ScrollView } from "react-native-gesture-handler";
 import Loader from "../../components/loader";
@@ -41,6 +42,8 @@ const Dashboard = ({ navigation }) => {
   useEffect(() => {
     dispatch(getpresentTeam());
     dispatch(getAttendenceCount());
+    dispatch(getUserProfile());
+
   }, []);
 
   useEffect(() => {

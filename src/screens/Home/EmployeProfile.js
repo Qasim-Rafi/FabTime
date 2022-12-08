@@ -104,6 +104,19 @@ const EmployeProfile = (props) => {
       <View style={{ flexDirection: "row" }}>
         <View style={styles.Text}>
           <TextProfile
+            Title="Employee Salary"
+            color={colors.white}
+            size={4}
+            weight={"bold"}
+          />
+        </View>
+        <View style={styles.Text2}>
+          <TextProfile Title={data.employerSalary} color={colors.white} size={3.2} />
+        </View>
+      </View>
+      <View style={{ flexDirection: "row" }}>
+        <View style={styles.Text}>
+          <TextProfile
             Title="Contact"
             color={colors.white}
             size={4}

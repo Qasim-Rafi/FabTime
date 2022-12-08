@@ -65,6 +65,12 @@ const Layout = (props) => {
           takephotofromgallary();
         },
       },
+      {
+        text: "Open Camera",
+        onPress: async () => {
+          openCamera();
+        },
+      },
     ]);
   };
   const takephotofromgallary = () => {
@@ -78,6 +84,19 @@ const Layout = (props) => {
       console.log(image, "image working");
     });
   };
+  const openCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      addPhoto(image);
+      setImage(image);
+    });
+    
+
+  }
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
